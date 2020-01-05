@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import NavBar from './NavBar';
 import SignUp from './SignUp';
 import Login from './Login';
-
+import Search from './Components/Search'
 import './App.css';
 
 class App extends React.Component {
@@ -40,6 +40,7 @@ class App extends React.Component {
 		return (
     		<div className="App">
       			{toggleEntry}
+            <Search/>
     		</div>
   		);
 	}
