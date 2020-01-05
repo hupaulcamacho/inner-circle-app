@@ -21,9 +21,14 @@ CREATE TABLE posts (
     id SERIAL PRIMARY KEY,
     circle_id INT REFERENCES circles (id),
     owner_id INT REFERENCES users (id),
-    picture_url VARCHAR,
+    image_url VARCHAR,
     post_body VARCHAR
 );
+
+CREATE TABLE links (
+    id SERIAL PRIMARY KEY, 
+    user_id INT REFERENCES users (id),
+    circle_ref INT REFERENCES circles (id));
 
 INSERT INTO users (username, email, avatar)
     VALUES ('narutolover', 'uzumaki56@gmail.com', './public/images/avatar/naruto.png'),
@@ -36,7 +41,7 @@ INSERT INTO users (username, email, avatar)
            ('therealdemonslayer', 'sango223@gmail.com', './public/images/avatar/sango.png'),
            
            ('doubledribble', 'jharden@yahoo.com', './public/images/avatar/harden.jpg'),
-           ('kingjames', 'lebronclevland45@gmail.com', './public/images/avatar/lebron.jpg')
+           ('kingjames', 'lebronclevland45@gmail.com', './public/images/avatar/lebron.jpg'),
            ('nopassing', 'kobeeee@gmail.com', './public/images/avatar/kobe.jpg'),
            ('onlythrees', 'chefcurry@hotmail.com', './public/images/avatar/curry.jpg'),
            ('foreverknicks', 'reddhook@hotmail.com', './public/images/avatar/carmelo.jpeg'),
@@ -45,6 +50,9 @@ INSERT INTO users (username, email, avatar)
            ('rpggamer432', 'chrono34@gmail.com', './public/images/avatar/chrono.jpg'),
            ('theprincess', 'toadstool@gmail.com', './public/images/avatar/peach.png'),
            ('masterchief', 'halomaster@gmail.com', './public/images/avatar/master_chief.jpg'),
+
+
+
            ('precursororb4', 'jakanddax55@gmail.com', './public/images/avatar/jak.jpg'),
            ('tombraider', 'lauracroft94@gmail.com', './public/images/avatar/laura.png'),
            ('1000hadoukens', 'sfryu@gmail.com', './public/images/avatar/ryu.jpg'),
@@ -66,6 +74,11 @@ INSERT INTO posts (circle_id, owner_id, image_url, post_body)
            (3, 17, './public/images/pictures/chief_post_1.jpg', 'Who is ready for Halo Infinite?!!'),
            (3, 15, './public/images/pictures/chrono_post_1.jpg', 'I NEED a new golden sun game to drop'),
            (3, 20, './public/images/pictures/ryu_post_1.jpg', 'Tokido is one of the most impressive Akuma players, he always plays at an insane level');
+
+INSERT INTO links (user_id, circle_ref)
+    VALUES(1,1), (2,1), (3,1), (4, 1), (5, 1), (6, 1), (7, 1), (8, 1), (9, 2), (10, 2),
+      (11, 2), (12, 2), (13, 2), (14, 2), (15, 3), (16, 3), (17, 3), (18, 3), (20, 3 ), (21, 3);
+
 
 
            

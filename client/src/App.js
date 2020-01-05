@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import NavBar from './NavBar';
 import SignUp from './SignUp';
 import Login from './Login';
