@@ -20,7 +20,11 @@ class SignUp extends React.Component{
 			<h1>Sign up Today!</h1>
 				<div className='form-item'>
 					<label for='name'>Enter your email Address</label>
-					<input placeHolder='John Doe' type='email'></input>
+					<input placeHolder='JohnDoe@gmail.com' type='email'></input>
+				</div>
+				<div className='form-item'>
+					<label for='name'>Enter your username</label>
+					<input placeHolder='John Doe' type='text'></input>
 				</div>
 				<div className='form-item'>
 					<label for='avatar'>Download your profile picture here</label>
