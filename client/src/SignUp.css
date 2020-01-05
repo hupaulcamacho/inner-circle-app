@@ -1,0 +1,13 @@
+.signUp-form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	z-index: 2
+}
+
+.form-item {
+	margin-top: 30px;
+	margin-bottom: 30px;
+	display: flex;
+	flex-direction: column;
+}
