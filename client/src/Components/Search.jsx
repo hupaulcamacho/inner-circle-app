@@ -11,7 +11,7 @@ class Search extends React.Component {
         
     }
 
-    //his is to keep track of what goes in the input box.
+    //This is to keep track of what goes in the input box.
     handleSearchBar = (e) => {
         this.setState({
             searchBar: e.target.value
