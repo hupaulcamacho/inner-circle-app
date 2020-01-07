@@ -18,11 +18,11 @@ router.get('/getAllCircles', async (req, res) => {
 });
 
 router.get('/getCircleByName/:circleName', async (req, res) => {
-	try{
+	try {
 		let response = await db.any(`SELECT * FROM circles WHERE circle_name = $1`, [req.params.circleName]);
 		res.json({message: response});
 	}
-	catch(err){
+	catch (err) {
 		console.log(err);
 		res.json({err: err});
 	}
