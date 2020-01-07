@@ -4,8 +4,6 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors')
 
-
-
 const app = express();
 
 app.use(logger('dev'));
@@ -15,7 +13,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 
-// Post Routerr
+// Post Router
 const postRouter = require('./routes/posts');
 
 app.use('/posts', postRouter)
