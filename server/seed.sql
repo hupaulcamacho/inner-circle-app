@@ -19,16 +19,17 @@ CREATE TABLE circles (
 
 CREATE TABLE posts (
     id SERIAL PRIMARY KEY,
-    circle_id INT REFERENCES circles (id),
-    owner_id INT REFERENCES users (id),
+    circle_id INT REFERENCES circles (id) ON DELETE CASCADE,
+    owner_id INT REFERENCES users (id) ON DELETE CASCADE,
     image_url VARCHAR,
     post_body VARCHAR
 );
-
+       
 CREATE TABLE links (
     id SERIAL PRIMARY KEY, 
-    user_id INT REFERENCES users (id),
-    circle_ref INT REFERENCES circles (id));
+    user_id INT REFERENCES users (id) ON DELETE CASCADE,
+    circle_ref INT REFERENCES circles (id) ON DELETE CASCADE
+  );
 
 INSERT INTO users (username, email, avatar)
     VALUES ('narutolover', 'uzumaki56@gmail.com', './public/images/avatar/naruto.png'),
@@ -50,9 +51,6 @@ INSERT INTO users (username, email, avatar)
            ('rpggamer432', 'chrono34@gmail.com', './public/images/avatar/chrono.jpg'),
            ('theprincess', 'toadstool@gmail.com', './public/images/avatar/peach.png'),
            ('masterchief', 'halomaster@gmail.com', './public/images/avatar/master_chief.jpg'),
-
-
-
            ('precursororb4', 'jakanddax55@gmail.com', './public/images/avatar/jak.jpg'),
            ('tombraider', 'lauracroft94@gmail.com', './public/images/avatar/laura.png'),
            ('1000hadoukens', 'sfryu@gmail.com', './public/images/avatar/ryu.jpg'),
@@ -77,9 +75,11 @@ INSERT INTO posts (circle_id, owner_id, image_url, post_body)
 
 INSERT INTO links (user_id, circle_ref)
     VALUES(1,1), (2,1), (3,1), (4, 1), (5, 1), (6, 1), (7, 1), (8, 1), (9, 2), (10, 2),
-      (11, 2), (12, 2), (13, 2), (14, 2), (15, 3), (16, 3), (17, 3), (18, 3), (20, 3 ), (21, 3);
+      (11, 2), (12, 2), (13, 2), (14, 2), (15, 3), (16, 3), (17, 3), (18, 3), (19, 3 ), (20, 3);
+
+SELECT COUNT(id) FROM links WHERE circle_ref = 1;
 
 
 
-           
+             
            
