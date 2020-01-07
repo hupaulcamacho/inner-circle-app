@@ -1,10 +1,14 @@
+
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const cors = require('cors')
+const cors = require('cors');
+const circleRouter = require('./routes/circles');
+const port = 3030;
 
 const app = express();
+
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -17,5 +21,13 @@ app.use(cors());
 const postRouter = require('./routes/posts');
 
 app.use('/posts', postRouter)
+
+
+app.use('/circles', circleRouter);
+
+
+app.listen(port, ()=>{
+    console.log(`Server is running at port ${port}`)
+})
 
 module.exports = app;
