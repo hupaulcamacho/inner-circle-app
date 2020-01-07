@@ -1,6 +1,18 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../db.js');
+const multer = require('multer');
+const upload = multer({ dest: 'uploads/' });
+
+// var storage = multer.diskStorage({
+//   destination: function (req, file, cb) {
+//     cb(null, '/tmp/my-uploads')
+//   },
+//   filename: function (req, file, cb) {
+//     cb(null, file.fieldname + '-' + Date.now())
+//   }
+// })
+
 ///////////////////////////////
 
 //Route to get all the users 

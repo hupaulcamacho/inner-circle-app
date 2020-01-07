@@ -1,11 +1,11 @@
 import React from 'react';
 
 class Search extends React.Component {
-    constructor () {
-        super() 
+    constructor (props) {
+        super(props) 
             this.state = {
                 searchBar: '',
-                // searchButton: ''
+                outputs:[]
 
             }
         
@@ -28,7 +28,7 @@ class Search extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className='search'>
                 <form onSubmit={this.handleSubmit}>
                     <label>
                         Search
