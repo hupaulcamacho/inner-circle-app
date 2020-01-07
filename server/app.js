@@ -1,4 +1,6 @@
 
+// var indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
@@ -26,8 +28,13 @@ app.use('/posts', postRouter)
 app.use('/circles', circleRouter);
 
 
+
+// app.use('/', indexRouter);
+app.use('/users', usersRouter);
+
 app.listen(port, ()=>{
     console.log(`Server is running at port ${port}`)
 })
+
 
 module.exports = app;

@@ -1,17 +1,17 @@
 import React from 'react';
 
 class Search extends React.Component {
-    constructor () {
-        super() 
+    constructor (props) {
+        super(props) 
             this.state = {
                 searchBar: '',
-                // searchButton: ''
+                outputs:[]
 
             }
         
     }
 
-    //his is to keep track of what goes in the input box.
+    //This is to keep track of what goes in the input box.
     handleSearchBar = (e) => {
         this.setState({
             searchBar: e.target.value
@@ -28,7 +28,7 @@ class Search extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className='search'>
                 <form onSubmit={this.handleSubmit}>
                     <label>
                         Search
