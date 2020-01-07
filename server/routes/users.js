@@ -42,7 +42,7 @@ router.get('/', async(req, res) => {
 })
 /////////////////////////////////////
 
-//Router to get users by email only
+//Router to get users by email and username
 router.get('/:by/:value', async(req, res) => {
   let userInfo = req.params.value
   let by = req.params.by
