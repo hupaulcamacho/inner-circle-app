@@ -5,6 +5,29 @@ let router = express.Router();
 const db= require('../db');
 //Get users that belong to a circle
 
+router.get('/getAllCircles', async (req, res) => {
+	try{
+		let response = await db.any(`SELECT * FROM circles`);
+		console.log(response);
+		res.json({message: response});
+	}
+	catch(err){
+		console.log('this broker');
+		res.json({err: err});
+	}
+});
+
+router.get('/getCircleByName/:circleName', async (req, res) => {
+	try{
+		let response = await db.any(`SELECT * FROM circles WHERE circle_name = $1`, [req.params.circleName]);
+		res.json({message: response});
+	}
+	catch(err){
+		console.log(err);
+		res.json({err: err});
+	}
+});
+
 
 router.get('/:circle_id', async (req, res) => {
 	let response;
@@ -15,10 +38,12 @@ router.get('/:circle_id', async (req, res) => {
 		res.send(response);
 	}
 	catch(err){
-		console.log('this broke');
+		console.log('lol wrong sub');
 		res.json({err: err});
 	}
 });
+
+
 
 router.post('/register', async (req, res) => {
 	let response;
