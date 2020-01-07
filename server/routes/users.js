@@ -2,16 +2,20 @@ const express = require('express');
 const router = express.Router();
 const db = require('../db.js');
 const multer = require('multer');
-const upload = multer({ dest: 'uploads/' });
+// const upload = multer({ dest: 'uploads/' });
 
-// var storage = multer.diskStorage({
-//   destination: function (req, file, cb) {
-//     cb(null, '/tmp/my-uploads')
-//   },
-//   filename: function (req, file, cb) {
-//     cb(null, file.fieldname + '-' + Date.now())
-//   }
-// })
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, '/tmp/my-uploads')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + '-' + Date.now())
+  }
+})
+
+var upload = multer({
+  storage: storage
+})
 
 ///////////////////////////////
 
@@ -39,31 +43,43 @@ router.get('/', async(req, res) => {
 /////////////////////////////////////
 
 //Router to get users by email only
-router.get('/:email', async(req, res) => {
-  let userEmail = req.params.email
-  console.log('params', userEmail)
-  try {
-    const requestQuery = `SELECT id, email FROM users WHERE email = $1`
-    
-    let allUsersByEmail = await db.one(requestQuery, [userEmail])
-         console.log('users email', allUsersByEmail)
-    res.json({
-      data: allUsersByEmail,
-      message: `The user was successfully retrieved`
-    })
-  } catch (err) {
-    res.status(404)
-    res.json({
-      message: `Failure to retrieve user`
-    })
+router.get('/:by/:value', async(req, res) => {
+  let userInfo = req.params.value
+  let by = req.params.by
+ 
+    console.log('params', userInfo)
+    let requestQuery = ``
+  if (by === 'email') {
+     requestQuery = `SELECT id, email FROM users WHERE email = $1`
+  } else {
+     requestQuery = `SELECT id, username FROM users WHERE username = $1`
   }
-  
+ 
+    try {
+    
+      let user = await db.one(requestQuery, [userInfo])
+         console.log('users email', user)
+      res.json({
+        data: user,
+        message: `The user was successfully retrieved`
+      })
+    } catch (err) {
+      console.log('error', err)
+      res.status(404)
+      res.json({
+        message: `Failure to retrieve user`
+      })
+    }
 })
+
+
+
 //////////////////////////////////////////////////
 
 //Route to add a new user
 router.post('/', async(req, res) => {
   try {
+    // let avatarUrl = 
     const insertQuery = `INSERT INTO users (username, email, avatar) VALUES ($1, $2, $3)`
     await db.none(insertQuery, [req.body.username, req.body.email, req.body.avatar])
 
