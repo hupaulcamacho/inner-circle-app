@@ -2,18 +2,17 @@ const express = require('express');
 const router = express.Router();
 const db = require('../db.js');
 const multer = require('multer');
-// const upload = multer({ dest: 'uploads/' });
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, '/tmp/my-uploads')
+    cb(null, './public/images/avatar')
   },
   filename: function (req, file, cb) {
     cb(null, file.fieldname + '-' + Date.now())
   }
 })
 
-var upload = multer({
+const upload = multer({
   storage: storage
 })
 
@@ -76,17 +75,17 @@ router.get('/:by/:value', async(req, res) => {
 
 //////////////////////////////////////////////////
 
-//Route to add a new user
-router.post('/', async(req, res) => {
+//Route to add a new userv
+router.post('/', upload.single('avatar'), async (req, res) => {
   try {
-    // let avatarUrl = 
+    let avatarUrl = `http://localhost:3030/${req.file.path.replace('public/', '')}`
     const insertQuery = `INSERT INTO users (username, email, avatar) VALUES ($1, $2, $3)`
-    await db.none(insertQuery, [req.body.username, req.body.email, req.body.avatar])
+    await db.none(insertQuery, [req.body.username, req.body.email, avatarUrl])
 
     let data = {
       username: req.body.username,
       email: req.body.email,
-      avatar: req.body.avatar
+      avatar: avatarUrl
     }
     res.status(201)
     res.json({
