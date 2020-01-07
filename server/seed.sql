@@ -24,7 +24,7 @@ CREATE TABLE posts (
     image_url VARCHAR,
     post_body VARCHAR
 );
-
+       
 CREATE TABLE links (
     id SERIAL PRIMARY KEY, 
     user_id INT REFERENCES users (id) ON DELETE CASCADE,
@@ -51,9 +51,6 @@ INSERT INTO users (username, email, avatar)
            ('rpggamer432', 'chrono34@gmail.com', './public/images/avatar/chrono.jpg'),
            ('theprincess', 'toadstool@gmail.com', './public/images/avatar/peach.png'),
            ('masterchief', 'halomaster@gmail.com', './public/images/avatar/master_chief.jpg'),
-
-
-
            ('precursororb4', 'jakanddax55@gmail.com', './public/images/avatar/jak.jpg'),
            ('tombraider', 'lauracroft94@gmail.com', './public/images/avatar/laura.png'),
            ('1000hadoukens', 'sfryu@gmail.com', './public/images/avatar/ryu.jpg'),
@@ -84,5 +81,5 @@ SELECT COUNT(id) FROM links WHERE circle_ref = 1;
 
 
 
-           
+             
            
