@@ -22,8 +22,25 @@ class Search extends React.Component {
     //This is function is for the form. 
     handleSubmit = (e) => {
         e.preventDefault()
+<<<<<<< HEAD
         console.log('submit', e)
        
+=======
+        const { search, userChecked, circleChecked } = this.state
+        let URL;
+        if (circleChecked === true) {
+            URL = `http://localhost:3030/circles/getCircleByName/${search}`
+        } else if (userChecked === true) {
+            URL = `http://localhost:3030/users/username/${search}`
+        }
+        try {
+            const response = await axios.get(URL)
+            console.log(response)
+        } catch (err) {
+            console.log(err)
+            console.log('not found')
+        }
+>>>>>>> 142978dc781b300c8b708e4616dba1ab32fe1efb
     }
 
     render() {
@@ -32,8 +49,12 @@ class Search extends React.Component {
                 <form onSubmit={this.handleSubmit}>
                     <label>
                         Search
+<<<<<<< HEAD
                         <input type='text' onChange={this.handleSearchBar} value={this.state.searchBar}></input>
 
+=======
+                        <input type='text' onChange={this.handleSearchChange} value={search}></input>
+>>>>>>> 142978dc781b300c8b708e4616dba1ab32fe1efb
                     </label>
                     <input type='submit' value='submit'></input>
                 </form>
