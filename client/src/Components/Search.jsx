@@ -1,4 +1,6 @@
 import React from 'react';
+import SearchItems from './searchItems'
+import axios from 'axios'
 
 class Search extends React.Component {
     constructor (props) {
@@ -49,14 +51,11 @@ class Search extends React.Component {
                 <form onSubmit={this.handleSubmit}>
                     <label>
                         Search
-<<<<<<< HEAD
+                    </label>
 
                         <input type='text' onChange={this.handleSearchBar} value={this.state.searchBar}></input>
                         <input type='text' onChange={this.handleSearchChange} value={search}></input>
-
-=======
                         <input type='text' onChange={this.handleSearchChange} value={search}></input>
->>>>>>> 142978dc781b300c8b708e4616dba1ab32fe1efb
                     </label>
                     <input type='submit' value='submit'></input>
                 </form>
