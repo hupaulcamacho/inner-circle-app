@@ -49,24 +49,24 @@ router.get('/:by/:value', async(req, res) => {
     console.log('params', userInfo)
     let requestQuery = ``
   if (by === 'email') {
-     requestQuery = `SELECT id, email FROM users WHERE email = $1`
+     requestQuery = `SELECT id, email FROM users WHERE email LIKE $1`
   } else {
-     requestQuery = `SELECT id, username FROM users WHERE username = $1`
+     requestQuery = `SELECT id, username FROM users WHERE username LIKE $1`
   }
  
     try {
     
-      let user = await db.one(requestQuery, [userInfo])
+      let user = await db.any(requestQuery, [`%${userInfo}%`])
          console.log('users email', user)
       res.json({
         data: user,
-        message: `The user was successfully retrieved`
+        message: `The users were successfully retrieved`
       })
     } catch (err) {
       console.log('error', err)
       res.status(404)
       res.json({
-        message: `Failure to retrieve user`
+        message: `Failure to retrieve users`
       })
     }
 })
