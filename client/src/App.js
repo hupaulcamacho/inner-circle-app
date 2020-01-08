@@ -3,6 +3,7 @@ import NavBar from './NavBar';
 import SignUp from './SignUp';
 import Login from './Login';
 import Search from './Components/Search'
+import CreateCircle from  './Components/CreateCircle'
 import './App.css';
 
 class App extends React.Component {
@@ -40,6 +41,7 @@ class App extends React.Component {
     		<div className="App">
       			{toggleEntry}
             <Search/>
+			<CreateCircle />
     		</div>
   		);
 	}
