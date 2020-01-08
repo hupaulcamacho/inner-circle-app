@@ -54,6 +54,8 @@ class Search extends React.Component {
         let URL;
         if (circleChecked === true) {
             URL = `http://localhost:3030/circles/getCircleByName/${search}`
+        } else if (userChecked === true) {
+            URL = `http://localhost:3030/users/username/${search}`
         }
         try {
             const response = await axios.get(URL)
@@ -71,7 +73,7 @@ class Search extends React.Component {
                 <form onSubmit={this.searchQuery}>
                     <label>
                         Search
-                        <input type='text' onChange={this.handleSearchChange} value={this.state.search}></input>
+                        <input type='text' onChange={this.handleSearchChange} value={search}></input>
                     </label>
                     <input type="checkbox" name="selection1" value="user" onChange={this.handleCheckboxChange}/> user
                     <input type="checkbox" name="selection2" value="circle" onChange={this.handleCheckboxChange}/> circle

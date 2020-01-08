@@ -14,7 +14,8 @@ CREATE TABLE users (
 CREATE TABLE circles (
     id SERIAL PRIMARY KEY,
     circle_name VARCHAR,
-    leader_id INT REFERENCES users (id)
+    leader_id INT REFERENCES users (id),
+    circle_description VARCHAR
 );
 
 CREATE TABLE posts (
@@ -56,10 +57,10 @@ INSERT INTO users (username, email, avatar)
            ('1000hadoukens', 'sfryu@gmail.com', './public/images/avatar/ryu.jpg'),
            ('whereiszelda', 'triforce45@gmail.com', './public/images/avatar/link.jpg');
 
-INSERT INTO circles (circle_name, leader_id)
-    VALUES ('Anime Haven', 2),
-           ('Sports Center', 10),
-           ('Gamers United', 17);
+INSERT INTO circles (circle_name, leader_id, circle_description)
+    VALUES ('Anime Haven', 2, 'A place for all those who enjoy Anime'),
+           ('Sports Center', 10, 'A group of elite sports fans'),
+           ('Gamers United', 17, 'A band of friendly gamers');
 
 INSERT INTO posts (circle_id, owner_id, image_url, post_body)
     VALUES (1, 1, './public/images/pictures/naruto_post_1.gif', 'How fast do you guys think naruto can run?'),
