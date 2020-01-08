@@ -6,50 +6,27 @@ class Search extends React.Component {
     constructor (props) {
         super(props) 
             this.state = {
-                search: '',
-                outputs:[],
-                userChecked: false,
-                circleChecked: false
+                searchBar: '',
+                outputs:[]
+
             }
+        
     }
 
     //This is to keep track of what goes in the input box.
-    handleSearchChange = (e) => {
+    handleSearchBar = (e) => {
         this.setState({
-            search: e.target.value
+            searchBar: e.target.value
         })
         console.log(e.target.value)
     }
 
-    handleCheckboxChange = (e) => {
-        const { userChecked, circleChecked } = this.state
-        if (e.target.value === "user") {
-            console.log('checked')
-            if (userChecked === true) {
-                this.setState({
-                    userChecked: false
-                })
-            } else {
-                this.setState({
-                    userChecked: true
-                })
-            }
-        } else if (e.target.value === "circle") {
-            if (circleChecked === true) {
-                this.setState({
-                    circleChecked: false
-                })
-            } else {
-                this.setState({
-                    circleChecked: true
-                })
-            }
-        }
-    }
-
     //This is function is for the form. 
-    searchQuery = async (e) => {
+    handleSubmit = async(e) => {
         e.preventDefault()
+
+        console.log('submit', e)
+       
         const { search, userChecked, circleChecked } = this.state
         let URL;
         if (circleChecked === true) {
@@ -64,24 +41,24 @@ class Search extends React.Component {
             console.log(err)
             console.log('not found')
         }
+
     }
 
     render() {
-        const { search } = this.state
+        
         return (
             <div className='search'>
-                <form onSubmit={this.searchQuery}>
+                <form onSubmit={this.handleSubmit}>
                     <label>
                         Search
+                    </label>
+
+                        <input type='text' onChange={this.handleSearchBar} value={this.state.searchBar}></input>
+                        <input type='text' onChange={this.handleSearchChange} value={search}></input>
                         <input type='text' onChange={this.handleSearchChange} value={search}></input>
                     </label>
-                    <input type="checkbox" name="selection1" value="user" onChange={this.handleCheckboxChange}/> user
-                    <input type="checkbox" name="selection2" value="circle" onChange={this.handleCheckboxChange}/> circle
                     <input type='submit' value='submit'></input>
                 </form>
-                <SearchItems 
-                // outputs={outputs}
-                />
             </div>
         )
     }
