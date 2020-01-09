@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchItems from './SearchItems'
+// import SearchItems from './searchItems'
 import axios from 'axios'
 
 class Search extends React.Component {
@@ -10,13 +10,15 @@ class Search extends React.Component {
                 results:[],
                 userChecked: false,
                 circleChecked: false
+
             }
+        
     }
 
     //This is to keep track of what goes in the input box.
-    handleSearchChange = (e) => {
+    handleSearchBar = (e) => {
         this.setState({
-            search: e.target.value
+            searchBar: e.target.value
         })
         console.log(e.target.value)
     }
@@ -54,8 +56,9 @@ class Search extends React.Component {
     }
 
     //This is function is for the form. 
-    searchQuery = async (e) => {
+    handleSubmit = async(e) => {
         e.preventDefault()
+
         const { search, userChecked, circleChecked, results } = this.state
         
         let URL;
@@ -81,17 +84,27 @@ class Search extends React.Component {
             console.log(err)
             console.log('not found')
         }
+
     }
 
     render() {
         const { search, results, circleChecked, userChecked } = this.state
+
         return (
             <div className='search'>
-                <form onSubmit={this.searchQuery}>
+                <form onSubmit={this.handleSubmit}>
                     <label>
                         Search
-                        <input type='text' onChange={this.handleSearchChange} value={search}></input>
+
+                        <input type='text' onChange={this.handleSearchBar} value={this.state.searchBar}></input>
+
+
+                        <input type='text' onChange={this.handleSearchChange} value={this.state.search}></input>
+
+
+
                     </label>
+
                     <input type="radio" name="selection" value="user" onChange={this.handleOptionChange}/> user
                     <input type="radio" name="selection" value="circle" onChange={this.handleOptionChange}/> circle
                     <input type='submit' value='submit'></input>
@@ -101,6 +114,7 @@ class Search extends React.Component {
                 userChecked={userChecked}
                 circleChecked={circleChecked}
                 />
+
             </div>
         )
     }

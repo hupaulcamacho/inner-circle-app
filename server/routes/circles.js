@@ -17,6 +17,27 @@ router.get('/getAllCircles', async (req, res) => {
 	}
 });
 
+//Get all circles that belong to a user
+
+router.get('/getUserCircles/:userId', async (req, res) => {
+	try{
+		let response = await db.any(`SELECT * FROM links WHERE user_id = ${req.params.userId}`);
+		let script = `SELECT circle_name FROM circles WHERE id = $1`;
+		let temp;
+		let allNames = [];
+		for(let i = 0; i < response.length; i++){
+			temp = await db.one(script, [response[i].circle_ref]);
+			allNames.push(temp.circle_name);
+		};
+		console.log(allNames);
+			res.json({payload: allNames});
+	}
+	catch(err){
+		console.log('no user for you');
+		res.json({err: err});
+	};
+});
+
 router.get('/getCircleByName/:circleName', async (req, res) => {
 	try {
 		let data = await db.any(`SELECT * FROM circles WHERE circle_name LIKE $1`, [`%${req.params.circleName}%`]);
@@ -24,6 +45,18 @@ router.get('/getCircleByName/:circleName', async (req, res) => {
 			message: 'Request Sucessful.',
 			data: data
 		});
+	}
+	catch (err) {
+		console.log(err);
+		res.json({err: err});
+	}
+});
+
+//get circle stuff by id
+router.get('/getCircleById/:circleId', async (req, res) => {
+	try {
+		let response = await db.any(`SELECT * FROM circles WHERE id = $1`, [`${req.params.circleId}`]);
+		res.json({message: response});
 	}
 	catch (err) {
 		console.log(err);

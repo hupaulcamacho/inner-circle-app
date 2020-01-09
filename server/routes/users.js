@@ -44,6 +44,7 @@ router.get('/', async(req, res) => {
 
 //Router to get users by email and username
 router.get('/:by/:value', async(req, res) => {
+  console.log('wow');
   let userInfo = req.params.value
   let by = req.params.by
  
@@ -57,7 +58,7 @@ router.get('/:by/:value', async(req, res) => {
  
     try {
     
-      let user = await db.any(requestQuery, [`%${userInfo}%`])
+      let user = await db.one(requestQuery, [`%${userInfo}%`])
          console.log('users email', user)
       res.json({
         data: user,
@@ -77,7 +78,7 @@ router.get('/:by/:value', async(req, res) => {
 //////////////////////////////////////////////////
 
 //Route to add a new user
-router.post('/', upload.single('avatar'), async(req, res) => {
+router.post('/', upload.single('avatar'), async (req, res) => {
   console.log("post req body", req.body)
   try {
     let imgURL = `http://localhost:3030/images/avatar/${req.body.avatar.replace('public/', '')}`;
@@ -85,10 +86,12 @@ router.post('/', upload.single('avatar'), async(req, res) => {
     const insertQuery = `INSERT INTO users (username, email, avatar) VALUES ($1, $2, $3)`
     await db.none(insertQuery, [req.body.username, req.body.email, imgURL])
 
+
     let data = {
       username: req.body.username,
       email: req.body.email,
       avatar: imgURL
+
     }
 
     console.log(data)

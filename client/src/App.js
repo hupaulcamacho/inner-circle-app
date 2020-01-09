@@ -2,8 +2,10 @@ import React from 'react';
 import NavBar from './NavBar';
 import SignUp from './SignUp';
 import Login from './Login';
-import Search from './Components/Search'
-import CreateCircle from  './Components/CreateCircle'
+import Search from './Components/Search';
+import CreateCircle from  './Components/CreateCircle';
+import ActivityBar from './Components/ActivityBar';
+import Info from './Components/UserInfo'
 import './App.css';
 
 class App extends React.Component {
@@ -42,6 +44,8 @@ class App extends React.Component {
       			{toggleEntry}
             <Search/>
 			<CreateCircle />
+			<ActivityBar username='narutolover' />
+      <Info/>
     		</div>
   		);
 	}
