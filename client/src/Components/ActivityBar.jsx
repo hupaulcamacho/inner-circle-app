@@ -17,6 +17,7 @@ class ActivityBar extends React.Component{
 	};
 
 	handleInfo = (e) => {
+
 		console.log('info', e.target.href)
 		this.setState(
 			{
@@ -25,6 +26,7 @@ class ActivityBar extends React.Component{
 	      		infoDisplay: true
 	      	});
 	};
+
 	
 	getAllUserCircles = async () => {
 		let userId = await axios.get(`http://localhost:3030/users/username/${this.props.username}`);
