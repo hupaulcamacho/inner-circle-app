@@ -28,7 +28,7 @@ app.use('/posts', postRouter)
 
 app.use('/circles', circleRouter);
 
-
+// app.use('/public', avatarRouter);
 
 // app.use('/', indexRouter);
 app.use('/users', usersRouter);
