@@ -33,29 +33,29 @@ CREATE TABLE links (
   );
 
 INSERT INTO users (username, email, avatar)
-    VALUES ('narutolover', 'uzumaki56@gmail.com', './public/images/avatar/naruto.png'),
-           ('nenmaster15', 'issacnetero@hotmail.com', './public/images/avatar/netero.png'),
-           ('cutenavi', 'myonepiece@gmail.com', './public/images/avatar/nami.png'),
-           ('ladiesman47', 'zenitsuagatsuma@gmail.com', './public/images/avatar/zenitsu.png'),
-           ('noinsidevoice', 'cloverasta@yahoo.com', './public/images/avatar/asta.jpeg'),
-           ('senzueater11', 'songoku@gmail.com', './public/images/avatar/goku.jpg'),
-           ('alchemynoob', 'eelric@gmail.com', './public/images/avatar/edward.jpg'),
-           ('therealdemonslayer', 'sango223@gmail.com', './public/images/avatar/sango.png'),
+    VALUES ('narutolover', 'uzumaki56@gmail.com', 'http://localhost:3030/images/avatar/naruto.png'),
+           ('nenmaster15', 'issacnetero@hotmail.com', 'http://localhost:3030/images/avatar/netero.jpg'),
+           ('cutenavi', 'myonepiece@gmail.com', 'http://localhost:3030/images/avatar/nami.png'),
+           ('ladiesman47', 'zenitsuagatsuma@gmail.com', 'http://localhost:3030/images/avatar/zenitsu.jpg'),
+           ('noinsidevoice', 'cloverasta@yahoo.com', 'http://localhost:3030/images/avatar/asta.jpeg'),
+           ('senzueater11', 'songoku@gmail.com', 'http://localhost:3030/images/avatar/goku.jpg'),
+           ('alchemynoob', 'eelric@gmail.com', 'http://localhost:3030/images/avatar/edward.jpg'),
+           ('therealdemonslayer', 'sango223@gmail.com', 'http://localhost:3030/images/avatar/sango.png'),
            
-           ('doubledribble', 'flopharden@yahoo.com', './public/images/avatar/harden.jpg'),
-           ('kingjames', 'lebronclevland45@gmail.com', './public/images/avatar/lebron.jpg'),
-           ('nopassing', 'kobeeee@gmail.com', './public/images/avatar/kobe.jpg'),
-           ('onlythrees', 'chefcurry@hotmail.com', './public/images/avatar/curry.jpg'),
-           ('foreverknicks', 'reddhook@hotmail.com', './public/images/avatar/carmelo.jpeg'),
-           ('thunderfan22', 'westbrick@gmail.com', './public/images/avatar/westbrook.jpg'),
+           ('doubledribble', 'flopharden@yahoo.com', 'http://localhost:3030/images/avatar/harden.jpg'),
+           ('kingjames', 'lebronclevland45@gmail.com', 'http://localhost:3030/images/avatar/lebron.jpg'),
+           ('nopassing', 'kobeeee@gmail.com', 'http://localhost:3030/images/avatar/kobe.jpg'),
+           ('onlythrees', 'chefcurry@hotmail.com', 'http://localhost:3030/images/avatar/curry.jpg'),
+           ('foreverknicks', 'reddhook@hotmail.com', 'http://localhost:3030/images/avatar/carmelo.jpeg'),
+           ('thunderfan22', 'westbrick@gmail.com', 'http://localhost:3030/images/avatar/westbrook.jpg'),
 
-           ('rpggamer432', 'chrono34@gmail.com', './public/images/avatar/chrono.jpg'),
-           ('theprincess', 'toadstool@gmail.com', './public/images/avatar/peach.png'),
-           ('masterchief', 'halomaster@gmail.com', './public/images/avatar/master_chief.jpg'),
-           ('precursororb4', 'jakanddax55@gmail.com', './public/images/avatar/jak.jpg'),
-           ('tombraider', 'lauracroft94@gmail.com', './public/images/avatar/laura.png'),
-           ('1000hadoukens', 'sfryu@gmail.com', './public/images/avatar/ryu.jpg'),
-           ('whereiszelda', 'triforce45@gmail.com', './public/images/avatar/link.jpg');
+           ('rpggamer432', 'chrono34@gmail.com', 'http://localhost:3030/images/avatar/chrono.jpg'),
+           ('theprincess', 'toadstool@gmail.com', 'http://localhost:3030/images/avatar/peach.png'),
+           ('masterchief', 'halomaster@gmail.com', 'http://localhost:3030/images/avatar/master_chief.jpg'),
+           ('precursororb4', 'jakanddax55@gmail.com', 'http://localhost:3030/images/avatar/jak.jpg'),
+           ('tombraider', 'lauracroft94@gmail.com', 'http://localhost:3030/images/avatar/laura.jpg'),
+           ('1000hadoukens', 'sfryu@gmail.com', 'http://localhost:3030/images/avatar/ryu.jpg'),
+           ('whereiszelda', 'triforce45@gmail.com', 'http://localhost:3030/images/avatar/link.jpg');
 
 INSERT INTO circles (circle_name, leader_id, circle_description)
     VALUES ('Anime Haven', 2, 'A place for all those who enjoy Anime'),
@@ -77,7 +77,6 @@ INSERT INTO posts (circle_id, owner_id, image_url, post_body)
 INSERT INTO links (user_id, circle_ref)
     VALUES(1,1), (2,1), (3,1), (4, 1), (5, 1), (6, 1), (7, 1), (8, 1), (9, 2), (10, 2),
       (11, 2), (12, 2), (13, 2), (14, 2), (15, 3), (16, 3), (17, 3), (18, 3), (19, 3 ), (20, 3);
-SELECT * FROM circles;
 
 
 
