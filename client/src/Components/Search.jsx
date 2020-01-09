@@ -32,7 +32,7 @@ class Search extends React.Component {
         console.log('submit', e)
        
 
-\
+
         const { search, userChecked, circleChecked } = this.state
         let URL;
         if (circleChecked === true) {
@@ -60,7 +60,7 @@ class Search extends React.Component {
 
                         <input type='text' onChange={this.handleSearchBar} value={this.state.searchBar}></input>
 
-                        <input type='text' onChange={this.handleSearchChange} value={search}></input>
+                        <input type='text' onChange={this.handleSearchChange}></input>
 
 
                     </label>
