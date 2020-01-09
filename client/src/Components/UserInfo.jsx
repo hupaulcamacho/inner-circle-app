@@ -4,12 +4,13 @@ class UserInfo extends React.Component {
     constructor() {
         super()
         this.state = {
-            info: [
+            info: 
                 {username: '',
                 avatar: '',
-                email: ''}
-            ],
-            change: false
+                email: ''},
+            change: true
+            
+
         }
     }
 
@@ -21,7 +22,7 @@ class UserInfo extends React.Component {
     }
 
     // handleAvatar = (e) => {
-    //     // const u
+
     //     console.log('image', e.target)
     // }
 
@@ -36,43 +37,55 @@ class UserInfo extends React.Component {
         e.preventDefault()
     }
 
-    handleChangeButton = (username, email, avatar) => {
-        const {info} = this.state
-        console.log('info', info)
-        if (info[0].username === username) {
-            this.setState({
-                username: info[0].username,
-                change: true
-            })
-            // console.log('username', info[0].username)
+
+    handleChangeButton = (e) => {
          
-        } else if (info.email === email) {
+        const {info, change} = this.state
+        console.log('change', change)
+        console.log('info', info)
+        const username = this.state.username
+        console.log('username????', username)
+        const email = this.state.email
+        const avatar = this.state.avatar
+        console.log('user', info.username)
+        if (info.username === username && change === true) {
+            console.log('username!!!!', username)
+            this.setState({
+                username: username,
+                // change: true
+            })
+            
+
+        } else if (info.email === email && change === true) {
             this.setState({
                 email: info.email,
-                change: true
+                // change: true
             })
-        } else if (info.avatar === avatar) {
+        } else if (info.avatar === avatar && change === true) {
             this.setState({
                 avatar: info.avatar,
-                change: true
+                // change: true
+
             })
         }  
 
     }
 
-    render() {
-           
-        return (
+    render() 
+         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
-                    <input placeholder={this.username} value={this.username} type='text' onChange={this.handleUsername}></input>
+                    <input placeholder={this.username} value={this.state.username} type='text' onChange={this.handleUsername}></input>
                     <img src={this.avatar} alt='avatar'></img>
-                    <input placeholder={this.email} value={this.email} type='email' onChange={this.handleEmail}></input>
+                    <input placeholder={this.email} value={this.state.email} type='email' onChange={this.handleEmail}></input>
+
                     <button onClick={this.handleChangeButton}>Submit</button> 
                 </form>
             </div>
         )
     }
+       
+    
 }
 
 export default UserInfo;
