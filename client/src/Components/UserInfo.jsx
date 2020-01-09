@@ -10,6 +10,7 @@ class UserInfo extends React.Component {
                 email: ''},
             change: true
             
+
         }
     }
 
@@ -21,7 +22,7 @@ class UserInfo extends React.Component {
     }
 
     // handleAvatar = (e) => {
-       
+
     //     console.log('image', e.target)
     // }
 
@@ -35,6 +36,7 @@ class UserInfo extends React.Component {
     handleSubmit = (e) => {
         e.preventDefault()
     }
+
 
     handleChangeButton = (e) => {
          
@@ -63,18 +65,20 @@ class UserInfo extends React.Component {
             this.setState({
                 avatar: info.avatar,
                 // change: true
+
             })
         }  
 
     }
 
-    render() {
+    render() 
          return (
             <div>
                 <form onSubmit={this.handleSubmit}>
                     <input placeholder={this.username} value={this.state.username} type='text' onChange={this.handleUsername}></input>
                     <img src={this.avatar} alt='avatar'></img>
                     <input placeholder={this.email} value={this.state.email} type='email' onChange={this.handleEmail}></input>
+
                     <button onClick={this.handleChangeButton}>Submit</button> 
                 </form>
             </div>

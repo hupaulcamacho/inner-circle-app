@@ -59,8 +59,8 @@ router.get('/circle/:circle_id', async (req, res) => {
 router.post('/register', upload.single('image_url'), async (req, res) => {
     try {
         let imgURL = `http://localhost:3030/${req.file.path.replace('public/', '')}`;
-        let insertQuery = `INSERT INTO posts (circle_id, owner_id, image_url, post_body) VALUES ($1, $2, $3, $4)`;
-        await db.none(insertQuery, [req.body.circle_id, req.body.owner_id, imgURL, req.body.post_body]);
+        let insertQuery = `INSERT INTO posts (circle_id, owner_id, image_url, post_body, post_circle) VALUES ($1, $2, $3, $4, $5)`;
+        await db.none(insertQuery, [req.body.circle_id, req.body.owner_id, imgURL, req.body.post_body, req.body.post_circle]);
         // Send back json object with success message and payload
         res.json({
             message: 'New Post made',
