@@ -43,6 +43,7 @@ router.get('/', async(req, res) => {
 
 //Router to get users by email and username
 router.get('/:by/:value', async(req, res) => {
+  console.log('wow');
   let userInfo = req.params.value
   let by = req.params.by
  
@@ -56,7 +57,7 @@ router.get('/:by/:value', async(req, res) => {
  
     try {
     
-      let user = await db.any(requestQuery, [`%${userInfo}%`])
+      let user = await db.one(requestQuery, [`%${userInfo}%`])
          console.log('users email', user)
       res.json({
         data: user,
