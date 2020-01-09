@@ -12,9 +12,23 @@ class ActivityBar extends React.Component{
       		postsDisplay: false,
       		circleDisplay: false,
       		infoDisplay: false,
-      		allUserCircles: ''
+      		allUserCircles: '',
+      		allUserPosts: ''
 		};
 	};
+
+	handlePosts = async () => {
+		let userId = await axios.get(`http://localhost:3030/users/username/${this.props.username}`);
+		let userPosts = await axios.get(`http://localhost:3030/posts/users/${userId.data.data.id}`);
+		console.log(userPosts.data.payload);
+			this.setState(
+			{
+				postsDisplay: true,
+	      		circleDisplay: false,
+	      		infoDisplay: false,
+	      		allUserPosts: userPosts.data.payload
+	      	});
+	}
 
 	handleInfo = (e) => {
 
@@ -52,7 +66,7 @@ class ActivityBar extends React.Component{
 		return(
 		<div>
 			<div className="userActivityBar">
-				<a href="#posts">Posts</a>
+				<a href="#posts" onClick={this.handlePosts}>Posts</a>
 	        	<a href="#circles" onClick={this.getAllUserCircles}>Circles</a>
 				<a href="#Info" onClick={this.handleInfo}>Info</a>			
 			</div>
