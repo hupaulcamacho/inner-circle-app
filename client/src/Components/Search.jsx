@@ -60,7 +60,9 @@ class Search extends React.Component {
 
                         <input type='text' onChange={this.handleSearchBar} value={this.state.searchBar}></input>
 
+
                         <input type='text' onChange={this.handleSearchChange} value={this.state.search}></input>
+
 
 
                     </label>

@@ -44,8 +44,8 @@ class App extends React.Component {
       			{toggleEntry}
             <Search/>
 			<CreateCircle />
-			<ActivityBar />
-			<Info/>
+			<ActivityBar username='narutolover' />
+      <Info/>
     		</div>
   		);
 	}
