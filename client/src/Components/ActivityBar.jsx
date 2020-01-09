@@ -11,7 +11,8 @@ class ActivityBar extends React.Component{
 		this.state = {
       		postsDisplay: false,
       		circleDisplay: false,
-      		infoDisplay: false
+      		infoDisplay: false,
+      		allUserCircles: ''
 		};
 	};
 
@@ -34,7 +35,8 @@ class ActivityBar extends React.Component{
 			{
 				postsDisplay: false,
 	      		circleDisplay: true,
-	      		infoDisplay: false
+	      		infoDisplay: false,
+	      		allUserCircles: allUserCircles.data.payload
 	      	});
 
 		
@@ -43,16 +45,17 @@ class ActivityBar extends React.Component{
 
 
 	render(){
-		let toggleCircles = (this.state.circleDisplay) ? <CircleSelect />: null;
+		let toggleCircles = (this.state.circleDisplay) ? <CircleSelect circles={this.state.allUserCircles} />: null;
 		let toggleInfo = (this.state.infoDisplay) ? <UserInfo username= {this.props.username}/>: null;
 		return(
-		<div className="userActivityBar">
-			<a href="#posts">Posts</a>
-        	<a href="#circles" onClick={this.getAllUserCircles}>Circles</a>
-        		{toggleCircles}
-			<a href="#Info" onClick={this.handleInfo}>Info
-			  	{toggleInfo}
-			</a>
+		<div>
+			<div className="userActivityBar">
+				<a href="#posts">Posts</a>
+	        	<a href="#circles" onClick={this.getAllUserCircles}>Circles</a>
+				<a href="#Info" onClick={this.handleInfo}>Info</a>			
+			</div>
+			{toggleCircles}
+			{toggleInfo}
 		</div>
 		);
 	}
