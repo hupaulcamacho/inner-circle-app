@@ -13,7 +13,7 @@ class ActivityBar extends React.Component{
 	};
 
 	handleInfo = (e) => {
-		console.log('info', e.target.href)
+		// console.log('info', e.target.href)
 	}
 	
 	getAllUserCircles = async () => {
