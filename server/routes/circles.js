@@ -19,8 +19,11 @@ router.get('/getAllCircles', async (req, res) => {
 
 router.get('/getCircleByName/:circleName', async (req, res) => {
 	try {
-		let response = await db.any(`SELECT * FROM circles WHERE circle_name LIKE $1`, [`%${req.params.circleName}%`]);
-		res.json({message: response});
+		let data = await db.any(`SELECT * FROM circles WHERE circle_name LIKE $1`, [`%${req.params.circleName}%`]);
+		res.json({
+			message: 'Request Sucessful.',
+			data: data
+		});
 	}
 	catch (err) {
 		console.log(err);
@@ -46,26 +49,28 @@ router.get('/:circle_id', async (req, res) => {
 
 
 router.post('/register', async (req, res) => {
-	let response;
+	console.log(req.body)
 	try{
-		response = await db.none('INSERT INTO circles(circle_name, leader_id) VALUES($1, $2)', [req.body.circle_name, req.body.leader_id]);
-		let tempCircle = await db.one(`SELECT id FROM circles ORDER BY id DESC LIMIT 1 `);
-		console.log(tempCircle);
-		tempCircle = parseInt(tempCircle.id);
-		let linkString = '';
-		for(let i = 0; i < req.body.members.length; i++){
-			linkString += `(${req.body.members[i]}, ${tempCircle}),`;
-		}
-		linkString = linkString.slice(0, -1);
-		console.log(linkString);
-		let allLinks = await db.any(`INSERT INTO links(user_id, circle_ref) VALUES ${linkString}`);
-		
+		let response = await db.none('INSERT INTO circles(circle_name, leader_id, circle_description) VALUES($1, $2, $3)', [req.body.circle_name, req.body.leader_id, req.body.circle_description]);
+		// let tempCircle = await db.one(`SELECT id FROM circles ORDER BY id DESC LIMIT 1 `);
+		// console.log(tempCircle);
+		// tempCircle = parseInt(tempCircle.id);
+		// let linkString = '';
+		// for(let i = 0; i < req.body.members.length; i++){
+		// 	linkString += `(${req.body.members[i]}, ${tempCircle}),`;
+		// }
+		// linkString = linkString.slice(0, -1);
+		// console.log(linkString);
+		// let allLinks = await db.any(`INSERT INTO links(user_id, circle_ref) VALUES ${linkString}`);
+		res.json({
+			message: 'Circle Created.'
+		})
 	}
 	catch(err){
 		console.log(err);
 	}
-	res.json({message: 'added the user and all links',
-				circleID: tempCircle});
+	// res.json({message: 'added the user and all links',
+	// 			circleID: tempCircle});
 });
 //add a part that checks to see whether a duplicate user is trying to be added
 router.patch('/addUser', async (req, res) => {

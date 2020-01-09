@@ -2,18 +2,18 @@ const express = require('express');
 const router = express.Router();
 const db = require('../db.js');
 const multer = require('multer');
-// const upload = multer({ dest: 'uploads/' });
 
-var storage = multer.diskStorage({
+const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, '/tmp/my-uploads')
+    cb(null, './public/images/avatar')
   },
   filename: function (req, file, cb) {
-    cb(null, file.fieldname + '-' + Date.now())
+    let name = file.originalname
+    cb(null, name)
   }
 })
 
-var upload = multer({
+const upload = multer({
   storage: storage
 })
 
@@ -50,9 +50,9 @@ router.get('/:by/:value', async(req, res) => {
     console.log('params', userInfo)
     let requestQuery = ``
   if (by === 'email') {
-     requestQuery = `SELECT id, email FROM users WHERE email LIKE $1`
+     requestQuery = `SELECT * FROM users WHERE email LIKE $1`
   } else {
-     requestQuery = `SELECT id, username FROM users WHERE username LIKE $1`
+     requestQuery = `SELECT * FROM users WHERE username LIKE $1`
   }
  
     try {
@@ -77,17 +77,21 @@ router.get('/:by/:value', async(req, res) => {
 //////////////////////////////////////////////////
 
 //Route to add a new user
-router.post('/', async(req, res) => {
+router.post('/', upload.single('avatar'), async(req, res) => {
+  console.log("post req body", req.body)
   try {
-    // let avatarUrl = 
+    let imgURL = `http://localhost:3030/images/avatar/${req.body.avatar.replace('public/', '')}`;
+    console.log(imgURL)
     const insertQuery = `INSERT INTO users (username, email, avatar) VALUES ($1, $2, $3)`
-    await db.none(insertQuery, [req.body.username, req.body.email, req.body.avatar])
+    await db.none(insertQuery, [req.body.username, req.body.email, imgURL])
 
     let data = {
       username: req.body.username,
       email: req.body.email,
-      avatar: req.body.avatar
+      avatar: imgURL
     }
+
+    console.log(data)
     res.status(201)
     res.json({
       user: data,
