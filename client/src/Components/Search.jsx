@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchItems from './searchItems'
+// import SearchItems from './searchItems'
 import axios from 'axios'
 
 class Search extends React.Component {
@@ -7,8 +7,8 @@ class Search extends React.Component {
         super(props) 
             this.state = {
                 searchBar: '',
-                outputs:[]
-
+                outputs:[],
+                
             }
         
     }
@@ -60,7 +60,9 @@ class Search extends React.Component {
 
                         <input type='text' onChange={this.handleSearchBar} value={this.state.searchBar}></input>
 
-                        <input type='text' onChange={this.handleSearchChange}></input>
+
+                        <input type='text' onChange={this.handleSearchChange} value={this.state.search}></input>
+
 
 
                     </label>
