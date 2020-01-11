@@ -2,6 +2,7 @@ import React from 'react';
 import './ActivityBar.css';
 import UserInfo from './UserInfo';
 import CircleSelect from './CircleSelect';
+import DisplayPosts from './DisplayPosts';
 import axios from 'axios';
 
 //We are assuming that the username will be passed down through props
@@ -63,6 +64,7 @@ class ActivityBar extends React.Component{
 	render(){
 		let toggleCircles = (this.state.circleDisplay) ? <CircleSelect circles={this.state.allUserCircles} />: null;
 		let toggleInfo = (this.state.infoDisplay) ? <UserInfo username= {this.props.username}/>: null;
+		let togglePosts = (this.state.postsDisplay) ? <DisplayPosts posts={this.state.allUserPosts} singleUser = {true} /> : null;
 		return(
 		<div>
 			<div className="userActivityBar">
@@ -72,6 +74,7 @@ class ActivityBar extends React.Component{
 			</div>
 			{toggleCircles}
 			{toggleInfo}
+			{togglePosts}
 		</div>
 		);
 	}
