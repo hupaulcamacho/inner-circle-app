@@ -5,7 +5,7 @@ import Login from './Login';
 import Search from './Components/Search';
 import CreateCircle from  './Components/CreateCircle';
 import ActivityBar from './Components/ActivityBar';
-import Info from './Components/UserInfo'
+// import Info from './Components/UserInfo'
 import './App.css';
 
 class App extends React.Component {
