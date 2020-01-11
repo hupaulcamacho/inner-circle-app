@@ -1,24 +1,25 @@
 import React from 'react';
-// import SearchItems from './searchItems'
+import SearchItems from './SearchItems'
 import axios from 'axios'
 
 class Search extends React.Component {
     constructor (props) {
         super(props) 
             this.state = {
-                search: '',
+                search: props.search,
                 results:[],
                 userChecked: false,
-                circleChecked: false
-
+                circleChecked: true
             }
-        
     }
 
+    componentDidMount = () => {
+        this.handleSearchParameters()
+    }
     //This is to keep track of what goes in the input box.
-    handleSearchBar = (e) => {
+    handleSearchChange = (e) => {
         this.setState({
-            searchBar: e.target.value
+            search: e.target.value
         })
         console.log(e.target.value)
     }
@@ -44,7 +45,6 @@ class Search extends React.Component {
                 this.setState({
                     results: [],
                     circleChecked: false
-                    
                 })
             } else {
                 this.setState({
@@ -55,10 +55,7 @@ class Search extends React.Component {
         }
     }
 
-    //This is function is for the form. 
-    handleSubmit = async(e) => {
-        e.preventDefault()
-
+    handleSearchParameters = async () => {
         const { search, userChecked, circleChecked, results } = this.state
         
         let URL;
@@ -82,9 +79,16 @@ class Search extends React.Component {
             })
         } catch (err) {
             console.log(err)
-            console.log('not found')
+            console.log(search, 'not found')
         }
 
+    }
+
+    //This is function is for the form. 
+    handleSubmit = async(e) => {
+        e.preventDefault()
+        this.handleSearchParameters()
+        
     }
 
     render() {
@@ -95,18 +99,15 @@ class Search extends React.Component {
                 <form onSubmit={this.handleSubmit}>
                     <label>
                         Search
+                        <input type='text' 
+                        onChange={this.handleSearchChange} 
+                        value={this.state.search}>
 
-                        <input type='text' onChange={this.handleSearchBar} value={this.state.searchBar}></input>
-
-
-                        <input type='text' onChange={this.handleSearchChange} value={this.state.search}></input>
-
-
-
+                        </input>
                     </label>
 
                     <input type="radio" name="selection" value="user" onChange={this.handleOptionChange}/> user
-                    <input type="radio" name="selection" value="circle" onChange={this.handleOptionChange}/> circle
+                    <input type="radio" name="selection" value="circle" onChange={this.handleOptionChange} /> circle
                     <input type='submit' value='submit'></input>
                 </form>
                 <SearchItems 

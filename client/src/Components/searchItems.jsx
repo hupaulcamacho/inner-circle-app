@@ -6,7 +6,7 @@ const SearchItems = (props) => {
     if (userChecked === true) {
         for (let user of results){
             listItems.push(
-                <div>
+                <div className='user'>
                 <h3>{user.username}</h3>
                 <img src={`${user.avatar}`} height='150'></img>
                 </div>
@@ -15,7 +15,7 @@ const SearchItems = (props) => {
     } else if(circleChecked === true) {
         for (let circle of results){
             listItems.push(
-                <div>
+                <div className='circle'>
                 <h3>{circle.circle_name}</h3>
                 <p>{circle.circle_description}</p>
                 </div>
