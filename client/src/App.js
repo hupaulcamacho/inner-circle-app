@@ -5,7 +5,7 @@ import Login from './Login';
 import Search from './Components/Search';
 import CreateCircle from  './Components/CreateCircle';
 import ActivityBar from './Components/ActivityBar';
-import Info from './Components/UserInfo'
+import UserProfile from './Components/UserProfile';
 import './App.css';
 
 class App extends React.Component {
@@ -42,10 +42,14 @@ class App extends React.Component {
 		return (
     		<div className="App">
       			{toggleEntry}
-            <Search/>
-			<CreateCircle />
-			<ActivityBar username='narutolover' />
-      <Info/>
+            	<Search/>
+				<UserProfile/>
+				<CreateCircle />
+				<ActivityBar 
+					username='narutolover'
+					email='uzumaki56@gmail.com'
+			 	/>
+     
     		</div>
   		);
 	}
