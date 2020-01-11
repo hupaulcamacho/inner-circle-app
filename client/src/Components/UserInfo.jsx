@@ -71,7 +71,7 @@ class UserInfo extends React.Component {
 
     }
 
-    render() 
+    render() {
          return (
             <div>
                 <form onSubmit={this.handleSubmit}>
