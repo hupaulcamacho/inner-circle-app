@@ -45,6 +45,7 @@ class App extends React.Component {
             <Search/>
 			<CreateCircle />
 			<ActivityBar username='narutolover' />
+
       		<Info/>
     		</div>
   		);
