@@ -74,7 +74,7 @@ INSERT INTO posts (circle_id, owner_id, owner_avi, image_url, post_body, post_ci
 
            (3, 17, 'http://localhost:3030/images/avatar/master_chief.jpg', './public/images/pictures/chief_post_1.jpg', 'Who is ready for Halo Infinite?!!', 'Gamers United'),
            (3, 15, 'http://localhost:3030/images/avatar/chrono.jpg', './public/images/pictures/chrono_post_1.jpg', 'I NEED a new golden sun game to drop', 'Gamers United'),
-           (3, 20, 'http://localhost:3030/images/avatar/ryu.jpg', './public/images/pictures/ryu_post_1.jpg', 'Tokido is one of the most impressive Akuma players, he always plays at an insane level', 'Gamers United');
+s           (3, 20, 'http://localhost:3030/images/avatar/ryu.jpg', './public/images/pictures/ryu_post_1.jpg', 'Tokido is one of the most impressive Akuma players, he always plays at an insane level', 'Gamers United');
 
 INSERT INTO links (user_id, circle_ref)
     VALUES(1,1), (2,1), (3,1), (4, 1), (5, 1), (6, 1), (7, 1), (8, 1), (9, 2), (10, 2),
