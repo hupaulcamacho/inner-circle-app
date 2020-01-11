@@ -65,8 +65,7 @@ class Search extends React.Component {
             URL = `http://localhost:3030/circles/getCircleByName/${search}`
         } else if (userChecked === true) {
             URL = `http://localhost:3030/users/username/${search}`
-        }
-        
+        } 
         try {
             let searchResults = []
             const response = await axios.get(URL)
