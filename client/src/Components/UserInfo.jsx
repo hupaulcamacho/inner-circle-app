@@ -12,6 +12,7 @@ class UserInfo extends React.Component {
             url: ''
 
             
+
         }
     }
 
@@ -21,6 +22,8 @@ class UserInfo extends React.Component {
         })
         console.log('username', e.target.value)
     }
+
+   
 
     handleEmail = (e) => {
         this.setState({
@@ -33,7 +36,8 @@ class UserInfo extends React.Component {
         e.preventDefault()
     }
 
-    handleChangeButton = () => {
+
+    handleChangeButton = (e) => {
          
         const {change} = this.state
     
@@ -65,10 +69,7 @@ class UserInfo extends React.Component {
     render() {
          return (
             <div>
-                {/* <div>
-                    <img src={this.state.url} alt='avatar' key={this.state.url}></img>
-                    
-                 </div> */}
+                
                 <form onSubmit={this.handleSubmit}>
                     <input placeholder='username' value={this.state.username} type='text' onChange={this.handleUsername}/>
                    
