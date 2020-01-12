@@ -74,13 +74,17 @@ router.get('/username/:username', async(req, res) => {
 })
 
 // User Authentication
-router.get('/login/:username/:password', async (req, res) => {
+router.post('/login/:username/:password', async (req, res) => {
   let username = req.params.username
   let password = req.params.password  
-  let loginQuery = `SELECT * FROM users WHERE username = $1 AND password = $2`
+  let loginQuery = `
+  UPDATE users SET loggedIn = true WHERE username = $1;
+  SELECT * FROM users WHERE username = $1 AND password = $2;
+  `
 
   try  {
     let user = await db.any(loginQuery, [username, password])
+    console.log(user.data)
     res.json({
       message: 'login sucessful',
       loggedInUser: user
@@ -93,8 +97,6 @@ router.get('/login/:username/:password', async (req, res) => {
     })
   }
 })
-
-
 
 //////////////////////////////////////////////////
 
