@@ -6,6 +6,7 @@ import Search from './Components/Search';
 import CreateCircle from  './Components/CreateCircle';
 import ActivityBar from './Components/ActivityBar';
 import UserProfile from './Components/UserProfile';
+
 import './App.css';
 
 class App extends React.Component {
@@ -50,6 +51,7 @@ class App extends React.Component {
 					email='uzumaki56@gmail.com'
 			 	/>
      
+
     		</div>
   		);
 	}

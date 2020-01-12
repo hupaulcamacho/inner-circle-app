@@ -42,12 +42,11 @@ router.get('/', async(req, res) => {
 })
 /////////////////////////////////////
 
-//Router to get users by email and username
-router.get('/:by/:value', async(req, res) => {
-  console.log('wow');
-  let userInfo = req.params.value
-  let by = req.params.by
+//Router to get users by username
+router.get('/username/:username', async(req, res) => {
+    let userInfo = req.params.username
  
+
     console.log('params!!!!1', userInfo)
     let requestQuery = ``
   if (by === 'email') {
@@ -60,6 +59,7 @@ router.get('/:by/:value', async(req, res) => {
     
       let user = await db.one(requestQuery, [`%${userInfo}%`])
          console.log('users email!!!!!', user)
+
       res.json({
         data: user,
         message: `The users were successfully retrieved`
@@ -73,11 +73,32 @@ router.get('/:by/:value', async(req, res) => {
     }
 })
 
+// User Authentication
+router.get('/login/:username/:password', async (req, res) => {
+  let username = req.params.username
+  let password = req.params.password  
+  let loginQuery = `SELECT * FROM users WHERE username = $1 AND password = $2`
+
+  try  {
+    let user = await db.any(loginQuery, [username, password])
+    res.json({
+      message: 'login sucessful',
+      loggedInUser: user
+    })
+  } catch (err) {
+    console.log(err)
+    res.status(404);
+    res.json({
+      message: 'Username or password is incorrect'
+    })
+  }
+})
+
 
 
 //////////////////////////////////////////////////
 
-//Route to add a new user
+// Route to add a new user
 router.post('/', upload.single('avatar'), async (req, res) => {
   console.log("post req body", req.body)
   try {
