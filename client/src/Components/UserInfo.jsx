@@ -1,14 +1,16 @@
 import React from 'react';
+// import axios from 'axios';
 
 class UserInfo extends React.Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             info: 
                 {username: '',
-                avatar: '',
                 email: ''},
-            change: true
+            change: false,
+            url: ''
+
             
 
         }
@@ -21,10 +23,7 @@ class UserInfo extends React.Component {
         console.log('username', e.target.value)
     }
 
-    // handleAvatar = (e) => {
-
-    //     console.log('image', e.target)
-    // }
+   
 
     handleEmail = (e) => {
         this.setState({
@@ -40,45 +39,40 @@ class UserInfo extends React.Component {
 
     handleChangeButton = (e) => {
          
-        const {info, change} = this.state
-        console.log('change', change)
-        console.log('info', info)
+        const {change} = this.state
+    
         const username = this.state.username
         console.log('username????', username)
         const email = this.state.email
         const avatar = this.state.avatar
-        console.log('user', info.username)
-        if (info.username === username && change === true) {
-            console.log('username!!!!', username)
+        // console.log('user', this.props.username)
+        if (this.props.username !== username && change === true) {
+          
             this.setState({
-                username: username,
-                // change: true
+                username: username
+                
             })
-            
+         
 
-        } else if (info.email === email && change === true) {
+        } else if (this.props.email !== email && change === true) {
             this.setState({
-                email: info.email,
-                // change: true
-            })
-        } else if (info.avatar === avatar && change === true) {
-            this.setState({
-                avatar: info.avatar,
-                // change: true
-
+                email: email
+               
             })
         }  
-
+         console.log('email!!!!', email)
+           console.log('user', this.props.username)
     }
+
 
     render() {
          return (
             <div>
+                
                 <form onSubmit={this.handleSubmit}>
-                    <input placeholder={this.username} value={this.state.username} type='text' onChange={this.handleUsername}></input>
-                    <img src={this.avatar} alt='avatar'></img>
-                    <input placeholder={this.email} value={this.state.email} type='email' onChange={this.handleEmail}></input>
-
+                    <input placeholder='username' value={this.state.username} type='text' onChange={this.handleUsername}/>
+                   
+                    <input placeholder='email' value={this.state.email} type='email' onChange={this.handleEmail}/>
                     <button onClick={this.handleChangeButton}>Submit</button> 
                 </form>
             </div>
