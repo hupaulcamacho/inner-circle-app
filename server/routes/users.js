@@ -46,12 +46,20 @@ router.get('/', async(req, res) => {
 router.get('/username/:username', async(req, res) => {
     let userInfo = req.params.username
  
-    console.log('params', userInfo)
-    let requestQuery = `SELECT * FROM users WHERE username LIKE $1`
+
+    console.log('params!!!!1', userInfo)
+    let requestQuery = ``
+  if (by === 'email') {
+     requestQuery = `SELECT * FROM users WHERE email LIKE $1`
+  } else {
+     requestQuery = `SELECT * FROM users WHERE username LIKE $1`
+  }
  
     try {
     
-      let user = await db.any(requestQuery, [`%${userInfo}%`])
+      let user = await db.one(requestQuery, [`%${userInfo}%`])
+         console.log('users email!!!!!', user)
+
       res.json({
         data: user,
         message: `The users were successfully retrieved`
