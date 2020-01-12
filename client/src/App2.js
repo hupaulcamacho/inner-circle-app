@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM, { render } from 'react-dom';
 import './App2.css';
 import NavBar from './NavBar'
 import axios from 'axios';
@@ -32,6 +31,7 @@ class App2 extends React.Component {
         const { loggedIn } = this.state
         return (
             <NavBar 
+            loginUser={this.loginUser}
             loggedIn={loggedIn}
             />
         )
