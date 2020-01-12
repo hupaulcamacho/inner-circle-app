@@ -4,8 +4,8 @@ import axios from 'axios'
 import './Login.css';
 
 class Login extends React.Component{
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.state = {
 			username: '',
 			password: ''
@@ -30,6 +30,8 @@ class Login extends React.Component{
 	
 	handleFormSubmit = async (e) => {
 		e.preventDefault()
+		const { username, password } = this.state
+		this.props.loginUser(username, password)
 	}
 
 	render(){

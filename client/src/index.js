@@ -1,6 +1,6 @@
 import React from 'react';
-import ReactDOM, { render } from 'react-dom';
-import { BrowserRouter, Route, Link } from "react-router-dom";
+import ReactDOM from 'react-dom';
+import { BrowserRouter  } from "react-router-dom";
 import './index.css';
 import App2 from './App2';
 
