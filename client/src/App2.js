@@ -1,5 +1,6 @@
 import React from 'react';
 import './App2.css';
+
 import NavBar from './NavBar'
 import axios from 'axios';
 
@@ -38,6 +39,7 @@ class App2 extends React.Component {
     }
 
 }
+
 
 
   export default App2
