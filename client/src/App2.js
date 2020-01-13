@@ -1,32 +1,45 @@
 import React from 'react';
-import ReactDOM, { render } from 'react-dom';
-import { Switch, Route, Link } from "react-router-dom";
 import './App2.css';
-import Mainpage from './Components/Mainpage'
-import Login from './Login'
-import SignUp from './SignUp'
+
+import NavBar from './NavBar'
+import axios from 'axios';
+
 class App2 extends React.Component {
-  render() {
-    return(
-      <div>
-        <nav>
-          <Link to="/">Mainpage</Link>
-          {"  "}
-          <Link to="/login">Log In</Link>
-         {"  "}
-          <Link to="/signup">Sign Up</Link>
-        </nav>
-        <Switch>
-          <Route exact path="/" component={Mainpage} />
-          <Route path="/login" component={Login} />
-          <Route path="/signup" component={SignUp}/>
-        </Switch>
-      </div>
-  
-    );
-  }
-  
+    constructor() {
+        super()
+        this.state = {
+            user: {},
+            loggedIn: false
+        }
+    }
+
+    loginUser = async (username, password) => {
+        const URL = `http://localhost:3030/users/login/${username}/${password}`
+
+        try {
+            let response = await axios.post(URL)
+            this.setState({
+                user: response.data.user,
+                loggedIn: true
+            })
+        } catch (err)  {
+            console.log(err)
+        }
+
+    }
+
+    render() {
+        const { loggedIn } = this.state
+        return (
+            <NavBar 
+            loginUser={this.loginUser}
+            loggedIn={loggedIn}
+            />
+        )
+    }
+
 }
-    
+
+
 
   export default App2
