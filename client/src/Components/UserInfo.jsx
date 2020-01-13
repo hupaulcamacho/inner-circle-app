@@ -9,7 +9,7 @@ class UserInfo extends React.Component {
                 {username: '',
                 email: ''},
             change: false,
-            url: ''
+            password: null
 
             
 
@@ -32,9 +32,18 @@ class UserInfo extends React.Component {
          console.log('email', e.target.value)
     }
 
+    handlePassword = (e) => {
+        thhis.setState({
+            password: e.target.value
+        })
+        console.log('password', e.target.value)
+    }
+
     handleSubmit = (e) => {
         e.preventDefault()
     }
+
+    
 
 
     handleChangeButton = (e) => {
@@ -44,7 +53,7 @@ class UserInfo extends React.Component {
         const username = this.state.username
         console.log('username????', username)
         const email = this.state.email
-        const avatar = this.state.avatar
+        const password = this.state.password
         // console.log('user', this.props.username)
         if (this.props.username !== username && change === true) {
           
@@ -59,9 +68,14 @@ class UserInfo extends React.Component {
                 email: email
                
             })
-        }  
+        } else if (this.props.pasword !== password && change === true) {
+            this.setState({
+                password: password
+            })
+        }
          console.log('email!!!!', email)
            console.log('user', this.props.username)
+        
     }
 
 
@@ -70,9 +84,9 @@ class UserInfo extends React.Component {
             <div>
                 
                 <form onSubmit={this.handleSubmit}>
-                    <input placeholder='username' value={this.state.username} type='text' onChange={this.handleUsername}/>
-                   
-                    <input placeholder='email' value={this.state.email} type='email' onChange={this.handleEmail}/>
+                    <input placeholder={this.state.username} value={this.state.username} type='text' onChange={this.handleUsername}/>
+                    <input placeholder={this.state.username} value={this.state.email} type='email' onChange={this.handleEmail}/>
+                    <input placeholder={this.state.pasword}  value={this.state.password} type='password' onChange={this.handlePassword}/>
                     <button onClick={this.handleChangeButton}>Submit</button> 
                 </form>
             </div>
