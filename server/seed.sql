@@ -64,6 +64,7 @@ INSERT INTO circles (circle_name, leader_id, circle_description)
            ('Sports Center', 10, 'A group of elite sports fans'),
            ('Gamers United', 17, 'A band of friendly gamers');
 
+
 INSERT INTO posts (circle_id, owner_id, image_url, post_body)
     VALUES (1, 1, './public/images/pictures/naruto_post_1.gif', 'How fast do you guys think naruto can run?'),
            (1, 2, './public/images/pictures/netero_post_1.jpg', 'Killa and Gon are almost like siblings to each other'),
@@ -76,6 +77,7 @@ INSERT INTO posts (circle_id, owner_id, image_url, post_body)
            (3, 15, './public/images/pictures/chrono_post_1.jpg', 'I NEED a new golden sun game to drop'),
 
            (3, 20, './public/images/pictures/ryu_post_1.jpg', 'Tokido is one of the most impressive Akuma players, he always plays at an insane level');
+
 
 INSERT INTO links (user_id, circle_ref)
     VALUES(1,1), (2,1), (3,1), (4, 1), (5, 1), (6, 1), (7, 1), (8, 1), (9, 2), (10, 2),
