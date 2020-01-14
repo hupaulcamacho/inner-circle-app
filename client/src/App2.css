@@ -10,17 +10,22 @@
 
 .login-form {
 	display: flex;
-	flex-direction: column;
+    flex-direction: column;
 	align-items: center;
 	z-index: 2;
 	height: 200vh;
 }
 
 .mainsubmit {
-    font-size: 2em
+    
 }
 
 .user {
     border: 2px solid gray;
     margin: 2em
+}
+
+.mainLogo {
+    display: flex;
+    flex-direction: column;
 }
