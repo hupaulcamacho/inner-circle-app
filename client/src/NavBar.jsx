@@ -57,6 +57,8 @@ const NavBar = (props) => {
          			<Route path="/login" render={renderLogin} />
          			<Route path="/signup" component={SignUp} />
       			</Switch>
+
+				
      		</div>
 		)
 	}
