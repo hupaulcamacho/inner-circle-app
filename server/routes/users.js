@@ -79,15 +79,19 @@ router.post('/login/:username/:password', async (req, res) => {
   let password = req.params.password  
   let loginQuery = `
   UPDATE users SET loggedIn = true WHERE username = $1;
-  SELECT * FROM users WHERE username = $1 AND password = $2;
   `
+  
 
   try  {
-    let user = await db.any(loginQuery, [username, password])
-    console.log(user.data)
+    let user = await db.one(`SELECT * FROM users WHERE username = $1 AND password = $2`, [username, password]);
+    let login = await db.any(loginQuery, [username, password]);
+    console.log(user.data);
+    if(user.username === undefined){
+      throw Error('no user found');
+    }
     res.json({
       message: 'login sucessful',
-      loggedInUser: user
+      loggedInUser: user 
     })
   } catch (err) {
     console.log(err)

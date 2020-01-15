@@ -21,7 +21,7 @@ const upload = multer({
 router.get('/users/:owner_id', async (req, res) => {
     let ownerID = req.params.owner_id;
     try {
-        let postQuery = `SELECT * FROM posts WHERE owner_id = $1;`;
+        let postQuery = `SELECT * FROM posts WHERE owner_id = $1`;
         let result = await db.any(postQuery, [ownerID]);
         // Send back json object with sucess message and payload
         res.json({
@@ -61,8 +61,9 @@ router.post('/register', upload.single('image_url'), async (req, res) => {
         let imgURL = `http://localhost:3030/${req.file.path.replace('public/', '')}`;
         let ownerAvi = await db.one(`SELECT avatar FROM users WHERE id = ${req.body.owner_id}`);
         console.log(ownerAvi);
+        let postCircle = await db.one(`SELECT circle_name FROM circles WHERE id = ${req.body.circle_id}`);
         let insertQuery = `INSERT INTO posts (circle_id, owner_id, owner_avi, image_url, post_body, post_circle) VALUES ($1, $2, $3, $4, $5)`;
-        await db.none(insertQuery, [req.body.circle_id, req.body.owner_id, ownerAvi.avatar, imgURL, req.body.post_body, req.body.post_circle]);
+        await db.none(insertQuery, [req.body.circle_id, req.body.owner_id, ownerAvi.avatar, imgURL, req.body.post_body, postCircle.circle_name]);
         // Send back json object with success message and payload
         res.json({
             message: 'New Post made',
