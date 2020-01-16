@@ -7,9 +7,10 @@ import MainPage from './Components/Mainpage'
 import Login from './Login'
 import SignUp from './SignUp'
 import Search from './Components/Search'
+import ActivityBar from './Components/ActivityBar'
 
 const NavBar = (props) => {
-	const { loggedIn, loginUser } = props
+	const { loggedIn, loginUser, user } = props
 
 	const renderLogin = () => {
 		return(
@@ -18,6 +19,12 @@ const NavBar = (props) => {
 			/>
 		)
 	}
+	const renderUserPage = () => {
+		return (
+			<ActivityBar user = {user} />);
+	}
+
+	//const renderUserPage = () => {}
 	if (loggedIn === true) {
 		return (
 			<div>
@@ -29,7 +36,7 @@ const NavBar = (props) => {
 					{/* <Link to="/logout">Log Out</Link> */}
 				</nav>
 				<Switch>
-					<Route path="/userprofile" component={UserProfile} />
+					<Route path="/userprofile" render={renderUserPage} />
 					<Route path="/search" component={Search} />
 					{/* <Route path="/logout" component={LogOut} /> */}
 		 		</Switch>
@@ -50,6 +57,8 @@ const NavBar = (props) => {
          			<Route path="/login" render={renderLogin} />
          			<Route path="/signup" component={SignUp} />
       			</Switch>
+
+				
      		</div>
 		)
 	}
