@@ -141,8 +141,7 @@ router.post('/', upload.single('avatar'), async (req, res) => {
 //Route to upadate the user's information
 router.patch('/:id', async (req, res) => {
 
-  let by = req.params.by
-  let value = req.params.value
+
   let query = `UPDATE users SET `
 
   // let updateQuery = ``
