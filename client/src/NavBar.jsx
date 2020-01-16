@@ -19,9 +19,20 @@ const NavBar = (props) => {
 			/>
 		)
 	}
+
+	const circleChoice = (circle) => {
+		props.handleCircleChoice(circle);
+		console.log('vnavbar');
+	}
 	const renderUserPage = () => {
 		return (
 			<ActivityBar user = {user} />);
+	}
+
+	const renderSearchBar = () => {
+		return (
+			<Search handleCircleChoice = {circleChoice} /> 
+			);
 	}
 
 	//const renderUserPage = () => {}
@@ -37,7 +48,7 @@ const NavBar = (props) => {
 				</nav>
 				<Switch>
 					<Route path="/userprofile" render={renderUserPage} />
-					<Route path="/search" component={Search} />
+					<Route path="/search" render={renderSearchBar} />
 					{/* <Route path="/logout" component={LogOut} /> */}
 		 		</Switch>
 			</div>

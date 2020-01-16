@@ -1,6 +1,11 @@
 import React from 'react';
 
 const SearchItems = (props) => {
+
+    const bubbleCircleChoice = (circle) => {
+        console.log('wtf');
+        props.handleCircleChoice(circle);
+    }
     const { results, userChecked, circleChecked } = props
     let listItems = [];
     if (userChecked === true) {
@@ -14,8 +19,9 @@ const SearchItems = (props) => {
         }
     } else if(circleChecked === true) {
         for (let circle of results){
+            console.log(circle);
             listItems.push(
-                <div className='circle'>
+                <div className='circle' onClick={bubbleCircleChoice(circle)}>
                 <h3>{circle.circle_name}</h3>
                 <p>{circle.circle_description}</p>
                 </div>

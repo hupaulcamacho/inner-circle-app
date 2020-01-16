@@ -6,9 +6,9 @@ class CirclePage extends React.Commponent {
 	constructor(props){
 		this.super();
 		this.state = {
-
-		}
-	}
+			currentCircle: ''
+		};
+	};
 
 
 

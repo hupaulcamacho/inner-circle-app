@@ -9,9 +9,16 @@ class App2 extends React.Component {
         super()
         this.state = {
             user: {},
-            loggedIn: false
+            loggedIn: false, 
+            circleChosen: false,
+            circle: {}
         }
     }
+
+    circleWasClicked = (circle) => {
+        this.setState({circleChosen: true,
+                        circle: circle});
+    };
 
     loginUser = async (username, password) => {
         const URL = `http://localhost:3030/users/login/${username}/${password}`
@@ -35,6 +42,7 @@ class App2 extends React.Component {
             loginUser={this.loginUser}
             loggedIn={loggedIn}
             user = {this.state.user}
+            handleCircleChoice = {this.circleWasClicked}
             />
         )
     }
