@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios'
+
 
 class Login extends React.Component{
 	constructor(props) {
@@ -33,8 +33,10 @@ class Login extends React.Component{
 	}
 
 	render(){
+		let { loggedIn } = this.props
 		const { username, password } = this.state
-		return(
+		
+		return (
 			<form className ='login-form' onSubmit={this.handleFormSubmit}>
 				<h1> Login </h1>
 				
@@ -43,7 +45,6 @@ class Login extends React.Component{
 				<label>Password</label>
 				<input type='password' value={password} placeHolder='enter password' onChange={this.handlePasswordChange}/>
 				<input type='submit' value='submit' />
-				
 				<button className='form-item' type='button'onClick={this.backToNav}>Back</button>
 			</form>);
 	}

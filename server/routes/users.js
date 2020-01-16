@@ -43,23 +43,12 @@ router.get('/', async (req, res) => {
 /////////////////////////////////////
 
 //Router to get users by username
-router.get('/username/:use', async (req, res) => {
+router.get('/username/:username', async (req, res) => {
   let userInfo = req.params.username
- 
-
-  console.log('params!!!!1', userInfo)
-  let requestQuery = ``
-  if (by === 'email') {
-    requestQuery = `SELECT * FROM users WHERE email LIKE $1`
-  } else {
-    requestQuery = `SELECT * FROM users WHERE username LIKE $1`
-  }
-
+  let requestQuery = `SELECT * FROM users WHERE username LIKE $1`
+  
   try {
-
-    let user = await db.one(requestQuery, [`%${userInfo}%`])
-    console.log('users email!!!!!', user)
-
+    let user = await db.any(requestQuery, [`%${userInfo}%`])
     res.json({
       data: user,
       message: `The users were successfully retrieved`
@@ -80,11 +69,14 @@ router.post('/login/:username/:password', async (req, res) => {
   let password = req.params.password  
   let loginQuery = `
   UPDATE users SET loggedIn = true WHERE username = $1;
+  SELECT * FROM users WHERE username = $1 AND password = $2;
   `
-  
 
-  try  {
-    let user = await db.one(`SELECT * FROM users WHERE username = $1 AND password = $2`, [username, password]);
+
+
+  try {
+    let user = await db.any(loginQuery, [username, password])
+    console.log(user)
     let login = await db.any(loginQuery, [username, password]);
     console.log(user.data);
     if(user.username === undefined){
