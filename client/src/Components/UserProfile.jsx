@@ -65,6 +65,8 @@ class UserProfile extends React.Component {
     render() {
         const { currentUser } =  this.state
         let user = currentUser[0]
+        console.log('user', userbranch
+        )
         return(
             <div className='profile'>
                 <img src={`${user.avatar}`} width='200' />
