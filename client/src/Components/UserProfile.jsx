@@ -67,6 +67,7 @@ class UserProfile extends React.Component {
         let user = currentUser[0]
         return(
             <div className='profile'>
+
                 <img src={`${user.avatar}`} width='200' />
                 <p>{user.username}</p>
 
@@ -75,6 +76,7 @@ class UserProfile extends React.Component {
                     user={currentUser}
                     />
                 </div>
+
             </div>
             
             
