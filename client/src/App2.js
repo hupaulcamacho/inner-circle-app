@@ -16,8 +16,9 @@ class App2 extends React.Component {
     loginUser = async (username, password) => {
         const URL = `http://localhost:3030/users/login/${username}/${password}`
         try {
-            let response = await axios.post(URL);
-            console.log(response);
+            let response = await axios.post(URL)
+            console.log(response)
+
             this.setState({
                 user: response.data.loggedInUser,
                 loggedIn: true
@@ -29,12 +30,12 @@ class App2 extends React.Component {
     }
 
     render() {
-        const { loggedIn } = this.state
+        const { loggedIn, user } = this.state
         return (
             <NavBar 
             loginUser={this.loginUser}
             loggedIn={loggedIn}
-            user = {this.state.user}
+            user={user}
             />
         )
     }
