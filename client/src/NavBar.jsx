@@ -1,7 +1,7 @@
 import React from 'react';
 import './NavBar.css';
 import ReactDOM, { render } from 'react-dom';
-import { Switch, Route, Link } from "react-router-dom";
+import { Switch, Route, Link, Redirect } from "react-router-dom";
 import UserProfile from './Components/UserProfile'
 import MainPage from './Components/Mainpage'
 import Login from './Login'
@@ -16,18 +16,22 @@ const NavBar = (props) => {
 		return(
 			<Login 
 			loginUser={loginUser}
+			loggedIn={loggedIn}
 			/>
 		)
 	}
-	const renderUserPage = () => {
-		return (
-			<ActivityBar user = {user} />);
-	}
 
-	//const renderUserPage = () => {}
-	if (loggedIn === true) {
+	const renderUserProfile = () => {
 		return (
+			<UserProfile 
+			user={user}
+			/>
+		)
+	}
+	if (loggedIn === true) {
+			return (
 			<div>
+				<Redirect to='/userprofile' />
 				<nav>
 					<Link to="/userprofile">Profile</Link>
 					{" "}
@@ -36,12 +40,15 @@ const NavBar = (props) => {
 					{/* <Link to="/logout">Log Out</Link> */}
 				</nav>
 				<Switch>
-					<Route path="/userprofile" render={renderUserPage} />
+					<Route path="/userprofile" render={renderUserProfile} />
+
 					<Route path="/search" component={Search} />
 					{/* <Route path="/logout" component={LogOut} /> */}
 		 		</Switch>
+				
 			</div>
-		)
+			)
+		
 	} else {
 		return (
 			<div>
