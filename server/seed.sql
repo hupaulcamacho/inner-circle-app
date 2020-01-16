@@ -75,7 +75,7 @@ INSERT INTO posts (circle_id, owner_id, image_url, post_body)
 
            (3, 17, './public/images/pictures/chief_post_1.jpg', 'Who is ready for Halo Infinite?!!'),
            (3, 15, './public/images/pictures/chrono_post_1.jpg', 'I NEED a new golden sun game to drop'),
-
+    
            (3, 20, './public/images/pictures/ryu_post_1.jpg', 'Tokido is one of the most impressive Akuma players, he always plays at an insane level');
 
 

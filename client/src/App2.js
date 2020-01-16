@@ -18,8 +18,9 @@ class App2 extends React.Component {
 
         try {
             let response = await axios.post(URL)
+            console.log(response)
             this.setState({
-                user: response.data.user,
+                user: response.data.loggedInUser,
                 loggedIn: true
             })
         } catch (err)  {
@@ -29,11 +30,12 @@ class App2 extends React.Component {
     }
 
     render() {
-        const { loggedIn } = this.state
+        const { loggedIn, user } = this.state
         return (
             <NavBar 
             loginUser={this.loginUser}
             loggedIn={loggedIn}
+            user={user}
             />
         )
     }

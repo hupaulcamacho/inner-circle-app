@@ -1,7 +1,7 @@
 import React from 'react';
 import './NavBar.css';
 import ReactDOM, { render } from 'react-dom';
-import { Switch, Route, Link } from "react-router-dom";
+import { Switch, Route, Link, Redirect } from "react-router-dom";
 import UserProfile from './Components/UserProfile'
 import MainPage from './Components/Mainpage'
 import Login from './Login'
@@ -9,18 +9,28 @@ import SignUp from './SignUp'
 import Search from './Components/Search'
 
 const NavBar = (props) => {
-	const { loggedIn, loginUser } = props
+	const { loggedIn, loginUser, user } = props
 
 	const renderLogin = () => {
 		return(
 			<Login 
 			loginUser={loginUser}
+			loggedIn={loggedIn}
+			/>
+		)
+	}
+
+	const renderUserProfile = () => {
+		return (
+			<UserProfile 
+			user={user}
 			/>
 		)
 	}
 	if (loggedIn === true) {
-		return (
+			return (
 			<div>
+				<Redirect to='/userprofile' />
 				<nav>
 					<Link to="/userprofile">Profile</Link>
 					{" "}
@@ -29,12 +39,14 @@ const NavBar = (props) => {
 					{/* <Link to="/logout">Log Out</Link> */}
 				</nav>
 				<Switch>
-					<Route path="/userprofile" component={UserProfile} />
+					<Route path="/userprofile" render={renderUserProfile} />
 					<Route path="/search" component={Search} />
 					{/* <Route path="/logout" component={LogOut} /> */}
 		 		</Switch>
+				
 			</div>
-		)
+			)
+		
 	} else {
 		return (
 			<div>
