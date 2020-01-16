@@ -5,39 +5,29 @@ class UserProfile extends React.Component {
     constructor() {
         super()
         this.state = {
-            avatarUrl: '',
-            username: '', 
-            avatarFile: null
+           user: {
+               username: '',
+                avatar: '',
+           },
+           loggedIn: true
+            
+         
         }
     }
 
-    // getAvatar = async() => {
-    //    console.log('here')
-    //     try {
-    //         //  let avatar = this.props.match.params
-    //         //  console.log('params?????', avatar)
-    //          let url = `http://localhost:3030/users`
-    //          let userAvatar = await axios.get(url)
-    //         //  this.setState({
-    //         //      avatar: userAvatar
-    //         //  })
-    //          console.log('avatar', userAvatar)
-             
-    //     } catch (error){
-    //             console.log('error', error)
-    //     }
-      
+   
+    // handleAvatarFile = (event) => {
+    //     this.setState({
+    //         avatarFile: event.target.files[0].name
+    //     })
+    //     console.log('avatar!!!', event.target.files[0].name)
+    //       console.dir(event.target)
     // }
 
-    handleAvatarFile = (event) => {
-        this.setState({
-            avatarFile: event.target.files[0].name
-        })
-        console.log('avatar!!!', event.target.files[0].name)
-          console.dir(event.target)
-    }
-
     handleUsername = (e) => {
+        // this.setState({
+        //     user: 
+        // })
         console.log('username@@@@@', e.target.value)
     }
 
@@ -77,8 +67,7 @@ class UserProfile extends React.Component {
         return(
             <div className='profile'>
                 <form onSubmit={this.handleSubmit}> 
-                    <input type='file' onChange={this.handleAvatarFile}/>
-                    <input type='submit' value='Upload' />
+                    <img src={}></img>
                     <p></p>
                 </form>
             </div>
