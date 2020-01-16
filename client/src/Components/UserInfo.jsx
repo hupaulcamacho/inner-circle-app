@@ -33,7 +33,7 @@ class UserInfo extends React.Component {
     }
 
     handlePassword = (e) => {
-        thhis.setState({
+        this.setState({
             password: e.target.value
         })
         console.log('password', e.target.value)
