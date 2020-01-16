@@ -7,6 +7,7 @@ import MainPage from './Components/Mainpage'
 import Login from './Login'
 import SignUp from './SignUp'
 import Search from './Components/Search'
+import ActivityBar from './Components/ActivityBar'
 
 const NavBar = (props) => {
 	const { loggedIn, loginUser, user } = props
@@ -40,6 +41,7 @@ const NavBar = (props) => {
 				</nav>
 				<Switch>
 					<Route path="/userprofile" render={renderUserProfile} />
+
 					<Route path="/search" component={Search} />
 					{/* <Route path="/logout" component={LogOut} /> */}
 		 		</Switch>

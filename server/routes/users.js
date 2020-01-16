@@ -73,12 +73,18 @@ router.post('/login/:username/:password', async (req, res) => {
   `
 
 
+
   try {
     let user = await db.any(loginQuery, [username, password])
     console.log(user)
+    let login = await db.any(loginQuery, [username, password]);
+    console.log(user.data);
+    if(user.username === undefined){
+      throw Error('no user found');
+    }
     res.json({
       message: 'login sucessful',
-      loggedInUser: user
+      loggedInUser: user 
     })
   } catch (err) {
     console.log(err)
@@ -127,8 +133,7 @@ router.post('/', upload.single('avatar'), async (req, res) => {
 //Route to upadate the user's information
 router.patch('/:id', async (req, res) => {
 
-  let by = req.params.by
-  let value = req.params.value
+
   let query = `UPDATE users SET `
 
   // let updateQuery = ``
