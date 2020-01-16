@@ -71,8 +71,6 @@ router.post('/login/:username/:password', async (req, res) => {
   UPDATE users SET loggedIn = true WHERE username = $1;
   SELECT * FROM users WHERE username = $1 AND password = $2;
   `
-
-
   try {
     let user = await db.any(loginQuery, [username, password])
     console.log(user)
