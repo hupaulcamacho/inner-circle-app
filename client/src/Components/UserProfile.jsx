@@ -11,23 +11,15 @@ class UserProfile extends React.Component {
         }
     }
 
-    // getAvatar = async() => {
-    //    console.log('here')
-    //     try {
-    //         //  let avatar = this.props.match.params
-    //         //  console.log('params?????', avatar)
-    //          let url = `http://localhost:3030/users`
-    //          let userAvatar = await axios.get(url)
-    //         //  this.setState({
-    //         //      avatar: userAvatar
-    //         //  })
-    //          console.log('avatar', userAvatar)
-             
-    //     } catch (error){
-    //             console.log('error', error)
-    //     }
-      
+   
+    // handleAvatarFile = (event) => {
+    //     this.setState({
+    //         avatarFile: event.target.files[0].name
+    //     })
+    //     console.log('avatar!!!', event.target.files[0].name)
+    //       console.dir(event.target)
     // }
+
 
     // handleAvatarFile = (event) => {
     //     this.setState({
@@ -40,6 +32,7 @@ class UserProfile extends React.Component {
     // handleUsername = (e) => {
     //     console.log('username@@@@@', e.target.value)
     // }
+
 
     // handleSubmit = async(e) => {
     //     e.preventDefault()

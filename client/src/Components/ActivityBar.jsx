@@ -20,7 +20,9 @@ class ActivityBar extends React.Component{
 	};
 
 	handlePosts = async () => {
+
 		let userPosts = await axios.get(`http://localhost:3030/posts/users/${this.props.user[0].id}`);
+
 		console.log(userPosts.data.payload);
 			this.setState(
 			{
@@ -44,8 +46,10 @@ class ActivityBar extends React.Component{
 
 	
 	getAllUserCircles = async () => {
+
 		console.log(this.props.user[0].id)
 		let allUserCircles = await axios.get(`http://localhost:3030/circles/getUserCircles/${this.props.user[0].id}`);
+
 		console.log(allUserCircles.data.payload);
 		this.setState(
 			{
@@ -62,7 +66,9 @@ class ActivityBar extends React.Component{
 
 	render(){
 		let toggleCircles = (this.state.circleDisplay) ? <CircleSelect circles={this.state.allUserCircles} />: null;
-		let toggleInfo = (this.state.infoDisplay) ? <UserInfo user= {this.props.user}/>: null;
+
+		let toggleInfo = (this.state.infoDisplay) ? <UserInfo username= {this.props.user.username}/>: null;
+
 		let togglePosts = (this.state.postsDisplay) ? <DisplayPosts posts={this.state.allUserPosts} singleUser = {true} /> : null;
 		return(
 		<div>
