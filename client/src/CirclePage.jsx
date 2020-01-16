@@ -2,12 +2,16 @@ import React from 'react';
 import './CirclePage.css';
 
 
-class CirclePage extends React.Commponent {
+class CirclePage extends React.Component {
 	constructor(props){
-		this.super();
+		super(props);
 		this.state = {
 
 		}
+	}
+
+	handleCirclePosts = () => {
+
 	}
 
 
@@ -20,9 +24,6 @@ class CirclePage extends React.Commponent {
 		        	<a href="#members" onClick={this.getAllUserCircles}>Circles</a>
 					<a href="#Info" onClick={this.handleInfo}>Info</a>			
 				</div>
-				{toggleCircles}
-				{toggleInfo}
-				{togglePosts}
 			</div>
 			);
 	}

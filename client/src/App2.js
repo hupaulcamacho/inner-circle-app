@@ -3,6 +3,7 @@ import './App2.css';
 
 import NavBar from './NavBar'
 import axios from 'axios';
+import CirclePage from './CirclePage';
 
 class App2 extends React.Component {
     constructor() {
@@ -32,11 +33,14 @@ class App2 extends React.Component {
     render() {
         const { loggedIn, user } = this.state
         return (
+            <div>
             <NavBar 
             loginUser={this.loginUser}
             loggedIn={loggedIn}
             user={user}
             />
+            <CirclePage user= {user} />
+            </div>
         )
     }
 
