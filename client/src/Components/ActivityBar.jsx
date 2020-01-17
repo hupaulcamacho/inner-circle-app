@@ -1,5 +1,4 @@
 import React from 'react';
-import './ActivityBar.css';
 import UserInfo from './UserInfo';
 import CircleSelect from './CircleSelect';
 import DisplayPosts from './DisplayPosts';
@@ -9,12 +8,13 @@ import axios from 'axios';
 class ActivityBar extends React.Component{
 	constructor(props){
 		super(props);
+		console.log(props.user)
 		this.state = {
       		postsDisplay: false,
       		circleDisplay: false,
       		infoDisplay: false,
       		allUserCircles: '',
-      		allUserPosts: ''
+			allUserPosts: '',
 		};
 	};
 

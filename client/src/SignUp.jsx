@@ -1,5 +1,4 @@
 import React from 'react';
-import './SignUp.css';
 import axios from 'axios';
 
 class SignUp extends React.Component{
@@ -56,23 +55,25 @@ class SignUp extends React.Component{
 	render() {
 		const { email, username } = this.state
 		return(
-			<form className ='signUp-form' onSubmit={this.handleSignUpSubmit}>
-			<h1>Sign up Today!</h1>
+			<div className='signup-container'>
+				<form className ='signUp-form' onSubmit={this.handleSignUpSubmit}>
+				<h1>Sign up Today!</h1>
 				<div className='form-item'>
-					<label for='name'>Email</label>
+					{"Email: "}
 					<input placeHolder='enter email' type='text' onChange={this.handleEmailChange} value={email}></input>
 				</div>
 				<div className='form-item'>
-					<label for='name'>Username</label>
+					{"Username: "}
 					<input placeHolder='enter username' type='text' onChange={this.handleUsernameChange} value={username}></input>
 				</div>
 				<div className='form-item'>
-					<label for='avatar'>Avatar</label>
+					{"Avatar: "}
 					<input placeHolder='Placeholder for now' type='file' onChange={this.handleFileInput}></input>
 				</div>
-				<button className='form-item' type='submit'>Submit</button>
-				<button className='form-item' type='button' onClick={this.backToNav}>Back</button>
-			</form>);
+				<input className='signup-button' type='submit' value='Sign Up' />
+			</form>
+			</div>
+			);
 	}
 }
 

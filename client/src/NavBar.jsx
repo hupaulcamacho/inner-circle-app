@@ -12,7 +12,7 @@ import CirclePage from './CirclePage';
 
 const NavBar = (props) => {
 	const { loggedIn, loginUser, user } = props
-
+	console.log(user)
 	const renderLogin = () => {
 		return(
 			<Login 
@@ -43,6 +43,7 @@ const NavBar = (props) => {
 		return (
 			<div>
 				<nav>
+				<span className="nav-title"> Inner Circle</span>
 					<Link to="/userprofile">Profile</Link>
 					{" "}
 					<Link to="/search">Search</Link>
@@ -58,13 +59,18 @@ const NavBar = (props) => {
 		)
 	} else {
 		return (
-			<div>
+			<div className="landing-page">
        			<nav>
-         			<Link to="/">Mainpage</Link>
+				   	<span className="nav-title"> Inner Circle</span>
+					
+					<Link to="/">Mainpage</Link>
          			{"  "}
          			<Link to="/login">Log In</Link>
          			{"  "}
 					<Link to="/signup">Sign Up</Link>
+					
+					
+         			
        			</nav>       		
 				<Switch>
          			<Route exact path="/" component={MainPage} />

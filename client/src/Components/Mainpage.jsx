@@ -7,13 +7,15 @@ class Mainpage extends Component {
         super()
         this.state = {
             search: '',
-            searchBarClicked: false
+            searchBarClicked: false,
+            errorMessage: ''
         }
     }
 
     handleSearchChange = e => {
         this.setState({
-            search: e.target.value
+            search: e.target.value,
+            errorMessage: ''
         })
     }
     
@@ -21,15 +23,19 @@ class Mainpage extends Component {
         const { search } = this.state
         e.preventDefault()
         if (search === '') {
-
+            this.setState({
+                errorMessage: 'Search cannot be blank'
+            })
+        } else {
+            this.setState({
+                searchBarClicked: true
+            })
         }
-        this.setState({
-            searchBarClicked: true
-        })
+        
     }
 
     render() {
-        const { search, searchBarClicked } = this.state
+        const { search, searchBarClicked, errorMessage } = this.state
         if (searchBarClicked) {
             return(<Search search={search} />)
         } else {
@@ -41,9 +47,10 @@ class Mainpage extends Component {
                     
                     
                     <form onSubmit={this.handleSubmit}>
-                        <input type='text' className='mainsearch' value={search} onChange={this.handleSearchChange} placeholder='Search for a Circle' />
-                        <input className='mainsubmit' type='submit' value='submit' />
+                        <input type='text' className='mainsearch' value={search} onChange={this.handleSearchChange} placeholder='Search for a Circle' /><br/>
+                        <input className='mainsubmit' type='submit' value='Search!' />
                     </form>
+                    <p className='error'>{errorMessage}</p>
                 </div>
             )
         }
