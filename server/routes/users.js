@@ -40,6 +40,29 @@ router.get('/', async (req, res) => {
 
   }
 })
+
+router.get('/id/:id', async (req, res) => {
+  console.log('i ran');
+  let id = parseInt(req.params.id);
+  console.log(typeof id);
+  try {
+    const requestQuery = `SELECT * FROM users WHERE id = ${id}`
+    console.log(requestQuery);  
+    let user = await db.one(requestQuery)
+    console.log(user);
+    res.json({
+      data: user,
+      message: `The user was successfully retieved`
+    })
+
+  } catch (err) {
+    res.status(404)
+    res.json({
+      message: `The request has failed`
+    })
+
+  }
+})
 /////////////////////////////////////
 
 //Router to get users by username
