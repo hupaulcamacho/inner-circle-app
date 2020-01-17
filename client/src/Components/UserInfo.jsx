@@ -43,32 +43,29 @@ class UserInfo extends React.Component {
         e.preventDefault()
     }
 
-    
-
-
     handleChangeButton = (e) => {
-         
-        const {change} = this.state
-    
-        const username = this.state.username
-        console.log('username????', username)
+
+        const { change, user, username } = this.state
+        
         const email = this.state.email
         const password = this.state.password
-        // console.log('user', this.props.username)
-        if (this.props.username !== username && change === true) {
+        console.log('user', this.props.username)
+        if (user[0].username !== username && change === true) {
           
             this.setState({
                 username: username
-                
             })
-         
 
-        } else if (this.props.email !== email && change === true) {
+        
+        } else if (user[0].email !== email && change === true) {
+
             this.setState({
                 email: email
                
             })
-        } else if (this.props.pasword !== password && change === true) {
+
+        } else if (user[0].password !== password && change === true) {
+
             this.setState({
                 password: password
             })
@@ -80,13 +77,23 @@ class UserInfo extends React.Component {
 
 
     render() {
+        const { user, username, email, password } = this.state
+        console.log(user)
+
          return (
             <div>
                 
-                <form onSubmit={this.handleSubmit}>
-                    <input placeholder={this.state.username} value={this.state.username} type='text' onChange={this.handleUsername}/>
-                    <input placeholder={this.state.username} value={this.state.email} type='email' onChange={this.handleEmail}/>
-                    <input placeholder={this.state.pasword}  value={this.state.password} type='password' onChange={this.handlePassword}/>
+
+                <form className='info-form' onSubmit={this.handleSubmit}>
+                    New Username
+                    <input placeholder={user[0].username} value={username} type='text' onChange={this.handleUsername}/>
+                    New Email
+                    <input placeholder={user[0].email} value={email} type='email' onChange={this.handleEmail}/>
+                    New Password
+                    <input placeholder='Enter new password'  value={password} type='password' onChange={this.handlePassword}/>
+                    <input type='file' onChange={this.handleAvatarFile}/>
+                    <input type='submit' value='Upload' />
+
                     <button onClick={this.handleChangeButton}>Submit</button> 
                 </form>
             </div>

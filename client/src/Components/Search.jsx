@@ -114,7 +114,8 @@ class Search extends React.Component {
 
                     <input type="radio" name="selection" value="user" onChange={this.handleOptionChange}/> user
                     <input type="radio" name="selection" value="circle" onChange={this.handleOptionChange} /> circle
-                    <input type='submit' value='submit'></input>
+                    <input type='submit' value='submit'></input><br/>
+                    
                 </form>
                 <SearchItems 
                 results={results}

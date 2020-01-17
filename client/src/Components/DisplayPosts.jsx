@@ -1,8 +1,7 @@
-//State should have 
+	//State should have 
 //1.An array of posts that are the posts themselves
 //2. A boolean that determines whether to display the avatar for the user 
 import React from 'react';
-import './DisplayPosts.css';
 
 
 
@@ -20,15 +19,15 @@ class DisplayPosts  extends React.Component {
 		if(this.props.singleUser){
 			convertedPosts = this.props.posts.map((elem) => {
 				return	(
-				<div>
-					<i>{elem.post_circle}</i>
-					<img src={elem.image_url} />
-					<p>{elem.post_body}</p>
+				<div className='single-post'>
+					<i>{elem.post_circle}</i> <br/>
+					<img src={elem.image_url} /> <br/>
+					<p className='post-body'>{elem.post_body}</p>
 				</div>
 				);
 			});
 		}
-		else{
+		else {
 			convertedPosts = this.props.posts.map((elem) => {
 				return (
 					<div>
@@ -48,7 +47,7 @@ class DisplayPosts  extends React.Component {
 			});
 		}
 		return(
-			<div>
+			<div className='posts-container'>
 				{convertedPosts}
 			</div>
 			)
