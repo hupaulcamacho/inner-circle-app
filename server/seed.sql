@@ -10,7 +10,8 @@ CREATE TABLE users (
     email VARCHAR,
     password VARCHAR,
     avatar VARCHAR UNIQUE,
-    loggedIn BOOLEAN
+    loggedIn BOOLEAN,
+    signUp BOOLEAN
 );
 
 CREATE TABLE circles (
@@ -36,30 +37,30 @@ CREATE TABLE links (
     circle_ref INT REFERENCES circles (id) ON DELETE CASCADE
   );
 
-INSERT INTO users (username, email, password, avatar, loggedIn)
-    VALUES ('narutolover', 'uzumaki56@gmail.com', 'rasengan', 'http://localhost:3030/images/avatar/naruto.png', 'false'),
-           ('nenmaster15', 'issacnetero@hotmail.com', 'hunter', 'http://localhost:3030/images/avatar/netero.jpg', 'false'),
-           ('cutenavi', 'myonepiece@gmail.com', 'treasure', 'http://localhost:3030/images/avatar/nami.png','false'),
-           ('ladiesman47', 'zenitsuagatsuma@gmail.com', 'lightning', 'http://localhost:3030/images/avatar/zenitsu.jpg', 'false'),
-           ('noinsidevoice', 'cloverasta@yahoo.com', 'black', 'http://localhost:3030/images/avatar/asta.jpeg', 'false'),
-           ('senzueater11', 'songoku@gmail.com', 'dragon', 'http://localhost:3030/images/avatar/goku.jpg', 'false'),
-           ('alchemynoob', 'eelric@gmail.com', 'philosopher', 'http://localhost:3030/images/avatar/edward.jpg', 'false'),
-           ('therealdemonslayer', 'sango223@gmail.com', 'shippo', 'http://localhost:3030/images/avatar/sango.png', 'false'),
+INSERT INTO users (username, email, password, avatar, loggedIn, signUp)
+    VALUES ('narutolover', 'uzumaki56@gmail.com', 'rasengan', 'http://localhost:3030/images/avatar/naruto.png', 'false', 'true'),
+           ('nenmaster15', 'issacnetero@hotmail.com', 'hunter', 'http://localhost:3030/images/avatar/netero.jpg', 'false', 'true' ),
+           ('cutenavi', 'myonepiece@gmail.com', 'treasure', 'http://localhost:3030/images/avatar/nami.png','false', 'true'),
+           ('ladiesman47', 'zenitsuagatsuma@gmail.com', 'lightning', 'http://localhost:3030/images/avatar/zenitsu.jpg', 'false', 'true'),
+           ('noinsidevoice', 'cloverasta@yahoo.com', 'black', 'http://localhost:3030/images/avatar/asta.jpeg', 'false', 'true'),
+           ('senzueater11', 'songoku@gmail.com', 'dragon', 'http://localhost:3030/images/avatar/goku.jpg', 'false', 'true'),
+           ('alchemynoob', 'eelric@gmail.com', 'philosopher', 'http://localhost:3030/images/avatar/edward.jpg', 'false','true'),
+           ('therealdemonslayer', 'sango223@gmail.com', 'shippo', 'http://localhost:3030/images/avatar/sango.png', 'false', 'true'),
            
-           ('doubledribble', 'flopharden@yahoo.com', 'rockets', 'http://localhost:3030/images/avatar/harden.jpg', 'false'),
-           ('kingjames', 'lebronclevland45@gmail.com', 'clippers', 'http://localhost:3030/images/avatar/lebron.jpg', 'false'),
-           ('nopassing', 'kobeeee@gmail.com', 'lakers', 'http://localhost:3030/images/avatar/kobe.jpg', 'false'),
-           ('onlythrees', 'chefcurry@hotmail.com', 'warrior', 'http://localhost:3030/images/avatar/curry.jpg', 'false'),
-           ('foreverknicks', 'reddhook@hotmail.com', 'theballer', 'http://localhost:3030/images/avatar/carmelo.jpeg', 'false'),
-           ('thunderfan22', 'westbrick@gmail.com', 'thunder', 'http://localhost:3030/images/avatar/westbrook.jpg', 'false'),
+           ('doubledribble', 'flopharden@yahoo.com', 'rockets', 'http://localhost:3030/images/avatar/harden.jpg', 'false', 'true'),
+           ('kingjames', 'lebronclevland45@gmail.com', 'clippers', 'http://localhost:3030/images/avatar/lebron.jpg', 'false', 'true'),
+           ('nopassing', 'kobeeee@gmail.com', 'lakers', 'http://localhost:3030/images/avatar/kobe.jpg', 'false', 'true'),
+           ('onlythrees', 'chefcurry@hotmail.com', 'warrior', 'http://localhost:3030/images/avatar/curry.jpg', 'false', 'true'),
+           ('foreverknicks', 'reddhook@hotmail.com', 'theballer', 'http://localhost:3030/images/avatar/carmelo.jpeg', 'false', 'true'),
+           ('thunderfan22', 'westbrick@gmail.com', 'thunder', 'http://localhost:3030/images/avatar/westbrook.jpg', 'false', 'true'),
 
-           ('rpggamer432', 'chrono34@gmail.com', 'timecross', 'http://localhost:3030/images/avatar/chrono.jpg', 'false'),
-           ('theprincess', 'toadstool@gmail.com', 'peach', 'http://localhost:3030/images/avatar/peach.png', 'false'),
-           ('masterchief', 'halomaster@gmail.com', 'warthog', 'http://localhost:3030/images/avatar/master_chief.jpg', 'false'),
-           ('precursororb4', 'jakanddax55@gmail.com', 'darkjak', 'http://localhost:3030/images/avatar/jak.jpg', 'false'),
-           ('tombraider', 'lauracroft94@gmail.com', 'raider', 'http://localhost:3030/images/avatar/laura.jpg', 'false'),
-           ('1000hadoukens', 'sfryu@gmail.com', 'hadouken', 'http://localhost:3030/images/avatar/ryu.jpg', 'false'),
-           ('whereiszelda', 'triforce45@gmail.com', 'ganonisdead', 'http://localhost:3030/images/avatar/link.jpg', 'false');
+           ('rpggamer432', 'chrono34@gmail.com', 'timecross', 'http://localhost:3030/images/avatar/chrono.jpg', 'false', 'true'),
+           ('theprincess', 'toadstool@gmail.com', 'peach', 'http://localhost:3030/images/avatar/peach.png', 'false', 'true'),
+           ('masterchief', 'halomaster@gmail.com', 'warthog', 'http://localhost:3030/images/avatar/master_chief.jpg', 'false', 'true'),
+           ('precursororb4', 'jakanddax55@gmail.com', 'darkjak', 'http://localhost:3030/images/avatar/jak.jpg', 'false', 'true'),
+           ('tombraider', 'lauracroft94@gmail.com', 'raider', 'http://localhost:3030/images/avatar/laura.jpg', 'false', 'true'),
+           ('1000hadoukens', 'sfryu@gmail.com', 'hadouken', 'http://localhost:3030/images/avatar/ryu.jpg', 'false', 'true'),
+           ('whereiszelda', 'triforce45@gmail.com', 'ganonisdead', 'http://localhost:3030/images/avatar/link.jpg', 'false','true');
 
 INSERT INTO circles (circle_name, leader_id, circle_description)
     VALUES ('Anime Haven', 2, 'A place for all those who enjoy Anime'),
