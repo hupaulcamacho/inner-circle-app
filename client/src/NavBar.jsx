@@ -10,7 +10,7 @@ import Search from './Components/Search'
 import ActivityBar from './Components/ActivityBar'
 
 const NavBar = (props) => {
-	const { loggedIn, loginUser, user } = props
+	const { loggedIn, loginUser, signUp, user } = props
 
 	const renderLogin = () => {
 		return(
@@ -21,6 +21,16 @@ const NavBar = (props) => {
 		)
 	}
 
+	const renderSignUp = () => {
+		return(
+			<SignUp
+				loginUser={loginUser}
+				signUp={signUp}
+			/>
+
+		)
+	}
+	
 	const renderUserProfile = () => {
 		return (
 			<UserProfile 
@@ -28,10 +38,10 @@ const NavBar = (props) => {
 			/>
 		)
 	}
-	if (loggedIn === true) {
+	if (loggedIn === true || signUp === true) {
 			return (
 			<div>
-				<Redirect to='/userprofile' />
+				<Redirect to='/userprofile'/>
 				<nav>
 					<Link to="/userprofile">Profile</Link>
 					{" "}
@@ -62,7 +72,7 @@ const NavBar = (props) => {
 				<Switch>
          			<Route exact path="/" component={MainPage} />
          			<Route path="/login" render={renderLogin} />
-         			<Route path="/signup" component={SignUp} />
+         			<Route path="/signup" component={renderSignUp} />
       			</Switch>
 
 				

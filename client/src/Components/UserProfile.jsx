@@ -5,6 +5,7 @@ import ActivityBar from './ActivityBar'
 class UserProfile extends React.Component {
     constructor(props) {
         super(props)
+        console.log('userprofile', props.user)
         this.state = {
             currentUser: props.user,
             avatarFile: null
@@ -64,9 +65,8 @@ class UserProfile extends React.Component {
 
     render() {
         const { currentUser } =  this.state
-        let user = currentUser[0]
-        console.log('user', userbranch
-        )
+        let user = currentUser
+        console.log('user', user)
         return(
             <div className='profile'>
 

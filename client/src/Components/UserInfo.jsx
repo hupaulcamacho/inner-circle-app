@@ -50,7 +50,7 @@ class UserInfo extends React.Component {
         const email = this.state.email
         const password = this.state.password
         // console.log('user', this.props.username)
-        if (user[0].username !== username && change === true) {
+        if (user.username !== username && change === true) {
           
             this.setState({
                 username: username
@@ -58,7 +58,7 @@ class UserInfo extends React.Component {
             })
          
 
-        } else if (user[0].email !== email && change === true) {
+        } else if (user.email !== email && change === true) {
             this.setState({
                 email: email
                
@@ -76,14 +76,15 @@ class UserInfo extends React.Component {
 
     render() {
         const { user, username, email, password } = this.state
+        console.log('user~~~~', user)
          return (
             <div >
                 
                 <form className='info-form' onSubmit={this.handleSubmit}>
                     New Username
-                    <input placeholder={user[0].username} value={username} type='text' onChange={this.handleUsername}/>
+                    <input placeholder={username} value={username} type='text' onChange={this.handleUsername}/>
                     New Email
-                    <input placeholder={user[0].email} value={email} type='email' onChange={this.handleEmail}/>
+                    <input placeholder={email} value={email} type='email' onChange={this.handleEmail}/>
                     New Password
                     <input placeholder='Enter new password'  value={password} type='password' onChange={this.handlePassword}/>
                     <input type='file' onChange={this.handleAvatarFile}/>

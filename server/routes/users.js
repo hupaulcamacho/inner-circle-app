@@ -100,7 +100,7 @@ router.post('/login/:username/:password', async (req, res) => {
 
   let password = req.params.password
   let loginQuery = `
-  UPDATE users SET loggedIn = true WHERE username = $1;
+  UPDATE users SET loggedIn = true WHERE username = $1;`
 
   try {
     let user = await db.one(`SELECT * FROM users WHERE username = $1 AND password = $2`, [username, password]);
@@ -120,6 +120,35 @@ router.post('/login/:username/:password', async (req, res) => {
       message: 'Username or password is incorrect'
     })
   }
+})
+//////////////////////////////////////////////////
+
+router.post('/signup/:username/:email/:password/', async (req, res) => {
+  let username = req.params.username
+  let password = req.params.password
+  let email = req.params.email
+
+   let signupQuery = `UPDATE users SET signUp = true WHERE username = $1;`
+
+   try {
+     let user = await db.one(`INSERT INTO users (email, username, password, avatar) VALUES($1, $2, $3, $4) username = $1 AND password = $2`, [username, password, email, avatar]);
+     let signUp = await db.any(signupQuery, [username, password, email, avatar]);
+     console.log('signup!!!!!', signUp);
+     if (user.username === undefined) {
+       throw Error('no user found');
+     }
+     res.json({
+       message: 'sign up was successfull',
+       loggedInUser: user
+     })
+   } catch (err) {
+     console.log(err)
+     res.status(404);
+     res.json({
+       message: 'try a different username'
+     })
+   }
+
 })
 
 //////////////////////////////////////////////////

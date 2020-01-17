@@ -10,6 +10,7 @@ class DisplayPosts  extends React.Component {
 
 	constructor(props) {
 		super(props);
+		console.log('props for posts', props)
 		this.state = {
 			displayAvatar: !(this.props.singleUser),
 		}
@@ -19,6 +20,7 @@ class DisplayPosts  extends React.Component {
 		let convertedPosts;
 		if(this.props.singleUser){
 			convertedPosts = this.props.posts.map((elem) => {
+				console.log('posts///', this.props.posts)
 				return	(
 				<div>
 					<i>{elem.post_circle}</i>
@@ -29,7 +31,9 @@ class DisplayPosts  extends React.Component {
 			});
 		}
 		else{
+			// console.log('posts', posts)
 			convertedPosts = this.props.posts.map((elem) => {
+				
 				return (
 					<div>
 						<div>

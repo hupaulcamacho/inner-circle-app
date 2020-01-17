@@ -9,7 +9,8 @@ class App2 extends React.Component {
         super()
         this.state = {
             user: {},
-            loggedIn: false
+            loggedIn: false,
+            signUp: true
         }
     }
 
@@ -21,7 +22,8 @@ class App2 extends React.Component {
 
             this.setState({
                 user: response.data.loggedInUser,
-                loggedIn: true
+                loggedIn: true,
+                // signUp: true
             })
         } catch (err)  {
             console.log(err)
@@ -29,12 +31,16 @@ class App2 extends React.Component {
 
     }
 
+    signUp = async (username, password, email, imgfile) => {
+        const URL = `http://localhost:3030/users/login/${username}/${password}`
+    }
     render() {
-        const { loggedIn, user } = this.state
+        const { loggedIn,signUp, user } = this.state
         return (
             <NavBar 
             loginUser={this.loginUser}
             loggedIn={loggedIn}
+            signUp={signUp}
             user={user}
             />
         )
