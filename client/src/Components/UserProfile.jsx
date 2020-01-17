@@ -1,12 +1,13 @@
 import React from 'react';
 import axios from 'axios';
+import ActivityBar from './ActivityBar';
 
 import ActivityBar from './ActivityBar'
 class UserProfile extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            user: props.user,
+            user: this.props.user,
             avatarFile: null
         }
     }
@@ -68,10 +69,6 @@ class UserProfile extends React.Component {
     compoundDidMount() {
           this.handleSubmit()
     }
-
-
-
-
 
     render() {
         const { user } =  this.state
