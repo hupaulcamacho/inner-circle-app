@@ -1,5 +1,5 @@
 import React from 'react';
-
+import axios from 'axios'
 
 class Login extends React.Component{
 	constructor(props) {
@@ -33,8 +33,8 @@ class Login extends React.Component{
 	}
 
 	render(){
-		let { loggedIn } = this.props
 		const { username, password } = this.state
+
 		
 		return (
 			<div className='form-container'>

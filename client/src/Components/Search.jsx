@@ -26,6 +26,11 @@ class Search extends React.Component {
         console.log(e.target.value)
     }
 
+     // circleChoice = (circle) => {
+     //    console.log('lol');
+     //    this.props.handleCircleChoice(circle);
+     // }
+
     handleOptionChange = (e) => {
         const { userChecked, circleChecked, results } = this.state
         if (e.target.value === "user") {
@@ -59,6 +64,7 @@ class Search extends React.Component {
 
     handleSearchParameters = async () => {
         const { search, userChecked, circleChecked, results } = this.state
+        
         let URL;
         if (circleChecked === true) {
             URL = `http://localhost:3030/circles/getCircleByName/${search}`
@@ -81,12 +87,14 @@ class Search extends React.Component {
             console.log(err)
             console.log(search, 'not found')
         }
+
     }
 
     //This is function is for the form. 
     handleSubmit = async(e) => {
         e.preventDefault()
         this.handleSearchParameters()
+        
     }
 
     render() {
@@ -113,6 +121,7 @@ class Search extends React.Component {
                 results={results}
                 userChecked={userChecked}
                 circleChecked={circleChecked}
+                // handleCircleChoice= {this.circleChoice}
                 />
 
             </div>

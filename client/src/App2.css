@@ -54,6 +54,7 @@ h1 {
 .mainLogo {
     display: flex;
     flex-direction: column;
+
 }
 
 .info-form, form {
@@ -187,3 +188,4 @@ a {
     background-color: #4CAF50;
     color: white;
   }
+}

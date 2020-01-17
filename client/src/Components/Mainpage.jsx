@@ -42,7 +42,10 @@ class Mainpage extends Component {
             return(
                 
                 <div className='main'>
-                    <img className='mainLogo' src={Logo} />
+                    
+                        <img className='mainLogo' src={Logo} />
+                    
+                    
                     <form onSubmit={this.handleSubmit}>
                         <input type='text' className='mainsearch' value={search} onChange={this.handleSearchChange} placeholder='Search for a Circle' /><br/>
                         <input className='mainsubmit' type='submit' value='Search!' />

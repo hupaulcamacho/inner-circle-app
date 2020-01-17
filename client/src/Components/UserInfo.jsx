@@ -5,12 +5,14 @@ class UserInfo extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            user: props.user,
-            username: '',
-            email: '',
-            password: '',
+            info: 
+                {username: '',
+                email: ''},
             change: false,
             password: null
+
+            
+
         }
     }
 
@@ -42,6 +44,7 @@ class UserInfo extends React.Component {
     }
 
     handleChangeButton = (e) => {
+
         const { change, user, username } = this.state
         
         const email = this.state.email
@@ -52,13 +55,17 @@ class UserInfo extends React.Component {
             this.setState({
                 username: username
             })
+
         
-        } else if (user.email !== email && change === true) {
+        } else if (user[0].email !== email && change === true) {
+
             this.setState({
                 email: email
                
             })
-        } else if (user.password !== password && change === true) {
+
+        } else if (user[0].password !== password && change === true) {
+
             this.setState({
                 password: password
             })
@@ -72,18 +79,21 @@ class UserInfo extends React.Component {
     render() {
         const { user, username, email, password } = this.state
         console.log(user)
+
          return (
-            <div >
+            <div>
                 
+
                 <form className='info-form' onSubmit={this.handleSubmit}>
                     New Username
                     <input placeholder={user[0].username} value={username} type='text' onChange={this.handleUsername}/>
                     New Email
-                    <input placeholder={user[0 ].email} value={email} type='email' onChange={this.handleEmail}/>
+                    <input placeholder={user[0].email} value={email} type='email' onChange={this.handleEmail}/>
                     New Password
                     <input placeholder='Enter new password'  value={password} type='password' onChange={this.handlePassword}/>
                     <input type='file' onChange={this.handleAvatarFile}/>
                     <input type='submit' value='Upload' />
+
                     <button onClick={this.handleChangeButton}>Submit</button> 
                 </form>
             </div>
