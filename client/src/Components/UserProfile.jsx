@@ -2,13 +2,12 @@ import React from 'react';
 import axios from 'axios';
 import ActivityBar from './ActivityBar';
 
+import ActivityBar from './ActivityBar'
 class UserProfile extends React.Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
-
             user: this.props.user,
-
             avatarFile: null
         }
     }
@@ -71,20 +70,15 @@ class UserProfile extends React.Component {
           this.handleSubmit()
     }
 
-
-
-
-
     render() {
-
         const { user } =  this.state
         console.log(user)
         
         return(
             <div className='profile'>
                 <div className='user-info'>
-                    <img className='avatar' src={`${user[0].avatar}`} width='200' /> <br/>
-                    <span>{user[0].username}</span>
+                    <img className='avatar' src={`${user.avatar}`} width='200' /> <br/>
+                    <span>{user.username}</span>
                 </div>
                 <div>
                     <ActivityBar 

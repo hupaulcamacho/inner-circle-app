@@ -1,7 +1,8 @@
 .mainsearch {
     font-size: 3em;
-    background-color: #c68989;
-    color: white;
+    background-color: white;
+    color: #c68989;
+    border: 5px solid #c68989 ;
 }
 
 .main, .search {
@@ -109,6 +110,7 @@ h1 {
     font-size: 16px;
     color: white;
     background-color:#c95959;
+    border: 2px solid white
 }
 
 body {
