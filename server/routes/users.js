@@ -109,7 +109,7 @@ router.post('/login/:username/:password', async (req, res) => {
   try  {
     let user = await db.one(`SELECT * FROM users WHERE username = $1 AND password = $2`, [username, password]);
     let login = await db.any(loginQuery, [username, password]);
-    console.log( user.data);
+    console.log( 'data', user);
     if(user.username === undefined){
       throw Error('no user found');
     }
@@ -121,35 +121,36 @@ router.post('/login/:username/:password', async (req, res) => {
     console.log(err)
     res.status(404);
     res.json({
-      message: 'Username or password is incorrect'
+      message: 'Username is incorrect'
     })
   }
 })
 
 //////////////////////////////////////////////////
 
-
 // Route to add a new user
-router.post('/', upload.single('avatar'), async (req, res) => {
+router.post('/signup/:email/:username/:email', upload.single('avatar'), async (req, res) => {
   console.log("post req body", req.body)
   try {
     let imgURL = `http://localhost:3030/images/avatar/${req.body.avatar.replace('public/', '')}`;
     console.log(imgURL)
-    const insertQuery = `INSERT INTO users (username, email, avatar) VALUES ($1, $2, $3)`
-    await db.none(insertQuery, [req.body.username, req.body.email, imgURL])
+    const insertQuery = `INSERT INTO users (username, email, password, avatar, loggedIn) VALUES ($1, $2, $3, $4, $5)`
+    await db.none(insertQuery, [req.body.username, req.body.email, req.body.password, imgURL])
 
 
     let data = {
       username: req.body.username,
       email: req.body.email,
-      avatar: imgURL
+      password: req.body.password,
+      avatar: imgURL, 
+      loggedIn: true
 
     }
 
     console.log(data)
     res.status(201)
     res.json({
-      user: data,
+      registeredUser: data,
       message: `The user has been successfully added`
     })
 
@@ -165,8 +166,7 @@ router.post('/', upload.single('avatar'), async (req, res) => {
 //Route to upadate the user's information
 router.patch('/:id', async (req, res) => {
 
-  let by = req.params.by
-  let value = req.params.value
+ 
   let query = `UPDATE users SET `
 
   // let updateQuery = ``

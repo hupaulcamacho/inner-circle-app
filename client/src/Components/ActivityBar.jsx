@@ -8,7 +8,7 @@ import axios from 'axios';
 class ActivityBar extends React.Component{
 	constructor(props){
 		super(props);
-		console.log(props.user)
+		// console.log('user$$$$$', props.user)
 		this.state = {
       		postsDisplay: false,
       		circleDisplay: false,
@@ -60,7 +60,8 @@ class ActivityBar extends React.Component{
 
 	render(){
 		let toggleCircles = (this.state.circleDisplay) ? <CircleSelect circles={this.state.allUserCircles} />: null;
-		let toggleInfo = (this.state.infoDisplay) ? <UserInfo username= {this.props.user.username}/>: null;
+		let toggleInfo = (this.state.infoDisplay) ? <UserInfo username= {this.props.user.username} email= {this.props.user.email} password={this.props.user.password} />: null;
+		console.log('user####', this.props.user.email)
 		let togglePosts = (this.state.postsDisplay) ? <DisplayPosts posts={this.state.allUserPosts} singleUser = {true} /> : null;
 		return(
 		<div>

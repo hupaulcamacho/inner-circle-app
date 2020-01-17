@@ -5,11 +5,12 @@ class UserInfo extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            info: 
-                {username: '',
-                email: ''},
-            change: false,
-            password: null
+            
+                username: this.props.username,
+                email: this.props.email,
+                change: false,
+                password: null
+
 
             
 
@@ -45,40 +46,41 @@ class UserInfo extends React.Component {
 
     handleChangeButton = (e) => {
 
-        const { change, user, username } = this.state
+        const { change, user, email, password, username} = this.props
         
-        const email = this.state.email
-        const password = this.state.password
+        // const username = this.props.username
+        // const email = this.props.email
+        // const password = this.props.password
         console.log('user', this.props.username)
-        if (user[0].username !== username && change === true) {
+        if (this.props.username !== username && change === true) {
           
             this.setState({
                 username: username
             })
 
         
-        } else if (user[0].email !== email && change === true) {
+        } else if (this.props.email !== email && change === true) {
 
             this.setState({
                 email: email
                
             })
 
-        } else if (user[0].password !== password && change === true) {
+        } else if (this.props.password !== password && change === true) {
 
             this.setState({
                 password: password
             })
         }
-         console.log('email!!!!', email)
-           console.log('user', this.props.username)
+        //  console.log('email!!!!', email)
+        //    console.log('user', this.props.username)
         
     }
 
 
     render() {
         const { user, username, email, password } = this.state
-        console.log(user)
+        // console.log(user)
 
          return (
             <div>
@@ -86,11 +88,11 @@ class UserInfo extends React.Component {
 
                 <form className='info-form' onSubmit={this.handleSubmit}>
                     New Username
-                    <input placeholder={user[0].username} value={username} type='text' onChange={this.handleUsername}/>
+                    <input placeholder={this.props.username} value={username} type='text' onChange={this.handleUsername}/>
                     New Email
-                    <input placeholder={user[0].email} value={email} type='email' onChange={this.handleEmail}/>
+                    <input placeholder={this.props.email} value={email} type='email' onChange={this.handleEmail}/>
                     New Password
-                    <input placeholder='Enter new password'  value={password} type='password' onChange={this.handlePassword}/>
+                    <input placeholder={this.props.password}  value={password} type='password' onChange={this.handlePassword}/>
                     <input type='file' onChange={this.handleAvatarFile}/>
                     <input type='submit' value='Upload' />
 

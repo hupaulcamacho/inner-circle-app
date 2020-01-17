@@ -11,8 +11,8 @@ import ActivityBar from './Components/ActivityBar';
 import CirclePage from './CirclePage';
 
 const NavBar = (props) => {
-	const { loggedIn, loginUser, user } = props
-	console.log(user)
+	const { loggedIn, registerUser, loginUser, user } = props
+
 	const renderLogin = () => {
 		return(
 			<Login 
@@ -21,10 +21,12 @@ const NavBar = (props) => {
 		)
 	}
 
-	const renderSignUp = (props) => {
+	const renderSignUp = () => {
+		console.log('see ', registerUser)
 		return(
 			<SignUp
 				loginUser={loginUser}
+				registerUser={registerUser}
 			/>
 		)
 	}
@@ -47,11 +49,10 @@ const NavBar = (props) => {
 	}
 
 	//const renderUserPage = () => {}
-	if (loggedIn === true ) {
+	if (loggedIn === true) {
 		return (
 			<div>
 				<nav>
-				<span className="nav-title"> Inner Circle</span>
 					<Link to="/userprofile">Profile</Link>
 					{" "}
 					<Link to="/search">Search</Link>
@@ -67,23 +68,18 @@ const NavBar = (props) => {
 		)
 	} else {
 		return (
-			<div className="landing-page">
+			<div>
        			<nav>
-				   	<span className="nav-title"> Inner Circle</span>
-					
-					<Link to="/">Mainpage</Link>
+         			<Link to="/">Mainpage</Link>
          			{"  "}
          			<Link to="/login">Log In</Link>
          			{"  "}
 					<Link to="/signup">Sign Up</Link>
-					
-					
-         			
        			</nav>       		
 				<Switch>
          			<Route exact path="/" component={MainPage} />
          			<Route path="/login" render={renderLogin} />
-         			<Route path="/signup" component={SignUp} />
+         			<Route path="/signup" render={renderSignUp} />
          			<Route path='/circlePage/:id' component={CirclePage} />
       			</Switch>
 
