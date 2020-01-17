@@ -1,14 +1,24 @@
 import React from 'react';
 import './CirclePage.css';
+import axios from 'axios';
 
 
-class CirclePage extends React.Commponent {
+class CirclePage extends React.Component {
 	constructor(props){
-		this.super();
+		super();
 		this.state = {
 			currentCircle: ''
 		};
 	};
+
+	componentDidMount = async () => {
+		let response = await axios.get(`http://localhost:3030/circles/getCircleById/${this.props.match.params.id}`);
+		console.log(response.data.message[0]);
+		this.setState({
+			currentCircle: response.data.message[0]
+		});
+
+	}
 
 
 
@@ -17,12 +27,9 @@ class CirclePage extends React.Commponent {
 			<div>
 				<div className="userActivityBar">
 					<a href="#posts" onClick={this.handlePosts}>Posts</a>
-		        	<a href="#members" onClick={this.getAllUserCircles}>Circles</a>
+		        	<a href="#members" onClick={this.getAllUserCircles}>Members</a>
 					<a href="#Info" onClick={this.handleInfo}>Info</a>			
 				</div>
-				{toggleCircles}
-				{toggleInfo}
-				{togglePosts}
 			</div>
 			);
 	}

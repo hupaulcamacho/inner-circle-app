@@ -26,10 +26,10 @@ class Search extends React.Component {
         console.log(e.target.value)
     }
 
-     circleChoice = (circle) => {
-        console.log('lol');
-        this.props.handleCircleChoice(circle);
-     }
+     // circleChoice = (circle) => {
+     //    console.log('lol');
+     //    this.props.handleCircleChoice(circle);
+     // }
 
     handleOptionChange = (e) => {
         const { userChecked, circleChecked, results } = this.state
@@ -120,7 +120,7 @@ class Search extends React.Component {
                 results={results}
                 userChecked={userChecked}
                 circleChecked={circleChecked}
-                handleCircleChoice= {this.circleChoice}
+                // handleCircleChoice= {this.circleChoice}
                 />
 
             </div>
