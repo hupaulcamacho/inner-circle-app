@@ -109,7 +109,7 @@ router.post('/login/:username/:password', async (req, res) => {
   try  {
     let user = await db.one(`SELECT * FROM users WHERE username = $1 AND password = $2`, [username, password]);
     let login = await db.any(loginQuery, [username, password]);
-    console.log(user.data);
+    console.log( user.data);
     if(user.username === undefined){
       throw Error('no user found');
     }
@@ -127,6 +127,7 @@ router.post('/login/:username/:password', async (req, res) => {
 })
 
 //////////////////////////////////////////////////
+
 
 // Route to add a new user
 router.post('/', upload.single('avatar'), async (req, res) => {

@@ -21,6 +21,14 @@ const NavBar = (props) => {
 		)
 	}
 
+	const renderSignUp = (props) => {
+		return(
+			<SignUp
+				loginUser={loginUser}
+			/>
+		)
+	}
+
 	// const circleChoice = (circle) => {
 	// 	props.handleCircleChoice(circle);
 	// 	console.log('vnavbar');
@@ -39,7 +47,7 @@ const NavBar = (props) => {
 	}
 
 	//const renderUserPage = () => {}
-	if (loggedIn === true) {
+	if (loggedIn === true ) {
 		return (
 			<div>
 				<nav>

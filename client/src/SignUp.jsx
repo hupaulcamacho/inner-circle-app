@@ -6,9 +6,13 @@ class SignUp extends React.Component{
 	constructor() {
 		super();
 		this.state = {
-			email: '',
-			username: '',
-			imgFile: null
+			info:{
+				email: '',
+				username: '',
+				password: null,
+				imgFile: null
+			}
+		
 		};
 	}
 
@@ -27,6 +31,13 @@ class SignUp extends React.Component{
 			username: e.target.value
 		})
 	}
+
+	handlePasswordChange = e => {
+		this.setState({
+			password: e.target.value
+		})
+	}
+	
 	handleFileInput = e => {
 		console.log('file changed', e.target.files)
 		this.setState({
@@ -36,17 +47,23 @@ class SignUp extends React.Component{
 
 	handleSignUpSubmit = async (e) => {
 		e.preventDefault()
-		const { email, username, imgFile } = this.state
+		const { email, username, password, imgFile } = this.state
 		let URL = `http://localhost:3030/users`
 
 		let info = {
 			username: username,
 			email: email,
+			password: password,
 			avatar: imgFile
 		}
 		
 		try {
 			let response = await axios.post(URL, info)
+			// console.log('info', response)
+			this.setState({
+				info: response.data
+			})
+			console.log('info', response.data)
 		} catch (err) {
 			console.log(err)
 		}
@@ -54,21 +71,25 @@ class SignUp extends React.Component{
 
 
 	render() {
-		const { email, username } = this.state
+		const { email, username, password } = this.state
 		return(
 			<form className ='signUp-form' onSubmit={this.handleSignUpSubmit}>
 			<h1>Sign up Today!</h1>
 				<div className='form-item'>
 					<label for='name'>Email</label>
-					<input placeHolder='enter email' type='text' onChange={this.handleEmailChange} value={email}></input>
+					<input placeholder='enter email' type='text' onChange={this.handleEmailChange} value={email}></input>
 				</div>
 				<div className='form-item'>
 					<label for='name'>Username</label>
-					<input placeHolder='enter username' type='text' onChange={this.handleUsernameChange} value={username}></input>
+					<input placeholder='enter username' type='text' onChange={this.handleUsernameChange} value={username}></input>
+				</div>
+				<div className='form-item'>
+					<label for='name'>password</label>
+					<input placeholder='enter password' type='password' onChange={this.handlePasswordChange} value={password}></input>
 				</div>
 				<div className='form-item'>
 					<label for='avatar'>Avatar</label>
-					<input placeHolder='Placeholder for now' type='file' onChange={this.handleFileInput}></input>
+					<input placeholder='Placeholder for now' type='file' onChange={this.handleFileInput}></input>
 				</div>
 				<button className='form-item' type='submit'>Submit</button>
 				<button className='form-item' type='button' onClick={this.backToNav}>Back</button>
