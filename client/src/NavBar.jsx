@@ -1,7 +1,7 @@
 import React from 'react';
 import './NavBar.css';
 import ReactDOM, { render } from 'react-dom';
-import { Switch, Route, Link } from "react-router-dom";
+import { Switch, Route, Link, Redirect } from "react-router-dom";
 import UserProfile from './Components/UserProfile'
 import MainPage from './Components/Mainpage'
 import Login from './Login'
@@ -27,7 +27,7 @@ const NavBar = (props) => {
 	// }
 	const renderUserPage = () => {
 		return (
-			<ActivityBar user = {user} />);
+			<UserProfile user={user} />);
 	}
 
 	const renderSearchBar = () => {
@@ -43,6 +43,7 @@ const NavBar = (props) => {
 		return (
 			<div>
 				<nav>
+					<Redirect to='/userprofile' />
 				<span className="nav-title"> Inner Circle</span>
 					<Link to="/userprofile">Profile</Link>
 					{" "}
