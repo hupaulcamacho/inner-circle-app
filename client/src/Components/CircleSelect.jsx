@@ -4,6 +4,8 @@ import './CircleSelect.css';
 
 	const CircleSelect = (props) => {
 		let buttons = props.circles.map((elem) => {
+			console.log('buttons', buttons)
+		
 			return <button className ='myButton'>{elem}</button>
 		});
 

@@ -1,33 +1,26 @@
 import React from 'react';
 import axios from 'axios';
+import ActivityBar from './ActivityBar'
 
 class UserProfile extends React.Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
+        console.log('userprofile', props.user)
         this.state = {
-            avatarUrl: '',
-            username: '', 
+            currentUser: props.user,
             avatarFile: null
         }
     }
 
-    // getAvatar = async() => {
-    //    console.log('here')
-    //     try {
-    //         //  let avatar = this.props.match.params
-    //         //  console.log('params?????', avatar)
-    //          let url = `http://localhost:3030/users`
-    //          let userAvatar = await axios.get(url)
-    //         //  this.setState({
-    //         //      avatar: userAvatar
-    //         //  })
-    //          console.log('avatar', userAvatar)
-             
-    //     } catch (error){
-    //             console.log('error', error)
-    //     }
-      
-    // }
+   
+    handleAvatarFile = (event) => {
+        this.setState({
+            avatarFile: event.target.files[0].name
+        })
+        console.log('avatar!!!', event.target.files[0].name)
+          console.dir(event.target)
+    }
+
 
     handleAvatarFile = (event) => {
         this.setState({
@@ -40,6 +33,7 @@ class UserProfile extends React.Component {
     handleUsername = (e) => {
         console.log('username@@@@@', e.target.value)
     }
+
 
     handleSubmit = async(e) => {
         e.preventDefault()
@@ -69,19 +63,25 @@ class UserProfile extends React.Component {
           this.handleSubmit()
     }
 
-
-
-
-
     render() {
+        const { currentUser } =  this.state
+        let user = currentUser
+        console.log('user', user)
         return(
             <div className='profile'>
-                <form onSubmit={this.handleSubmit}> 
-                    <input type='file' onChange={this.handleAvatarFile}/>
-                    <input type='submit' value='Upload' />
-                    <p></p>
-                </form>
+
+                <img src={`${user.avatar}`} width='200' />
+                <p>{user.username}</p>
+
+                <div>
+                    <ActivityBar 
+                    user={currentUser}
+                    />
+                </div>
+
             </div>
+            
+            
         )
     }
 }

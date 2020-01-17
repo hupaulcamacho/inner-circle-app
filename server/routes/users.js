@@ -43,9 +43,30 @@ router.get('/', async (req, res) => {
 /////////////////////////////////////
 
 //Router to get users by username
+router.get('/username/:username', async (req, res) => {
+  let userInfo = req.params.username
+  let requestQuery = `SELECT * FROM users WHERE username LIKE $1`
+  
+  try {
+    let user = await db.any(requestQuery, [`%${userInfo}%`])
+    res.json({
+      data: user,
+      message: `The users were successfully retrieved`
+    })
+  } catch (err) {
+    console.log('error', err)
+    res.status(404)
+    res.json({
+      message: `Failure to retrieve users`
+    })
+  }
+})
+
+// User Authentication
+//Router to get users by username
 router.get('/username/:use', async (req, res) => {
   let userInfo = req.params.username
- 
+
 
   console.log('params!!!!1', userInfo)
   let requestQuery = ``
@@ -77,22 +98,20 @@ router.get('/username/:use', async (req, res) => {
 router.post('/login/:username/:password', async (req, res) => {
   let username = req.params.username
 
-  let password = req.params.password  
+  let password = req.params.password
   let loginQuery = `
-  UPDATE users SET loggedIn = true WHERE username = $1;
-  `
-  
+  UPDATE users SET loggedIn = true WHERE username = $1;`
 
-  try  {
+  try {
     let user = await db.one(`SELECT * FROM users WHERE username = $1 AND password = $2`, [username, password]);
     let login = await db.any(loginQuery, [username, password]);
     console.log(user.data);
-    if(user.username === undefined){
+    if (user.username === undefined) {
       throw Error('no user found');
     }
     res.json({
       message: 'login sucessful',
-      loggedInUser: user 
+      loggedInUser: user
     })
   } catch (err) {
     console.log(err)
@@ -101,6 +120,35 @@ router.post('/login/:username/:password', async (req, res) => {
       message: 'Username or password is incorrect'
     })
   }
+})
+//////////////////////////////////////////////////
+
+router.post('/signup/:username/:email/:password/', async (req, res) => {
+  let username = req.params.username
+  let password = req.params.password
+  let email = req.params.email
+
+   let signupQuery = `UPDATE users SET signUp = true WHERE username = $1;`
+
+   try {
+     let user = await db.one(`INSERT INTO users (email, username, password, avatar) VALUES($1, $2, $3, $4) username = $1 AND password = $2`, [username, password, email, avatar]);
+     let signUp = await db.any(signupQuery, [username, password, email, avatar]);
+     console.log('signup!!!!!', signUp);
+     if (user.username === undefined) {
+       throw Error('no user found');
+     }
+     res.json({
+       message: 'sign up was successfull',
+       loggedInUser: user
+     })
+   } catch (err) {
+     console.log(err)
+     res.status(404);
+     res.json({
+       message: 'try a different username'
+     })
+   }
+
 })
 
 //////////////////////////////////////////////////
@@ -141,8 +189,7 @@ router.post('/', upload.single('avatar'), async (req, res) => {
 //Route to upadate the user's information
 router.patch('/:id', async (req, res) => {
 
-  let by = req.params.by
-  let value = req.params.value
+
   let query = `UPDATE users SET `
 
   // let updateQuery = ``

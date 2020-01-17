@@ -12,6 +12,8 @@ class App2 extends React.Component {
             loggedIn: false, 
             circleChosen: false,
             circle: {}
+            signUp: true
+
         }
     }
 
@@ -23,11 +25,13 @@ class App2 extends React.Component {
     loginUser = async (username, password) => {
         const URL = `http://localhost:3030/users/login/${username}/${password}`
         try {
-            let response = await axios.post(URL);
-            console.log(response);
+            let response = await axios.post(URL)
+            console.log(response)
+
             this.setState({
                 user: response.data.loggedInUser,
-                loggedIn: true
+                loggedIn: true,
+                // signUp: true
             })
         } catch (err)  {
             console.log(err)
@@ -35,14 +39,19 @@ class App2 extends React.Component {
 
     }
 
+    signUp = async (username, password, email, imgfile) => {
+        const URL = `http://localhost:3030/users/login/${username}/${password}`
+    }
     render() {
-        const { loggedIn } = this.state
+        const { loggedIn,signUp, user } = this.state
         return (
             <NavBar 
-            loginUser={this.loginUser}
-            loggedIn={loggedIn}
-            user = {this.state.user}
-            handleCircleChoice = {this.circleWasClicked}
+              loginUser={this.loginUser}
+              loggedIn={loggedIn}
+              user = {this.state.user}
+              handleCircleChoice = {this.circleWasClicked}
+              signUp={signUp}
+            
             />
         )
     }

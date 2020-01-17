@@ -7,6 +7,7 @@ import axios from 'axios';
 
 //We are assuming that the username will be passed down through props
 class ActivityBar extends React.Component{
+	
 	constructor(props){
 		super(props);
 		this.state = {
@@ -17,17 +18,21 @@ class ActivityBar extends React.Component{
       		allUserPosts: ''
 		};
 	};
-
+	
 	handlePosts = async () => {
+		console.log('user post', this.props.user.id )
 		let userPosts = await axios.get(`http://localhost:3030/posts/users/${this.props.user.id}`);
-		console.log(userPosts.data.payload);
+			console.log('all posts', userPosts);
+		
 			this.setState(
 			{
 				postsDisplay: true,
 	      		circleDisplay: false,
 	      		infoDisplay: false,
 	      		allUserPosts: userPosts.data.payload
-	      	});
+			  });
+			  
+			
 	}
 
 	handleInfo = (e) => {
@@ -43,7 +48,10 @@ class ActivityBar extends React.Component{
 
 	
 	getAllUserCircles = async () => {
+
+		console.log(this.props.user.id)
 		let allUserCircles = await axios.get(`http://localhost:3030/circles/getUserCircles/${this.props.user.id}`);
+
 		console.log(allUserCircles.data.payload);
 		this.setState(
 			{
@@ -60,8 +68,11 @@ class ActivityBar extends React.Component{
 
 	render(){
 		let toggleCircles = (this.state.circleDisplay) ? <CircleSelect circles={this.state.allUserCircles} />: null;
+
 		let toggleInfo = (this.state.infoDisplay) ? <UserInfo username= {this.props.user.username}/>: null;
+
 		let togglePosts = (this.state.postsDisplay) ? <DisplayPosts posts={this.state.allUserPosts} singleUser = {true} /> : null;
+		console.log('posts@@@@', this.state.allUserPosts)
 		return(
 		<div>
 			<div className="userActivityBar">
