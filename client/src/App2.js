@@ -9,10 +9,18 @@ class App2 extends React.Component {
         super()
         this.state = {
             user: {},
-            loggedIn: false,
+            loggedIn: false, 
+            circleChosen: false,
+            circle: {}
             signUp: true
+
         }
     }
+
+    circleWasClicked = (circle) => {
+        this.setState({circleChosen: true,
+                        circle: circle});
+    };
 
     loginUser = async (username, password) => {
         const URL = `http://localhost:3030/users/login/${username}/${password}`
@@ -38,10 +46,12 @@ class App2 extends React.Component {
         const { loggedIn,signUp, user } = this.state
         return (
             <NavBar 
-            loginUser={this.loginUser}
-            loggedIn={loggedIn}
-            signUp={signUp}
-            user={user}
+              loginUser={this.loginUser}
+              loggedIn={loggedIn}
+              user = {this.state.user}
+              handleCircleChoice = {this.circleWasClicked}
+              signUp={signUp}
+            
             />
         )
     }

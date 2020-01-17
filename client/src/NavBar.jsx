@@ -7,7 +7,8 @@ import MainPage from './Components/Mainpage'
 import Login from './Login'
 import SignUp from './SignUp'
 import Search from './Components/Search'
-import ActivityBar from './Components/ActivityBar'
+import ActivityBar from './Components/ActivityBar';
+import CirclePage from './CirclePage';
 
 const NavBar = (props) => {
 	const { loggedIn, loginUser, signUp, user } = props
@@ -21,6 +22,28 @@ const NavBar = (props) => {
 		)
 	}
 
+
+	// const circleChoice = (circle) => {
+	// 	props.handleCircleChoice(circle);
+	// 	console.log('vnavbar');
+	// }
+	const renderUserPage = () => {
+		return (
+			<ActivityBar user = {user} />);
+	}
+
+	const renderSearchBar = () => {
+		return (
+			<Search 
+			// handleCircleChoice = {circleChoice} 
+			/> 
+			);
+	}
+
+	//const renderUserPage = () => {}
+	if (loggedIn === true) {
+
+
 	const renderSignUp = () => {
 		return(
 			<SignUp
@@ -32,6 +55,7 @@ const NavBar = (props) => {
 	}
 	
 	const renderUserProfile = () => {
+
 		return (
 			<UserProfile 
 			user={user}
@@ -50,9 +74,10 @@ const NavBar = (props) => {
 					{/* <Link to="/logout">Log Out</Link> */}
 				</nav>
 				<Switch>
-					<Route path="/userprofile" render={renderUserProfile} />
 
-					<Route path="/search" component={Search} />
+					<Route path="/userprofile" render={renderUserPage} />
+					<Route path="/search" render={renderSearchBar} />
+
 					{/* <Route path="/logout" component={LogOut} /> */}
 		 		</Switch>
 				
@@ -72,7 +97,10 @@ const NavBar = (props) => {
 				<Switch>
          			<Route exact path="/" component={MainPage} />
          			<Route path="/login" render={renderLogin} />
-         			<Route path="/signup" component={renderSignUp} />
+
+         			<Route path="/signup" component={SignUp} />
+         			<Route path='/circlePage/:id' component={CirclePage} />
+
       			</Switch>
 
 				
