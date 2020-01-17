@@ -1,5 +1,4 @@
 import React from 'react';
-import './ActivityBar.css';
 import UserInfo from './UserInfo';
 import CircleSelect from './CircleSelect';
 import DisplayPosts from './DisplayPosts';
@@ -10,12 +9,13 @@ class ActivityBar extends React.Component{
 	
 	constructor(props){
 		super(props);
+		console.log(props.user)
 		this.state = {
       		postsDisplay: false,
       		circleDisplay: false,
       		infoDisplay: false,
       		allUserCircles: '',
-      		allUserPosts: ''
+			allUserPosts: '',
 		};
 	};
 
@@ -67,7 +67,7 @@ class ActivityBar extends React.Component{
 	render(){
 		let toggleCircles = (this.state.circleDisplay) ? <CircleSelect circles={this.state.allUserCircles} />: null;
 
-		let toggleInfo = (this.state.infoDisplay) ? <UserInfo username= {this.props.user.username}/>: null;
+		let toggleInfo = (this.state.infoDisplay) ? <UserInfo user= {this.props.user}/>: null;
 
 		let togglePosts = (this.state.postsDisplay) ? <DisplayPosts posts={this.state.allUserPosts} singleUser = {true} /> : null;
 		return(

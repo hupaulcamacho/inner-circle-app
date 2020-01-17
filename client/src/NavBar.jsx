@@ -8,10 +8,11 @@ import Login from './Login'
 import SignUp from './SignUp'
 import Search from './Components/Search'
 import ActivityBar from './Components/ActivityBar'
+import Logo from './assets/logo.png'
 
 const NavBar = (props) => {
 	const { loggedIn, loginUser, user } = props
-
+	console.log(user)
 	const renderLogin = () => {
 		return(
 			<Login 
@@ -33,6 +34,7 @@ const NavBar = (props) => {
 			<div>
 				<Redirect to='/userprofile' />
 				<nav>
+				<span className="nav-title"> Inner Circle</span>
 					<Link to="/userprofile">Profile</Link>
 					{" "}
 					<Link to="/search">Search</Link>
@@ -51,13 +53,18 @@ const NavBar = (props) => {
 		
 	} else {
 		return (
-			<div>
+			<div className="landing-page">
        			<nav>
-         			<Link to="/">Mainpage</Link>
+				   	<span className="nav-title"> Inner Circle</span>
+					
+					<Link to="/">Mainpage</Link>
          			{"  "}
          			<Link to="/login">Log In</Link>
          			{"  "}
 					<Link to="/signup">Sign Up</Link>
+					
+					
+         			
        			</nav>       		
 				<Switch>
          			<Route exact path="/" component={MainPage} />

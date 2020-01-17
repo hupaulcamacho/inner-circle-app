@@ -41,29 +41,24 @@ class UserInfo extends React.Component {
         e.preventDefault()
     }
 
-    
-
-
     handleChangeButton = (e) => {
         const { change, user, username } = this.state
-        console.log('username????', username)
+        
         const email = this.state.email
         const password = this.state.password
-        // console.log('user', this.props.username)
+        console.log('user', this.props.username)
         if (user[0].username !== username && change === true) {
           
             this.setState({
                 username: username
-                
             })
-         
-
-        } else if (user[0].email !== email && change === true) {
+        
+        } else if (user.email !== email && change === true) {
             this.setState({
                 email: email
                
             })
-        } else if (user[0].password !== password && change === true) {
+        } else if (user.password !== password && change === true) {
             this.setState({
                 password: password
             })
@@ -76,6 +71,7 @@ class UserInfo extends React.Component {
 
     render() {
         const { user, username, email, password } = this.state
+        console.log(user)
          return (
             <div >
                 
@@ -83,7 +79,7 @@ class UserInfo extends React.Component {
                     New Username
                     <input placeholder={user[0].username} value={username} type='text' onChange={this.handleUsername}/>
                     New Email
-                    <input placeholder={user[0].email} value={email} type='email' onChange={this.handleEmail}/>
+                    <input placeholder={user[0 ].email} value={email} type='email' onChange={this.handleEmail}/>
                     New Password
                     <input placeholder='Enter new password'  value={password} type='password' onChange={this.handlePassword}/>
                     <input type='file' onChange={this.handleAvatarFile}/>

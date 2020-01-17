@@ -6,7 +6,7 @@ class UserProfile extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            currentUser: props.user,
+            user: props.user,
             avatarFile: null
         }
     }
@@ -63,20 +63,21 @@ class UserProfile extends React.Component {
     // }
 
     render() {
-        const { currentUser } =  this.state
-        let user = currentUser[0]
+        const { user } =  this.state
+        console.log(user)
+        
         return(
             <div className='profile'>
-                <img src={`${user.avatar}`} width='200' />
-                <p>{user.username}</p>
-
+                <div className='user-info'>
+                    <img className='avatar' src={`${user[0].avatar}`} width='200' /> <br/>
+                    <span>{user[0].username}</span>
+                </div>
                 <div>
                     <ActivityBar 
-                    user={currentUser}
+                    user={user}
                     />
                 </div>
             </div>
-            
             
         )
     }

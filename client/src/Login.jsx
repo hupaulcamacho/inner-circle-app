@@ -37,16 +37,26 @@ class Login extends React.Component{
 		const { username, password } = this.state
 		
 		return (
-			<form className ='login-form' onSubmit={this.handleFormSubmit}>
-				<h1> Login </h1>
-				
-				<label>Username</label>
-				<input type='text' value={username} placeHolder='enter username' onChange={this.handleUsernameChange} /><br/>
-				<label>Password</label>
-				<input type='password' value={password} placeHolder='enter password' onChange={this.handlePasswordChange}/>
-				<input type='submit' value='submit' />
-				<button className='form-item' type='button'onClick={this.backToNav}>Back</button>
-			</form>);
+			<div className='form-container'>
+				<form className='login-form' onSubmit={this.handleFormSubmit}>
+					<h1> Login </h1>
+					<div>
+						{"Username: "}
+						<input type='text' value={username} placeHolder='enter username' onChange=	{this.handleUsernameChange} />
+					</div>
+					<br/>
+
+					<div>
+						{"Password: "}
+						<input type='password' value={password} placeHolder='enter password' onChange=	{this.handlePasswordChange}/>
+					</div>
+					
+					<input className='login-button' type='submit' value='Log In'/>
+				</form>
+			</div>
+			
+			
+		)
 	}
 }
 

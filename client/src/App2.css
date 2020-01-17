@@ -1,5 +1,7 @@
 .mainsearch {
-    font-size: 3em
+    font-size: 3em;
+    background-color: #c68989;
+    color: white;
 }
 
 .main, .search {
@@ -12,12 +14,36 @@
 	display: flex;
     flex-direction: column;
 	align-items: center;
-	z-index: 2;
-	height: 200vh;
+    border: 5px solid #c68989;
+    margin: 10em;
+    padding: 3em;
+    background-color:#7b3737;
+    color: white;
+}
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.mainsubmit {
-    
+.signUp-form {
+	display: flex;
+	flex-direction: column;
+	z-index: 2;
+    border: 5px solid #c68989;
+    margin: 10em;
+    padding: 3em;
+    background-color:#7b3737;
+    color: white;
+}
+.signup-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    color: white;
 }
 
 .user {
@@ -30,8 +56,134 @@
     flex-direction: column;
 }
 
-.info-form{
+.info-form, form {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
+.posts-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-item {
+    margin-bottom: 1.5em;
+}
+
+.single-post {
+    border: 5px solid #c68989;
+    padding: 2em;
+    margin: 5px;
+    
+}
+
+.post-body {
+    border: 2px solid gray;
+}
+.error {
+    color: white;
+}
+
+.avatar {
+    border: 5px solid white;
+    border-radius: 25px;
+}
+
+.login-button, .signup-button {
+  /* border: none;  */
+  margin-top: 1.5em;
+  height: 2em;
+  width: 10em; 
+  font-size: 22px;
+  color: white;
+  background-color:#c95959;
+}
+
+.mainsubmit {
+    margin-top: 1.5em;
+    height: 3em;
+    width: 19em; 
+    font-size: 16px;
+    color: white;
+    background-color:#c95959;
+}
+
+body {
+    background-image: url('./assets/background.gif');
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: 100%;
+    
+}
+
+
+
+nav {
+    background-color: #7b3737;
+    color: black;
+    padding: 0.5em;
+    border: 5px solid #c68989;
+    /* position: fixed;
+    width: 100%; */
+}
+
+a {
+    color: white;
+}
+
+.nav-title {
+    color: white;
+    padding-right: 2em;
+    font-size: 20px
+}
+
+
+.user-info {
+    padding-top: 2em;
+    padding-left: 2em;
+    padding-bottom: 0.5em;
+    
+    color: white;
+    background-color: #c6898989;
+}
+
+.user-info > span {
+    margin-left: 0.5em;
+    padding-top: 0.5em;
+    font-size: 32px;
+    padding-right: 0.5em;
+    /* background-color: #c68989; */
+}
+
+
+.userActivityBar {
+    background-color: #7b3737;
+    overflow: hidden;
+    display: flex;
+    /* justify-content: spaw */
+    z-index: 3;
+  }
+  
+  /* Style the links inside the navigation bar */
+  .userActivityBar a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
+  /* Change the color of links on hover */
+  .userActivityBar a:hover {
+    background-color: #c68989;
+    color: black;
+  }
+  
+  /* Add a color to the active/current link */
+  .userActivityBar a.active {
+    background-color: #4CAF50;
+    color: white;
+  }
