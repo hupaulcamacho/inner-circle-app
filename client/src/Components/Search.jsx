@@ -1,6 +1,6 @@
 import React from 'react';
 
-import SearchItems from './SearchItems'
+import SearchItems from './searchItems'
 
 import axios from 'axios'
 
