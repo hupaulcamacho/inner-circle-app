@@ -2,8 +2,8 @@ import React from 'react';
 import axios from 'axios';
 
 class SignUp extends React.Component{
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.state = {
 			email: '',
 			username: '',
@@ -46,6 +46,14 @@ class SignUp extends React.Component{
 		
 		try {
 			let response = await axios.post(URL, info)
+
+			// console.log('info', response)
+			this.props.loginUser()
+			this.setState({
+				info: response.data
+			})
+			console.log('info', response.data)
+
 		} catch (err) {
 			console.log(err)
 		}

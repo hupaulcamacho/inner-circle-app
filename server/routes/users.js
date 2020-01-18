@@ -66,25 +66,20 @@ router.get('/id/:id', async (req, res) => {
 /////////////////////////////////////
 
 //Router to get users by username
-router.get('/username/:use', async (req, res) => {
+router.get('/username/:username', async (req, res) => {
   let userInfo = req.params.username
  
 
-  console.log('params!!!!1', userInfo)
-  let requestQuery = ``
-  if (by === 'email') {
-    requestQuery = `SELECT * FROM users WHERE email LIKE $1`
-  } else {
-    requestQuery = `SELECT * FROM users WHERE username LIKE $1`
-  }
+  
+  let requestQuery = `SELECT * FROM users WHERE username LIKE $1`
+  
 
   try {
 
-    let user = await db.one(requestQuery, [`%${userInfo}%`])
-    console.log('users email!!!!!', user)
-
+    let users = await db.any(requestQuery, [`%${userInfo}%`])
+    
     res.json({
-      data: user,
+      data: users,
       message: `The users were successfully retrieved`
     })
   } catch (err) {
@@ -143,7 +138,6 @@ router.post('/', upload.single('avatar'), async (req, res) => {
       username: req.body.username,
       email: req.body.email,
       avatar: imgURL
-
     }
 
     console.log(data)
