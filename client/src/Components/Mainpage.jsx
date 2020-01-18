@@ -37,7 +37,7 @@ class Mainpage extends Component {
     render() {
         const { search, searchBarClicked, errorMessage } = this.state
         if (searchBarClicked) {
-            return(<Search search={search} />)
+            return(<Search search={search} settings={false} delete = {false}/>)
         } else {
             return(
                 

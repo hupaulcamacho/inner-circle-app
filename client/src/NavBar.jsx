@@ -52,6 +52,8 @@ const NavBar = (props) => {
 	const renderSearchBar = () => {
 		return (
 			<Search 
+			settings ={false}
+			delete = {false}
 			// handleCircleChoice = {circleChoice} 
 			/> 
 			);
@@ -91,7 +93,9 @@ const NavBar = (props) => {
          			{"  "}
          			<Link to="/login">Log In</Link>
          			{"  "}
+
 					<Link to="/signup">Sign Up</Link>		
+
        			</nav>       		
 				<Switch>
          			<Route exact path="/" component={MainPage} />
