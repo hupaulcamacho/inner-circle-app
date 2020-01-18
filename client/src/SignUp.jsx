@@ -5,15 +5,9 @@ class SignUp extends React.Component{
 	constructor(props) {
 		super(props);
 		this.state = {
-
-			
-				email: '',
-				username: '',
-				password: '',
-				imgFile: null
-			
-		
-
+			email: '',
+			username: '',
+			imgFile: null
 		};
 	}
 
@@ -57,15 +51,20 @@ class SignUp extends React.Component{
 	// 	console.log('hmm', this.props.registerUser(username, password, email, avatar))
 	// 	console.log('haha', this.props.loginUser(username, password, email, avatar))
 	// }
+<<<<<<< HEAD
+
+
+
+
+=======
+>>>>>>> 56d82d3b56ea31abb4ea2e493490f868f23c6feb
 
 
 
 
 
-	handleSignUpSubmit =  (e) => {
+	handleSignUpSubmit = async (e) => {
 		e.preventDefault()
-
-
 		const { email, username, imgFile } = this.state
 		let URL = `http://localhost:3030/users`
 
@@ -89,14 +88,11 @@ class SignUp extends React.Component{
 		} catch (err) {
 			console.log(err)
 		}
-
 	}
-		
+
 
 	render() {
-
-	
-
+		const { email, username } = this.state
 		return(
 			<div className='signup-container'>
 				<form className ='signUp-form' onSubmit={this.handleFormSubmit}>
@@ -119,8 +115,10 @@ class SignUp extends React.Component{
 				<input className='signup-button' type='submit' value='Sign Up'/>
 			</form>
 			</div>
-			);
+		);
 	}
 }
 
 export default SignUp;
+
+
