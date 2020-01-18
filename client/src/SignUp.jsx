@@ -5,9 +5,15 @@ class SignUp extends React.Component{
 	constructor(props) {
 		super(props);
 		this.state = {
-			email: '',
-			username: '',
-			imgFile: null
+
+			
+				email: '',
+				username: '',
+				password: '',
+				imgFile: null
+			
+		
+
 		};
 	}
 
@@ -56,8 +62,10 @@ class SignUp extends React.Component{
 
 
 
-	handleSignUpSubmit = async (e) => {
+	handleSignUpSubmit =  (e) => {
 		e.preventDefault()
+
+
 		const { email, username, imgFile } = this.state
 		let URL = `http://localhost:3030/users`
 
@@ -81,16 +89,21 @@ class SignUp extends React.Component{
 		} catch (err) {
 			console.log(err)
 		}
-	}
 
+	}
+		
 
 	render() {
-		const { email, username } = this.state
+
+	
+
 		return(
 			<div className='signup-container'>
 				<form className ='signUp-form' onSubmit={this.handleFormSubmit}>
 				<h1>Sign up Today!</h1>
 				<div className='form-item'>
+
+          
 					{"Email: "}
 					<input placeHolder='enter email' type='text' onChange={this.handleEmailChange} value={email}></input>
 				</div>
@@ -101,6 +114,7 @@ class SignUp extends React.Component{
 				<div className='form-item'>
 					{"Avatar: "}
 					<input placeHolder='Placeholder for now' type='file' onChange={this.handleFileInput}></input>
+
 				</div>
 				<input className='signup-button' type='submit' value='Sign Up'/>
 			</form>

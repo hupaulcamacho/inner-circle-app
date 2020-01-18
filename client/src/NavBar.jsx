@@ -11,7 +11,9 @@ import ActivityBar from './Components/ActivityBar';
 import CirclePage from './CirclePage';
 
 const NavBar = (props) => {
-	const { loggedIn, loginUser, user, logoutUser } = props
+
+	const { loggedIn, signUp, loginUser, registerUser, user } = props
+
 	console.log(user)
 	let shouldWeLogOut = false;
 	const renderLogin = () => {
@@ -23,9 +25,9 @@ const NavBar = (props) => {
 	}
 
 	const renderSignUp = () => {
-		console.log('see ', registerUser)
 		return(
 			<SignUp
+				registerUser={registerUser}
 				loginUser={loginUser}
 				registerUser={registerUser}
 			/>
@@ -58,7 +60,7 @@ const NavBar = (props) => {
 	const realLogOut = (!shouldWeLogOut) ? <Redirect to='/' /> : null;
 
 	//const renderUserPage = () => {}
-	if (loggedIn === true) {
+	if (loggedIn === true && signUp === true ) {
 		return (
 			<div>
 				<nav>
@@ -89,11 +91,9 @@ const NavBar = (props) => {
          			{"  "}
          			<Link to="/login">Log In</Link>
          			{"  "}
-					<Link to="/signup">Sign Up</Link>
-					
-					
-         			
-       			</nav>       		
+
+					<Link to="/signup ">Sign Up</Link>		
+       		</nav>       		
 				<Switch>
          			<Route exact path="/" component={MainPage} />
          			<Route path="/login" render={renderLogin} />

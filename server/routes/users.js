@@ -124,7 +124,7 @@ router.post('/login/:username/:password', async (req, res) => {
 //////////////////////////////////////////////////
 
 // Route to add a new user
-router.post('/signup/:email/:username/:email', upload.single('avatar'), async (req, res) => {
+router.post('/signup', upload.single('avatar'), async (req, res) => {
   console.log("post req body", req.body)
   try {
     let imgURL = `http://localhost:3030/images/avatar/${req.body.avatar.replace('public/', '')}`;
@@ -133,6 +133,7 @@ router.post('/signup/:email/:username/:email', upload.single('avatar'), async (r
     await db.none(insertQuery, [req.body.username, req.body.email, req.body.password, imgURL])
 
 
+      console.log('user', user)
     let data = {
       username: req.body.username,
       email: req.body.email,
@@ -160,9 +161,11 @@ router.post('/signup/:email/:username/:email', upload.single('avatar'), async (r
 
 //Route to upadate the user's information
 router.patch('/:id', async (req, res) => {
+
 console.log(req.body.logout);
   let by = req.params.by
   let value = req.params.value
+
   let query = `UPDATE users SET `
 
   // let updateQuery = ``

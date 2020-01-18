@@ -9,6 +9,7 @@ class App2 extends React.Component {
         super()
         this.state = {
             user: {},
+            signUp:true,
             loggedIn: false, 
             signUp: false,
             circleChosen: false,
@@ -30,7 +31,8 @@ class App2 extends React.Component {
             this.setState({
                 user: response.data.loggedInUser,
                 loggedIn: true,
-               
+                signUp: true
+
             })
         } catch (err)  {
             console.log(err)
@@ -51,33 +53,39 @@ class App2 extends React.Component {
         }
     }
 
-    registerUser = async (username, password, email) => {
-         let imgUrl = `http://localhost:3030/images/avatar`
-        const URL = `http://localhost:3030/users/signup/${username}/${password}/${email}`
-  
-        try {
-            let response = await axios.post(URL, imgUrl );
-            console.log('', response);
-            this.setState({
-                user: response.data.loggedInUser,
-                loggedIn: true,
-                signUp: true
+    registerUser = async() => {
+        	console.log('here')
+        	let URL = `http://localhost:3030/users/signup`
+        	console.log('url', URL)
 
-            })
-        } catch (err) {
-            console.log(err)
-        }
+        	let user = {
+        	    username: this.state.username,
+        	    email: this.state.email,
+        	    password: this.state.password,
+        	    // avatar: this.state.imgFile
+        	}
 
+        	try {
+        	    let response = await axios.post(URL, user)
+        	    console.log('info', response)
+        	    this.setState({
+        	        user: user
+        	    })
+        	    console.log('info', response.data)
+        	} catch (err) {
+        	    console.log(err)
+        	}
     }
 
     render() {
-        const { loggedIn } = this.state
+        const { loggedIn, signUp } = this.state
         return (
             <NavBar 
             loginUser={this.loginUser}
             registerUser={this.registerUser}
             loggedIn={loggedIn}
-            // signUp = {signUp}
+            signUp={signUp}
+            registerUser={this.registerUser}
             user = {this.state.user}
             handleCircleChoice = {this.circleWasClicked}
             logoutUser= {this.logoutUser}
