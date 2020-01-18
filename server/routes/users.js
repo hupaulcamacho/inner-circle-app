@@ -125,29 +125,30 @@ router.post('/login/:username/:password', async (req, res) => {
 
 
 // Route to add a new user
-router.post('/signup', upload.single('avatar'), async (req, res) => {
+router.post('/', upload.single('avatar'), async (req, res) => {
   console.log("post req body", req.body)
-  try {
-    let imgURL = `http://localhost:3030/images/avatar/${req.body.avatar.replace('public/', '')}`;
-    console.log(imgURL)
-    const insertQuery = `INSERT INTO users (username, email, password, avatar) VALUES ($1, $2, $3, $4)`
-    let user = await db.one(insertQuery, [req.body.username, req.body.email, req.body.password, req.body.imgURL])
+ 
+  try { 
+    // let imgURL = `http://localhost:3030/images/avatar/${req.body.avatar.replace('public/', '')}`;
+    // console.log(imgURL)
+    const insertQuery = `INSERT INTO users (username, email, password) VALUES ($1, $2, $3)`
+    let user = await db.none(insertQuery, [req.body.username, req.body.email, req.body.password])
 
       console.log('user', user)
-    let data = {
-      username: req.body.username,
-      email: req.body.email,
+    // let data = {
+    //   username: req.username,
+    //   email: req.email,
 
-      password: req.body.password,
-      avatar: req.body.imgURL
+    //   password: req.password,
+    //   // avatar: req.body.imgURL
      
  
-    }
+    // }
 
-    console.log(data)
+    // console.log(data)
     res.status(201)
     res.json({
-      user: data,
+      user: user,
       message: `The user has been successfully added`
     })
 
