@@ -8,9 +8,12 @@ class SearchItems extends React.Component {
         super(props);
         this.state = {
             renderRedirect: false,
-            circleId: ''
+            userId: 0 
+
         }
     }
+
+   
 
     renderRedirect = (e) => {
         console.log(e.target.className)
@@ -20,8 +23,11 @@ class SearchItems extends React.Component {
         })
     }
 
-    redirectUser = e => {
-        console.log(e.target.className)
+    redirectUser = async (e)=> {
+        await this.setState({
+            userId: parseInt(e.target.className.slice(-1) ) 
+        })
+        this.props.deleteUser(this.state.userId);
     }
 
     loadCircleUsers = (circlename) => {
@@ -44,7 +50,7 @@ class SearchItems extends React.Component {
         for (let user of results){
             listItems.push(
                 <div className='user' onClick={this.redirectUser}>
-                    <img className='avatar' src={`${user.avatar}`} height='150'></img>
+                    <img className={`avatar ${user.id}`} src={`${user.avatar}`} alt={`${user.user_id}`} height='150'></img>
                     <h3>{user.username}</h3>
                 
                 </div>

@@ -20,7 +20,6 @@ class Search extends React.Component {
 
     componentDidMount = async () => {
         this.handleSearchParameters();
-        console.log('wowowowoowowowo')
         if(this.state.settingsToggle){
             this.setState({
                 userChecked: true,
@@ -44,6 +43,8 @@ class Search extends React.Component {
             // });
 
         }
+
+
     }
     //This is to keep track of what goes in the input box.
     handleSearchChange = (e) => {
@@ -51,6 +52,16 @@ class Search extends React.Component {
             search: e.target.value
         })
         console.log(e.target.value)
+    }
+
+    deleteUser = async (userId) => {
+        console.log("delete function running")
+        if(this.state.deleteToggle){
+            let thingToDelete = {user_id: userId, circle_ref: this.props.match.params.id};
+            console.log(thingToDelete);
+            let response = await axios.delete(`http://localhost:3030/circles/deleteUserFromCircle`, {data: thingToDelete});
+            console.log(response);
+        }
     }
 
      // circleChoice = (circle) => {
@@ -163,6 +174,8 @@ class Search extends React.Component {
                 userChecked={userChecked}
                 circleChecked={circleChecked}
                 handleCircleChoice= {this.circleChoice}
+                deleteUser= {this.deleteUser}
+                {...this.props}
                 />
                 </div>
 

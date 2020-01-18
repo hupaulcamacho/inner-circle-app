@@ -1,7 +1,7 @@
 import React from 'react';
 import Search from './Components/Search';
 import axios from 'axios'; 
-
+//windows.location.pathname
 
 
 class SettingsPage extends React.Component{

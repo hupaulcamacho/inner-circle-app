@@ -9,6 +9,7 @@ import SignUp from './SignUp'
 import Search from './Components/Search'
 import ActivityBar from './Components/ActivityBar';
 import CirclePage from './CirclePage';
+import axios from 'axios';
 
 const NavBar = (props) => {
 
@@ -53,6 +54,7 @@ const NavBar = (props) => {
 			<Search 
 			settings ={false}
 			delete = {false}
+
 			// handleCircleChoice = {circleChoice} 
 			/> 
 			);
@@ -69,14 +71,14 @@ const NavBar = (props) => {
 				<span className="nav-title"> Inner Circle</span>
 					<Link to="/userprofile">Profile</Link>
 					{" "}
-					<Link to="/search">Search</Link>
+					<Link to="/search/2">Search</Link>
 					{" "}
 					<a onClick={logOut}>Logout</a>
 					
 				</nav>
 				<Switch>
 					<Route path="/userprofile" render={renderUserPage} />
-					<Route path="/search" render={renderSearchBar} />
+					<Route path="/search/:id" render={renderSearchBar} />
 					{/* <Route path="/logout" component={LogOut} /> */}
 					<Route path='/circlePage/:id' component={CirclePage} />
 		 		</Switch>
