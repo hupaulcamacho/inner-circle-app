@@ -38,12 +38,8 @@ class SignUp extends React.Component{
 	}
 
 
-<<<<<<< HEAD
-	handleSignUpSubmit =  async (e) => {
-=======
 
 	handleSignUpSubmit = async (e) => {
->>>>>>> 816af9ff8a31f4ea8671d9ae3591c462aa43a1d4
 		e.preventDefault()
 		
 		const { email, username, password } = this.state
