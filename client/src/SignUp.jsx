@@ -51,13 +51,6 @@ class SignUp extends React.Component{
 	// 	console.log('hmm', this.props.registerUser(username, password, email, avatar))
 	// 	console.log('haha', this.props.loginUser(username, password, email, avatar))
 	// }
-<<<<<<< HEAD
-
-
-
-
-=======
->>>>>>> 56d82d3b56ea31abb4ea2e493490f868f23c6feb
 
 
 
