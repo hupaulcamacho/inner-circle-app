@@ -85,6 +85,7 @@ router.get('/getCircleById/:circleId', async (req, res) => {
 
 
 router.get('/:circle_id', async (req, res) => {
+	console.log("get request")
 	let response;
 	let circle_id = parseInt(req.params.circle_id);
 	try{
@@ -143,6 +144,8 @@ router.patch('/addUser', async (req, res) => {
 });
 
 router.delete('/deleteUserFromCircle', async(req, res) => {
+	console.log("delete request")
+	console.log("req", req.body, req.params)
 	try{
 		let deleteUserIfExists = await db.any(`DELETE FROM links WHERE user_id = ${req.body.user_id} AND circle_ref = ${req.body.circle_ref}`);	
 	}
