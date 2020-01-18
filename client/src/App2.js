@@ -3,19 +3,26 @@ import './App2.css';
 
 import NavBar from './NavBar'
 import axios from 'axios';
+import Intro from './Intro';
 
 class App2 extends React.Component {
     constructor() {
         super()
         this.state = {
             user: {},
-           
             loggedIn: false, 
             signUp: false,
             circleChosen: false,
-            circle: {}
+            circle: {},
+            displayIntro: true
         
         }
+    }
+
+    endIntro  = () => {
+        this.setState({
+            displayIntro: false
+        });
     }
 
     circleWasClicked = (circle) => {
@@ -78,9 +85,8 @@ class App2 extends React.Component {
     }
 
     render() {
-        const { loggedIn, signUp } = this.state
-        return (
-            <div className='App'>
+         const { loggedIn, signUp } = this.state
+        let toggleIntro = (this.state.displayIntro) ? <Intro endIntro={this.endIntro} /> : 
                  <NavBar 
             loginUser={this.loginUser}
             registerUser={this.registerUser}
@@ -91,6 +97,10 @@ class App2 extends React.Component {
             handleCircleChoice = {this.circleWasClicked}
             logoutUser= {this.logoutUser}
             />
+        return (
+           
+            <div className='App'>
+                 {toggleIntro}
             </div>
             
         )
