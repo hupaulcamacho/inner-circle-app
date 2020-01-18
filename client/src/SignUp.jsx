@@ -87,9 +87,9 @@ class SignUp extends React.Component{
 		const { email, username, password } = this.state
 		return(
 			<div className='signup-container'>
-				<h1>Sign up Today!</h1>
-				<form action="/users" method="post" className ='signUp-form' onSubmit={this.handleSignUpSubmit} enctype="multipart/form-data" >
 				
+				<form action="/users" method="post" className ='signUp-form' onSubmit={this.handleSignUpSubmit} enctype="multipart/form-data" >
+				<h1>Sign up Today!</h1>
 				<div className='form-item'>
 					{"Email: "}
 					<input placeHolder='enter email' type='text' onChange={this.handleEmailChange} value={email}></input>

@@ -85,7 +85,14 @@ class ActivityBar extends React.Component{
 	render(){
 
 		let toggleCircles = (this.state.circleDisplay) ? <CircleSelect circles={this.state.allUserCircles} goToCircle = {this.goToCircle} />: null;
-		let toggleInfo = (this.state.infoDisplay) ? <UserInfo username= {this.props.user.username} email={this.props.user.username} password={this.props.user.password} hide={this.state.hide} toggleInput={this.toggleInput}
+		let toggleInfo = (this.state.infoDisplay) ? 
+		<UserInfo 
+		username= {this.props.user.username} 
+		email={this.props.user.username} 
+		password={this.props.user.password} 
+		hide={this.state.hide} 
+		toggleInput={this.toggleInput}
+		avatar={this.props.user.avatar}
 
 		/>: null;
 
