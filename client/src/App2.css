@@ -48,7 +48,7 @@ a {
 }
 
 .user {
-    border: 5px solid #c68989;
+    border: 5px solid #c95959;
     background-color: #c68989;
     margin: 1.5em;
     padding: 1em;
@@ -62,7 +62,26 @@ a {
 
 .circle {
     color: white;
-    background-color:#7b3737;
+    background-color: #c6898989;
+    border: 5px solid #c95959;
+    /* background-color: #c68989; */
+    margin: 1.5em;
+    padding: 1em;
+    border-radius: 25px;
+}
+
+.circle:hover {
+    background-color: #8c5f5f;
+    
+}
+
+.circle-profile {
+    margin-left: 1em;
+    margin-top: 1em;
+    margin: 2em;
+    border: 5px solid #c95959;
+    background-color: #c68989;
+    padding-left: 1em
 }
 
 .login-form {
@@ -82,6 +101,7 @@ a {
     align-items: center;
     
 }
+
 .form-container {
     display: flex;
     flex-direction: column;
@@ -168,8 +188,11 @@ h1 {
     border: 2px solid #c68989;
 }
 
+.circle {
+    background-color: #c68989;
+}
+
 .login-button, .signup-button{
-  /* border: none;  */
   margin-top: 1.5em;
   height: 2em;
   width: 10em; 
@@ -198,7 +221,11 @@ h1 {
     border: 2px solid white
 }
 
-
+.mini-avatars {
+    border: 2px solid white;
+    margin: 1em;
+    border-radius: 50px;
+}
 
 .nav-title {
     color: white;
@@ -211,7 +238,6 @@ h1 {
     padding-top: 2em;
     padding-left: 2em;
     padding-bottom: 0.5em;
-    
     color: white;
     background-color: #c6898989;
 }

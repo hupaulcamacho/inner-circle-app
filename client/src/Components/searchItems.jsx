@@ -17,13 +17,21 @@ class SearchItems extends React.Component {
         })
     }
 
-    // const bubbleCircleChoice = (circle) => {
-    //     console.log('wtf');
-    //     props.handleCircleChoice(circle);
-    // }
+    loadCircleUsers = (circlename) => {
+        const { circleResults } = this.props
+        let userItems = [];
+        for (let item of circleResults) {
+            if (item.circle_name === circlename) {
+                userItems.push(
+                    <img className='mini-avatars' width='45' src={`${item.avatar}`}/>
+                )
+            } 
+        }
+        return userItems
+    }
 
     render() {
-    const { results, userChecked, circleChecked } = this.props
+    const { results, userChecked, circleChecked, circleResults } = this.props
     let listItems = [];
     if (userChecked === true) {
         for (let user of results){
@@ -35,17 +43,17 @@ class SearchItems extends React.Component {
                 </div>
             )
         }
-    } else if(circleChecked === true) {
+    } else if (circleChecked === true) {
         for (let circle of results){
             console.log(circle);
             listItems.push(
-                <div className='circle' onClick={this.renderRedirect}
-                 // onClick={bubbleCircleChoice(circle)}
-                 >
+                <div className='circle' onClick={this.renderRedirect}>
                 
-                <h3>{circle.circle_name}</h3>
-                <p>{circle.circle_description}</p>
-                 {(this.state.renderRedirect) ? <Redirect to={`/circlePage/${circle.id}`} /> : null}
+                    <h3>{circle.circle_name}</h3>
+                    <p>{circle.circle_description}</p>
+                    {'Members: '} <br/>
+                    {this.loadCircleUsers(circle.circle_name)}
+                    {(this.state.renderRedirect) ? <Redirect to={`/circlePage/${circle.id}`} /> : null}
 
                 </div>
             )

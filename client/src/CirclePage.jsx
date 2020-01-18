@@ -61,10 +61,14 @@ class CirclePage extends React.Component {
 
 
 	render() {
+		const { currentCircle } = this.state
 		let togglePosts = (this.state.postsDisplay) ? <DisplayPosts posts={this.state.allCirclePosts} singleUser = {false} /> : null;
 		let toggleMembers = (this.state.memberDisplay) ? <MemberTab members={this.state.allUsersInCircle} /> : null;
 		return(
 			<div>
+				<div className='circle-profile'>
+					<h1>{currentCircle.circle_name}</h1>
+				</div>
 				<div className="userActivityBar">
 					<a href="#posts" onClick={this.handlePosts}>Posts</a>
 		        	<a href="#members" onClick={this.handleMembers}>Members</a>
