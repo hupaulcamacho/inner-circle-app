@@ -7,6 +7,7 @@ class SignUp extends React.Component{
 		this.state = {
 			email: '',
 			username: '',
+			password: '',
 			imgFile: null
 		};
 	}
@@ -26,29 +27,40 @@ class SignUp extends React.Component{
 			username: e.target.value
 		})
 	}
-	handleFileInput = e => {
-		console.log('file changed', e.target.files)
+
+	handlePasswordChange = e => {
 		this.setState({
-		  imgFile: e.target.files[0].name
+			password: e.target.value
 		})
-	  }
+	}
+
+	// handleFileInput = e => {
+	// 	console.log('file changed', e.target.files)
+	// 	this.setState({
+	// 	  imgFile: e.target.files[0]
+	// 	})
+	//   }
 
 	handleSignUpSubmit = async (e) => {
 		e.preventDefault()
-		const { email, username, imgFile } = this.state
+		
+		const { email, username, password } = this.state
+		
 		let URL = `http://localhost:3030/users`
 
 		let info = {
 			username: username,
 			email: email,
-			avatar: imgFile
+			password: password
 		}
+		// console.log(info)
+		// data.append('info', info)
+		
 		
 		try {
 			let response = await axios.post(URL, info)
 
-			// console.log('info', response)
-			this.props.loginUser()
+			// this.props.loginUser()
 			this.setState({
 				info: response.data
 			})
@@ -57,15 +69,18 @@ class SignUp extends React.Component{
 		} catch (err) {
 			console.log(err)
 		}
+
+
 	}
 
 
 	render() {
-		const { email, username } = this.state
+		const { email, username, password } = this.state
 		return(
 			<div className='signup-container'>
-				<form className ='signUp-form' onSubmit={this.handleSignUpSubmit}>
 				<h1>Sign up Today!</h1>
+				<form action="/users" method="post" className ='signUp-form' onSubmit={this.handleSignUpSubmit} enctype="multipart/form-data" >
+				
 				<div className='form-item'>
 					{"Email: "}
 					<input placeHolder='enter email' type='text' onChange={this.handleEmailChange} value={email}></input>
@@ -75,9 +90,13 @@ class SignUp extends React.Component{
 					<input placeHolder='enter username' type='text' onChange={this.handleUsernameChange} value={username}></input>
 				</div>
 				<div className='form-item'>
-					{"Avatar: "}
-					<input placeHolder='Placeholder for now' type='file' onChange={this.handleFileInput}></input>
+					{"Password: "}
+					<input placeHolder='enter password' type='text' onChange={this.handlePasswordChange} value={password}></input>
 				</div>
+				
+				{/* {"Avatar: "} 
+				<input type='file' onChange={this.handleFileInput}></input> */}
+				
 				<input className='signup-button' type='submit' value='Sign Up' />
 			</form>
 			</div>

@@ -20,6 +20,10 @@ class SearchItems extends React.Component {
         })
     }
 
+    redirectUser = e => {
+        console.log(e.target.className)
+    }
+
     loadCircleUsers = (circlename) => {
         const { circleResults } = this.props
         let userItems = [];
@@ -39,7 +43,7 @@ class SearchItems extends React.Component {
     if (userChecked === true) {
         for (let user of results){
             listItems.push(
-                <div className='user'>
+                <div className='user' onClick={this.redirectUser}>
                     <img className='avatar' src={`${user.avatar}`} height='150'></img>
                     <h3>{user.username}</h3>
                 

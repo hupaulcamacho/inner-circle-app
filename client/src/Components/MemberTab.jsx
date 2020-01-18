@@ -22,10 +22,8 @@ class MemberTab extends React.Component {
 			);
 		});
 		return(
-			<div>
-				<ul>
-					{listOfMembers}
-				</ul>
+			<div className='member-list'>
+				{listOfMembers}
 			</div>
 			) ;
 	}
