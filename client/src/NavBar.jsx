@@ -12,7 +12,7 @@ import CirclePage from './CirclePage';
 
 const NavBar = (props) => {
 
-	const { loggedIn, signUp, loginUser, registerUser, user } = props
+	const { loggedIn, loginUser, registerUser, user, logoutUser } = props
 
 	console.log(user)
 	let shouldWeLogOut = false;
@@ -33,7 +33,7 @@ const NavBar = (props) => {
 		)
 	}
 
-	const logOut = (props) => {
+	const logOut = () => {
 		logoutUser(user.id);
 		console.log('this ran hue');
 		shouldWeLogOut = true;
@@ -59,7 +59,7 @@ const NavBar = (props) => {
 	const realLogOut = (!shouldWeLogOut) ? <Redirect to='/' /> : null;
 
 	//const renderUserPage = () => {}
-	if (loggedIn === true && signUp === true ) {
+	if (loggedIn === true  ) {
 		return (
 			<div>
 				<nav>
