@@ -29,8 +29,9 @@ class SearchItems extends React.Component {
         for (let user of results){
             listItems.push(
                 <div className='user'>
-                <h3>{user.username}</h3>
-                <img src={`${user.avatar}`} height='150'></img>
+                    <img className='avatar' src={`${user.avatar}`} height='150'></img>
+                    <h3>{user.username}</h3>
+                
                 </div>
             )
         }
