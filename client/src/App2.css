@@ -39,7 +39,7 @@ a {
 	flex-direction: column;
     align-items: center;
 }
-.search, .member-list, .circle-select{
+.search, .member-list, .circle-select, .settings{
     border: 5px solid #c68989;
     margin: 5em;
     padding: 3em;
@@ -245,6 +245,17 @@ h1 {
 }
 h3 {
     color: white
+}
+
+h4 {
+    color: white;
+    text-align: center;
+}
+
+.addUser {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .user-info > span {
     margin-left: 0.25em;
