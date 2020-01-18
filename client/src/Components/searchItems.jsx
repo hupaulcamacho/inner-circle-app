@@ -7,13 +7,16 @@ class SearchItems extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            renderRedirect: false
+            renderRedirect: false,
+            circleId: ''
         }
     }
 
-    renderRedirect = () => {
+    renderRedirect = (e) => {
+        console.log(e.target.className)
         this.setState({
-            renderRedirect: true
+            renderRedirect: true,
+            circleId: parseInt(e.target.className.slice(0))
         })
     }
 
@@ -47,13 +50,13 @@ class SearchItems extends React.Component {
         for (let circle of results){
             console.log(circle);
             listItems.push(
-                <div className='circle' onClick={this.renderRedirect}>
+                <div className={`${circle.id} circle`} onClick={this.renderRedirect}>
                 
                     <h3>{circle.circle_name}</h3>
                     <p>{circle.circle_description}</p>
                     {'Members: '} <br/>
                     {this.loadCircleUsers(circle.circle_name)}
-                    {(this.state.renderRedirect) ? <Redirect to={`/circlePage/${circle.id}`} /> : null}
+                    {(this.state.renderRedirect) ? <Redirect to={`/circlePage/${this.state.circleId}`} /> : null}
 
                 </div>
             )
