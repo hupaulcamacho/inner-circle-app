@@ -18,6 +18,35 @@ const upload = multer({
 })
 
 ///////////////////////////////
+// Route to add a new user
+router.post('/', async (req, res) => {
+  console.log("post req body", req.body)
+
+  try {
+
+    const insertQuery = `INSERT INTO users (username, email, password, avatar, loggedIn) VALUES ($1, $2, $3, $4, $5)`
+    await db.none(insertQuery, [req.body.username, req.body.email, req.body.password, null, false])
+
+
+    let data = {
+      username: req.body.username,
+      email: req.body.email
+    }
+
+    console.log(data)
+    res.status(201)
+    res.json({
+      user: data,
+      message: `success`
+    })
+
+  } catch (err) {
+    res.status(404)
+    res.json({
+      message: `Could not add the user`
+    })
+  }
+})
 
 //Route to get all the users 
 router.get('/', async (req, res) => {
@@ -121,46 +150,13 @@ router.post('/login/:username/:password', async (req, res) => {
   }
 })
 
-//////////////////////////////////////////////////
-
-
-// Route to add a new user
-router.post('/', upload.single('avatar'), async (req, res) => {
-  console.log("post req body", req.body)
-  try {
-    let imgURL = `http://localhost:3030/images/avatar/${req.body.avatar.replace('public/', '')}`;
-    console.log(imgURL)
-    const insertQuery = `INSERT INTO users (username, email, avatar) VALUES ($1, $2, $3)`
-    await db.none(insertQuery, [req.body.username, req.body.email, imgURL])
-
-
-    let data = {
-      username: req.body.username,
-      email: req.body.email,
-      avatar: imgURL
-    }
-
-    console.log(data)
-    res.status(201)
-    res.json({
-      user: data,
-      message: `The user has been successfully added`
-    })
-
-  } catch (err) {
-    res.status(404)
-    res.json({
-      message: `Could not add the user`
-    })
-  }
-})
-///////////////////////////////////
-
 //Route to upadate the user's information
 router.patch('/:id', async (req, res) => {
+
 console.log(req.body.logout);
   let by = req.params.by
   let value = req.params.value
+
   let query = `UPDATE users SET `
 
   // let updateQuery = ``

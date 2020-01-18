@@ -14,16 +14,16 @@ class MemberTab extends React.Component {
 
 	render() {
 		let listOfMembers = this.props.members.map((elem) => {
-			return (<li>
-						<img alt='avatar' src={elem.avatar} />
-						<p>{elem.username}</p>
-					</li> );
+			return (	
+			<div className='user'>
+				<img className='avatar' src={elem.avatar} height='150' />
+				<h3>{elem.username}</h3>
+			</div>			
+			);
 		});
 		return(
-			<div>
-			<ul>
+			<div className='member-list'>
 				{listOfMembers}
-			</ul>
 			</div>
 			) ;
 	}

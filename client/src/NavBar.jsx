@@ -11,7 +11,9 @@ import ActivityBar from './Components/ActivityBar';
 import CirclePage from './CirclePage';
 
 const NavBar = (props) => {
-	const { loggedIn, loginUser, user, logoutUser } = props
+
+	const { loggedIn, loginUser, signUp, registerUser, user, logoutUser } = props
+
 	console.log(user)
 	let shouldWeLogOut = false;
 	const renderLogin = () => {
@@ -22,15 +24,16 @@ const NavBar = (props) => {
 		)
 	}
 
-	const renderSignUp = (props) => {
+	const renderSignUp = () => {
 		return(
 			<SignUp
+				registerUser={registerUser}
 				loginUser={loginUser}
 			/>
 		)
 	}
 
-	const logOut = (props) => {
+	const logOut = () => {
 		logoutUser(user.id);
 		console.log('this ran hue');
 		shouldWeLogOut = true;
@@ -60,7 +63,7 @@ const NavBar = (props) => {
 		return (
 			<div>
 				<nav>
-					<Redirect to='/userprofile' />
+					<Redirect to='/userprofile'/>
 				<span className="nav-title"> Inner Circle</span>
 					<Link to="/userprofile">Profile</Link>
 					{" "}
@@ -87,16 +90,14 @@ const NavBar = (props) => {
          			{"  "}
          			<Link to="/login">Log In</Link>
          			{"  "}
-					<Link to="/signup">Sign Up</Link>
-					
-					
-					
-         			
+
+					<Link to="/signup">Sign Up</Link>		
+
        			</nav>       		
 				<Switch>
          			<Route exact path="/" component={MainPage} />
          			<Route path="/login" render={renderLogin} />
-         			<Route path="/signup" component={SignUp} />
+         			<Route path="/signup" render={renderSignUp} />
          			<Route path='/circlePage/:id' component={CirclePage} />
       			</Switch>
 

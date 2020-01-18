@@ -39,7 +39,6 @@ router.get('/getUserCircles/:userId', async (req, res) => {
 	};
 });
 
-// SELECT * FROM users INNER JOIN links ON users.id = links.user_id INNER JOIN circles ON links.circle_ref = circles.id WHERE circle_ref = 1;
 // Get Circle and members
 router.get('/getCircleAndMembersByCircleName/:circleName', async (req, res) => {
 	let query = `SELECT username, avatar, circle_name FROM users INNER JOIN links ON users.id = links.user_id INNER JOIN circles ON links.circle_ref = circles.id WHERE circle_name LIKE $1;`
