@@ -6,7 +6,8 @@ class SignUp extends React.Component{
 		super(props);
 		this.state = {
 			email: '',
-			username: '',
+			username: '', 
+			password: '',
 			imgFile: null
 		};
 	}
@@ -43,65 +44,69 @@ class SignUp extends React.Component{
 		})
 	}
 
-	// handleSignUpSubmit = async (e) => {
-	// 	e.preventDefault()
-	// 	const { username, password, email, avatar } = this.state
-	// 	this.props.loginUser(username, password, email, avatar)
-	// 	this.props.registerUser(username, password, email, avatar)
-	// 	console.log('hmm', this.props.registerUser(username, password, email, avatar))
-	// 	console.log('haha', this.props.loginUser(username, password, email, avatar))
-	// }
-
-
-
-
-
-	handleSignUpSubmit = async (e) => {
+	handleSignUpSubmit =  (e) => {
 		e.preventDefault()
-		const { email, username, imgFile } = this.state
-		let URL = `http://localhost:3030/users`
-
-		let info = {
-			username: username,
-			email: email,
-			avatar: imgFile
-		}
-		console.log('ha info', info)
-		
-		try {
-			let response = await axios.post(URL, info)
-
-			// console.log('info', response)
-			this.props.loginUser()
-			this.setState({
-				info: info
-			})
-			console.log('info', response.data)
-
-		} catch (err) {
-			console.log(err)
-		}
+		const { username, password, email, avatar } = this.state
+		this.props.loginUser(username, password)
+		this.props.registerUser(username, password, email, avatar)
+		console.log('hmm', this.props.registerUser(username, password, email, avatar))
+		console.log('haha', this.props.loginUser(username, password))
 	}
 
 
+
+
+
+	// handleSignUpSubmit =  (e) => {
+	// 	e.preventDefault()
+	// 	// const { email, username, imgFile } = this.state
+		// let URL = `http://localhost:3030/users`
+
+		// let info = {
+		// 	username: username,
+		// 	email: email,
+		// 	avatar: imgFile
+		// }
+		// console.log('ha info', info)
+		
+		// try {
+		// 	let response = await axios.post(URL, info)
+
+		// 	// console.log('info', response)
+		// 	this.props.loginUser()
+		// 	this.setState({
+		// 		info: info
+		// 	})
+		// 	console.log('info', response.data)
+
+		// } catch (err) {
+		// 	console.log(err)
+		// }
+	// }
+
+
 	render() {
-		const { email, username } = this.state
+		const { email, username, password } = this.state
 		return(
 			<div className='signup-container'>
-				<form className ='signUp-form' onSubmit={this.handleFormSubmit}>
+				<form className ='signUp-form' onSubmit={this.handleSignUpSubmit}>
 					<h1>Sign up Today!</h1>
 					<div className='form-item'>
 						{"Email: "}
-						<input placeHolder='enter email' type='text' onChange={this.handleEmailChange} value={email}></input>
+						<input placeholder='enter email' type='text' onChange={this.handleEmailChange} value={email}></input>
 					</div>
 					<div className='form-item'>
 						{"Username: "}
-						<input placeHolder='enter username' type='text' onChange={this.handleUsernameChange} value={username}></input>
+						<input placeholder='enter username' type='text' onChange={this.handleUsernameChange} value={username}></input>
 					</div>
 					<div className='form-item'>
-						{"Avatar: "}
-						<input placeHolder='Placeholder for now' type='file' onChange={this.handleFileInput}></input>
+						{"Password: "}
+						<input placeholder='enter password' type='text' onChange={this.handlePasswordChange} value={password}></input>
 					</div>
+					{/* <div className='form-item'>
+						{"Avatar: "}
+						<input placeholder='Placeholder for now' type='file' onChange={this.handleFileInput}></input>
+					</div> */}
 					<input className='signup-button' type='submit' value='Sign Up'/>
 				</form>
 			</div>

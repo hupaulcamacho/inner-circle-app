@@ -12,7 +12,7 @@ import CirclePage from './CirclePage';
 
 const NavBar = (props) => {
 
-	const { loggedIn, loginUser, registerUser, user, logoutUser } = props
+	const { loggedIn, loginUser, signUp, registerUser, user, logoutUser } = props
 
 	console.log(user)
 	let shouldWeLogOut = false;
@@ -59,11 +59,11 @@ const NavBar = (props) => {
 	const realLogOut = (!shouldWeLogOut) ? <Redirect to='/' /> : null;
 
 	//const renderUserPage = () => {}
-	if (loggedIn === true  ) {
+	if (loggedIn === true ) {
 		return (
 			<div>
 				<nav>
-					<Redirect to='/userprofile' />
+					<Redirect to='/userprofile'/>
 				<span className="nav-title"> Inner Circle</span>
 					<Link to="/userprofile">Profile</Link>
 					{" "}
@@ -90,9 +90,8 @@ const NavBar = (props) => {
          			{"  "}
          			<Link to="/login">Log In</Link>
          			{"  "}
-
-					<Link to="/signup ">Sign Up</Link>		
-       		</nav>       		
+					<Link to="/signup">Sign Up</Link>		
+       			</nav>       		
 				<Switch>
          			<Route exact path="/" component={MainPage} />
          			<Route path="/login" render={renderLogin} />
