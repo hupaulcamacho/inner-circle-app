@@ -77,8 +77,9 @@ class UserInfo extends React.Component {
         console.log('!!!', this.props.toggleInput)
 
          return (
-            <div>
+            <div className='edit-profile'>
                 <a onClick={this.props.toggleInput}>
+                    <img className='avatar' src={this.props.avatar} width='200px' /><br/>
                     username: {this.props.username}
                     <br></br>
                     email: {this.props.email} 

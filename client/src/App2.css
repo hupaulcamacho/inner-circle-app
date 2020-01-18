@@ -26,6 +26,9 @@ nav {
 a {
     color: white;
 }
+a:hover {
+    color: #c95959;
+}
 
 .mainsearch {
     font-size: 3em;
@@ -34,12 +37,13 @@ a {
     border: 5px solid #c68989 ;
 }
 
-.main {
+.main, .edit-profile {
     display: flex;
 	flex-direction: column;
     align-items: center;
 }
-.search, .member-list, .circle-select, .settings{
+
+.search, .member-list, .circle-select, .settings, .edit-profile {
     border: 5px solid #c68989;
     margin: 5em;
     padding: 3em;
@@ -203,6 +207,18 @@ h1 {
   background-color:#c95959;
 }
 
+.login-button:hover {
+    background-color: #ff7575;
+}
+
+.signup-button:hover {
+    background-color: #ff7575;
+}
+
+button:hover {
+    background-color: #ff7575;
+}
+
 .search-button {
     /* border: none;  */
     margin-left: 1em;
@@ -221,6 +237,11 @@ h1 {
     color: white;
     background-color:#c95959;
     border: 2px solid white
+}
+
+.mainsubmit:hover {
+    background-color: #ff7575;
+    
 }
 
 .mini-avatars {
