@@ -7,8 +7,10 @@ class UserProfile extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            user: this.props.user,
-            avatarFile: null
+            userId: this.match.params.id,
+         
+            avatarFile: null,
+
         }
     }
 
@@ -66,13 +68,23 @@ class UserProfile extends React.Component {
         }
     }
 
-    compoundDidMount() {
-          this.handleSubmit()
-    }
+    // componentDidMount = async() => {
+    //     console.log(this.props.match.params);
+    //     let request = axios.get(`http://localhost:3030/users/id/${this.props.match.params.id}`);
+    //     this.set
+    // }
+
+          // if(this.props.match.params.id){
+          //   console.log('loldoldldodl');
+          // }
+    
 
     render() {
         const { user } =  this.state
-        console.log(user)
+        console.log(user);
+        let request = axios.get(`http://localhost:3030/users/id/${this.props.match.params.id}`);
+        console.log(request);
+
         
         return(
             <div className='profile'>

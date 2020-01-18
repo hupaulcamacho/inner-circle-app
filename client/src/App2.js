@@ -35,7 +35,20 @@ class App2 extends React.Component {
         } catch (err)  {
             console.log(err)
         }
+    }
 
+    logoutUser = async (id) => {
+        const URL = `http://localhost:3030/users/${id}`;
+        try{
+            let response = await axios.patch(URL, {logout: 'Get this user out of here', id: id});
+            this.setState({
+                user: '',
+                loggedIn: false
+            })
+        }
+        catch(err) {
+            console.log(err);
+        }
     }
 
     registerUser = async (username, password, email) => {
@@ -67,6 +80,7 @@ class App2 extends React.Component {
             // signUp = {signUp}
             user = {this.state.user}
             handleCircleChoice = {this.circleWasClicked}
+            logoutUser= {this.logoutUser}
             />
         )
     }

@@ -10,6 +10,7 @@ class Search extends React.Component {
             this.state = {
                 search: props.search,
                 results:[],
+                circleResults: [],
                 userChecked: false,
                 circleChecked: true
             }
@@ -42,6 +43,7 @@ class Search extends React.Component {
                 })
             } else {
                 this.setState({
+                    results: [],
                     userChecked: true,
                     circleChecked: false
                 })
@@ -55,6 +57,7 @@ class Search extends React.Component {
                 })
             } else {
                 this.setState({
+                    results: [],
                     circleChecked: true,
                     userChecked: false
                 })
@@ -66,22 +69,32 @@ class Search extends React.Component {
         const { search, userChecked, circleChecked, results } = this.state
         
         let URL;
+    
         if (circleChecked === true) {
             URL = `http://localhost:3030/circles/getCircleByName/${search}`
+            
         } else if (userChecked === true) {
             URL = `http://localhost:3030/users/username/${search}`
         } 
         try {
             let searchResults = []
+            let circleResults = []
             const response = await axios.get(URL)
+            let URL2 = `http://localhost:3030/circles/getCircleAndMembersByCircleName/${search}`
+            const response2 = await axios.get(URL2)
             console.log(response.data.data)
             response.data.data.forEach(data => {
                 searchResults.push(data)
             })
+
+            response2.data.data.forEach(data => {
+                circleResults.push(data)
+            })
             console.log(searchResults)
             this.setState({
                 search: '',
-                results: searchResults
+                results: searchResults,
+                circleResults: circleResults
             })
         } catch (err) {
             console.log(err)
@@ -98,31 +111,34 @@ class Search extends React.Component {
     }
 
     render() {
-        const { search, results, circleChecked, userChecked } = this.state
+        const { search, results, circleResults, circleChecked, userChecked } = this.state
 
         return (
             <div className='search'>
+                <div>
                 <form onSubmit={this.handleSubmit}>
-                    <label>
-                        Search
-                        <input type='text' 
-                        onChange={this.handleSearchChange} 
-                        value={this.state.search}>
-
-                        </input>
-                    </label>
+                    <span className='form-items'>
+                    {"Search: "}
+                    <input type='text' onChange={this.handleSearchChange} value={this.state.search}/>
 
                     <input type="radio" name="selection" value="user" onChange={this.handleOptionChange}/> user
                     <input type="radio" name="selection" value="circle" onChange={this.handleOptionChange} /> circle
-                    <input type='submit' value='submit'></input><br/>
-                    
+                    <input className='search-button' type='submit' value='submit'></input><br/>
+                    </span>
                 </form>
+                </div>
+                
+                <div className='search-results'>
                 <SearchItems 
                 results={results}
+                circleResults={circleResults}
                 userChecked={userChecked}
                 circleChecked={circleChecked}
-                // handleCircleChoice= {this.circleChoice}
+                handleCircleChoice= {this.circleChoice}
                 />
+                </div>
+
+                
 
             </div>
         )
