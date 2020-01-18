@@ -38,6 +38,7 @@ class SignUp extends React.Component{
 	}
 
 
+
 	handleSignUpSubmit = async (e) => {
 		e.preventDefault()
 		
@@ -66,7 +67,13 @@ class SignUp extends React.Component{
 		} catch (err) {
 			console.log(err)
 		}
+
 		this.props.loginUser(info.username, info.password)
+
+ 	  //const { avatar } = this.state
+		//this.props.loginUser(username, password)
+		//this.props.registerUser(username, password, email, avatar)
+		//console.log('hmm', this.props.registerUser(username, password, email, avatar))
 	}
 	
 	render() {

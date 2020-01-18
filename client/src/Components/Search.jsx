@@ -12,12 +12,38 @@ class Search extends React.Component {
                 results:[],
                 circleResults: [],
                 userChecked: false,
-                circleChecked: true
+                circleChecked: true,
+                settingsToggle: this.props.settings,
+                deleteToggle: this.props.delete
             }
     }
 
-    componentDidMount = () => {
-        this.handleSearchParameters()
+    componentDidMount = async () => {
+        this.handleSearchParameters();
+        console.log('wowowowoowowowo')
+        if(this.state.settingsToggle){
+            this.setState({
+                userChecked: true,
+                circleChecked: false
+            })
+        }
+        if(this.state.deleteToggle){
+            let userIDs = await axios.get(`http://localhost:3030/circles/${this.props.match.params.id}`);
+            let allUsers = [];
+            await userIDs.data.map( async (elem) => {
+                let temp = await axios.get(`http://localhost:3030/users/id/${elem.user_id}`);
+
+                allUsers.push(temp.data.data);
+                this.setState({
+                    results: allUsers
+                });
+            });
+           
+            // this.setState({
+            //     results: allUsers
+            // });
+
+        }
     }
     //This is to keep track of what goes in the input box.
     handleSearchChange = (e) => {
@@ -110,19 +136,21 @@ class Search extends React.Component {
         
     }
 
+
+
     render() {
         const { search, results, circleResults, circleChecked, userChecked } = this.state
-
+        const settingsToggled = (this.state.settingsToggle) ? <input type="radio" name="selection" value="circle" onChange={this.handleOptionChange} disabled/> : <input type="radio" name="selection" value="circle" onChange={this.handleOptionChange} />
+        const deleteToggled = (this.state.deleteToggle) ?  <input type='text' onChange={this.handleSearchChange} value={this.state.search} disabled/> :  <input type='text' onChange={this.handleSearchChange} value={this.state.search}/>
         return (
             <div className='search'>
                 <div>
                 <form onSubmit={this.handleSubmit}>
                     <span className='form-items'>
                     {"Search: "}
-                    <input type='text' onChange={this.handleSearchChange} value={this.state.search}/>
-
+                    {deleteToggled}
                     <input type="radio" name="selection" value="user" onChange={this.handleOptionChange}/> user
-                    <input type="radio" name="selection" value="circle" onChange={this.handleOptionChange} /> circle
+                    {settingsToggled} circle
                     <input className='search-button' type='submit' value='submit'></input><br/>
                     </span>
                 </form>
