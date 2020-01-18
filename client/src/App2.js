@@ -80,7 +80,8 @@ class App2 extends React.Component {
     render() {
         const { loggedIn, signUp } = this.state
         return (
-            <NavBar 
+            <div className='App'>
+                 <NavBar 
             loginUser={this.loginUser}
             registerUser={this.registerUser}
             loggedIn={loggedIn}
@@ -90,6 +91,8 @@ class App2 extends React.Component {
             handleCircleChoice = {this.circleWasClicked}
             logoutUser= {this.logoutUser}
             />
+            </div>
+            
         )
     }
 

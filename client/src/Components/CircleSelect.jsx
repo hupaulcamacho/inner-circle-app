@@ -22,7 +22,7 @@ class CircleSelect extends React.Component {
 		});
 
 		return (
-			<div>
+			<div className='circle-select'>
 				<h1>Select a Circle</h1>
 				{buttons}
 			</div>

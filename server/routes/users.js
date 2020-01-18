@@ -18,6 +18,35 @@ const upload = multer({
 })
 
 ///////////////////////////////
+// Route to add a new user
+router.post('/', async (req, res) => {
+  console.log("post req body", req.body)
+
+  try {
+
+    const insertQuery = `INSERT INTO users (username, email, password, avatar, loggedIn) VALUES ($1, $2, $3, $4, $5)`
+    await db.none(insertQuery, [req.body.username, req.body.email, req.body.password, null, false])
+
+
+    let data = {
+      username: req.body.username,
+      email: req.body.email
+    }
+
+    console.log(data)
+    res.status(201)
+    res.json({
+      user: data,
+      message: `success`
+    })
+
+  } catch (err) {
+    res.status(404)
+    res.json({
+      message: `Could not add the user`
+    })
+  }
+})
 
 //Route to get all the users 
 router.get('/', async (req, res) => {
