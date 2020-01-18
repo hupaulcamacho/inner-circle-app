@@ -11,8 +11,10 @@ class App2 extends React.Component {
             user: {},
            
             loggedIn: false, 
+            signUp: false,
             circleChosen: false,
             circle: {}
+        
         }
     }
 
@@ -25,7 +27,7 @@ class App2 extends React.Component {
         const URL = `http://localhost:3030/users/login/${username}/${password}`
         try {
             let response = await axios.post(URL);
-            console.log(response);
+            console.log(response.data);
             this.setState({
                 user: response.data.loggedInUser,
                 loggedIn: true,
@@ -81,6 +83,7 @@ class App2 extends React.Component {
             <div className='App'>
                  <NavBar 
             loginUser={this.loginUser}
+            registerUser={this.registerUser}
             loggedIn={loggedIn}
             signUp={signUp}
             registerUser={this.registerUser}

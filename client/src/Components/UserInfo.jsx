@@ -63,8 +63,8 @@ class UserInfo extends React.Component {
                
             })
         }
-         console.log('email!!!!', email)
-           console.log('user', this.props.username)
+        //  console.log('email!!!!', email)
+        //    console.log('user', this.props.username)
         
     }
 

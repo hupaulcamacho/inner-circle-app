@@ -29,6 +29,7 @@ const NavBar = (props) => {
 			<SignUp
 				registerUser={registerUser}
 				loginUser={loginUser}
+				registerUser={registerUser}
 			/>
 		)
 	}

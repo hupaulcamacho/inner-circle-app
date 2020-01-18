@@ -9,7 +9,7 @@ import { Redirect } from "react-router-dom";
 class ActivityBar extends React.Component{
 	constructor(props){
 		super(props);
-		console.log(props.user)
+		// console.log('user$$$$$', props.user)
 		this.state = {
       		postsDisplay: false,
       		circleDisplay: false,
