@@ -38,7 +38,7 @@ class SignUp extends React.Component{
 	}
 
 
-	handleSignUpSubmit =  (e) => {
+	handleSignUpSubmit =  async (e) => {
 		e.preventDefault()
 		
 		const { email, username, password } = this.state
@@ -69,11 +69,11 @@ class SignUp extends React.Component{
 
 
 
-<!-- 		const { username, password, email, avatar } = this.state
+		// const {  password, email, avatar } = this.state
 		this.props.loginUser(username, password)
-		this.props.registerUser(username, password, email, avatar)
-		console.log('hmm', this.props.registerUser(username, password, email, avatar))
-		console.log('haha', this.props.loginUser(username, password)) -->
+		this.props.registerUser(username, password, email)
+		console.log('hmm', this.props.registerUser(username, password, email))
+		console.log('haha', this.props.loginUser(username, password))
 
 	}
 	
