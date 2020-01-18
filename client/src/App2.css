@@ -80,8 +80,8 @@ a {
     margin-top: 1em;
     margin: 2em;
     border: 5px solid #c95959;
-    background-color: #c68989;
-    padding-left: 1em
+    background-color: #7b3737;
+    padding: 1em
 }
 
 .login-form {
@@ -160,6 +160,8 @@ h1 {
     padding: 2em;
     margin: 5px;
     background: #7b3737;
+
+    width: 504px;
 }
 /* .single-post:hover {
     background: #a74949;
@@ -192,7 +194,7 @@ h1 {
     background-color: #c68989;
 }
 
-.login-button, .signup-button{
+.login-button, .signup-button, button{
   margin-top: 1.5em;
   height: 2em;
   width: 10em; 
