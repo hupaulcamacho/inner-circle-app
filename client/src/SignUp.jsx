@@ -17,31 +17,28 @@ class SignUp extends React.Component{
 	}
 
 	handleEmailChange = e => {
+		console.log('email222', e.target.value)
 		this.setState({
 			email: e.target.value
 		})
 	}
 
 	handleUsernameChange = e => {
+		console.log('username1111', e.target.value)
 		this.setState({
 			username: e.target.value
 		})
 	}
 
 	handlePasswordChange = e => {
+		console.log('psw', e.target.value)
 		this.setState({
 			password: e.target.value
 		})
 	}
 
-	// handleFileInput = e => {
-	// 	console.log('file changed', e.target.files)
-	// 	this.setState({
-	// 	  imgFile: e.target.files[0]
-	// 	})
-	//   }
 
-	handleSignUpSubmit = async (e) => {
+	handleSignUpSubmit =  (e) => {
 		e.preventDefault()
 		
 		const { email, username, password } = this.state
@@ -71,9 +68,15 @@ class SignUp extends React.Component{
 		}
 
 
+
+<!-- 		const { username, password, email, avatar } = this.state
+		this.props.loginUser(username, password)
+		this.props.registerUser(username, password, email, avatar)
+		console.log('hmm', this.props.registerUser(username, password, email, avatar))
+		console.log('haha', this.props.loginUser(username, password)) -->
+
 	}
-
-
+	
 	render() {
 		const { email, username, password } = this.state
 		return(
@@ -99,9 +102,12 @@ class SignUp extends React.Component{
 				
 				<input className='signup-button' type='submit' value='Sign Up' />
 			</form>
+
 			</div>
-			);
+		);
 	}
 }
 
 export default SignUp;
+
+

@@ -150,17 +150,13 @@ router.post('/login/:username/:password', async (req, res) => {
   }
 })
 
-//////////////////////////////////////////////////
-
-
-
-///////////////////////////////////
-
 //Route to upadate the user's information
 router.patch('/:id', async (req, res) => {
+
 console.log(req.body.logout);
   let by = req.params.by
   let value = req.params.value
+
   let query = `UPDATE users SET `
 
   // let updateQuery = ``
