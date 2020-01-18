@@ -2,15 +2,15 @@ import React from 'react';
 import axios from 'axios';
 
 class SignUp extends React.Component{
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.state = {
-			info:{
+			
 				email: '',
 				username: '',
-				password: null,
+				password: '',
 				imgFile: null
-			}
+			
 		
 		};
 	}
@@ -44,39 +44,26 @@ class SignUp extends React.Component{
 		})
 	  }
 
-	handleSignUpSubmit = async (e) => {
+	handleSignUpSubmit =  (e) => {
 		e.preventDefault()
-		const { email, username, password, imgFile } = this.state
-		let URL = `http://localhost:3030/users`
-
-		let info = {
-			username: username,
-			email: email,
-			password: password,
-			avatar: imgFile
-		}
-		
-		try {
-			let response = await axios.post(URL, info)
-			// console.log('info', response)
-			this.setState({
-				info: response.data
-			})
-			console.log('info', response.data)
-		} catch (err) {
-			console.log(err)
-		}
+		const {
+			username,
+			password,
+			email,
+			avatar
+		} = this.state
+		this.props.registerUser(username, password, email, avatar)
 	}
-
+		
 
 	render() {
 		const { email, username, password } = this.state
+		console.log('check', email)
 		return(
 			<div className='signup-container'>
 				<form className ='signUp-form' onSubmit={this.handleSignUpSubmit}>
 				<h1>Sign up Today!</h1>
 				<div className='form-item'>
-<<<<<<< HEAD
 					<label for='name'>Email</label>
 					<input placeholder='enter email' type='text' onChange={this.handleEmailChange} value={email}></input>
 				</div>
@@ -91,18 +78,6 @@ class SignUp extends React.Component{
 				<div className='form-item'>
 					<label for='avatar'>Avatar</label>
 					<input placeholder='Placeholder for now' type='file' onChange={this.handleFileInput}></input>
-=======
-					{"Email: "}
-					<input placeHolder='enter email' type='text' onChange={this.handleEmailChange} value={email}></input>
-				</div>
-				<div className='form-item'>
-					{"Username: "}
-					<input placeHolder='enter username' type='text' onChange={this.handleUsernameChange} value={username}></input>
-				</div>
-				<div className='form-item'>
-					{"Avatar: "}
-					<input placeHolder='Placeholder for now' type='file' onChange={this.handleFileInput}></input>
->>>>>>> 75226278ebcbc1db72d91e2da0315314a8796422
 				</div>
 				<input className='signup-button' type='submit' value='Sign Up' />
 			</form>

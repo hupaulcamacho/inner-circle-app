@@ -14,7 +14,9 @@ class ActivityBar extends React.Component{
       		circleDisplay: false,
       		infoDisplay: false,
       		allUserCircles: '',
-			allUserPosts: '',
+			allUserPosts: '', 
+			hide: false
+
 		};
 	};
 
@@ -37,12 +39,13 @@ class ActivityBar extends React.Component{
 			{
 				postsDisplay: false,
 	      		circleDisplay: false,
-	      		infoDisplay: true
+				  infoDisplay: true, 
+					hide: false
 	      	});
 	};
 
 	
-	getAllUserCircles = async () => {
+	getAllUserCircles = async () => { 
 		let allUserCircles = await axios.get(`http://localhost:3030/circles/getUserCircles/${this.props.user.id}`);
 		console.log(allUserCircles.data.payload);
 		this.setState(
@@ -57,11 +60,21 @@ class ActivityBar extends React.Component{
 		//get all circle names that belong to a user
 	};
 
+	toggleInput = (e) => {
+	  	console.log('HEY')
+	  	this.setState({
+			infoDisplay: true,
+	  		hide: true
+	  	})
+	}
+
 
 	render(){
+	
 		let toggleCircles = (this.state.circleDisplay) ? <CircleSelect circles={this.state.allUserCircles} />: null;
-		let toggleInfo = (this.state.infoDisplay) ? <UserInfo username= {this.props.user.username}/>: null;
+		let toggleInfo = (this.state.infoDisplay) ? <UserInfo username= {this.props.user.username} password={this.props.user.password} email={this.props.user.email} hide={this.state.hide} toggleInput={this.toggleInput} />: null;
 		let togglePosts = (this.state.postsDisplay) ? <DisplayPosts posts={this.state.allUserPosts} singleUser = {true} /> : null;
+			
 		return(
 		<div>
 			<div className="userActivityBar">
@@ -69,6 +82,7 @@ class ActivityBar extends React.Component{
 	        	<a href="#circles" onClick={this.getAllUserCircles}>Circles</a>
 				<a href="#Info" onClick={this.handleInfo}>Info</a>			
 			</div>
+			
 			{toggleCircles}
 			{toggleInfo}
 			{togglePosts}
