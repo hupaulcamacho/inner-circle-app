@@ -11,8 +11,11 @@ import ActivityBar from './Components/ActivityBar';
 import CirclePage from './CirclePage';
 
 const NavBar = (props) => {
+
 	const { loggedIn, signUp, loginUser, registerUser, user } = props
+
 	console.log(user)
+	let shouldWeLogOut = false;
 	const renderLogin = () => {
 		return(
 			<Login 
@@ -29,6 +32,12 @@ const NavBar = (props) => {
 			/>
 		)
 	}
+
+	const logOut = (props) => {
+		logoutUser(user.id);
+		console.log('this ran hue');
+		shouldWeLogOut = true;
+	};
 
 	// const circleChoice = (circle) => {
 	// 	props.handleCircleChoice(circle);
@@ -47,6 +56,8 @@ const NavBar = (props) => {
 			);
 	}
 
+	const realLogOut = (!shouldWeLogOut) ? <Redirect to='/' /> : null;
+
 	//const renderUserPage = () => {}
 	if (loggedIn === true && signUp === true ) {
 		return (
@@ -58,30 +69,30 @@ const NavBar = (props) => {
 					{" "}
 					<Link to="/search">Search</Link>
 					{" "}
-					{/* <Link to="/logout">Log Out</Link> */}
+					<a onClick={logOut}>Logout</a>
+					
 				</nav>
 				<Switch>
 					<Route path="/userprofile" render={renderUserPage} />
 					<Route path="/search" render={renderSearchBar} />
 					{/* <Route path="/logout" component={LogOut} /> */}
+					<Route path='/circlePage/:id' component={CirclePage} />
 		 		</Switch>
 			</div>
 		)
 	} else {
 		return (
 			<div className="landing-page">
-       			<nav>
+       			<nav className= 'navbar'>
 				   	<span className="nav-title"> Inner Circle</span>
-					
+					{realLogOut}
 					<Link to="/">Mainpage</Link>
          			{"  "}
          			<Link to="/login">Log In</Link>
          			{"  "}
-					<Link to="/signup ">Sign Up</Link>
-					
-					
-         			
-       			</nav>       		
+
+					<Link to="/signup ">Sign Up</Link>		
+       		</nav>       		
 				<Switch>
          			<Route exact path="/" component={MainPage} />
          			<Route path="/login" render={renderLogin} />

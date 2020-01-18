@@ -3,7 +3,8 @@ const express = require('express');
 let router = express.Router();
 
 const db= require('../db');
-//Get users that belong to a circle
+
+
 
 router.get('/getAllCircles', async (req, res) => {
 	try{
@@ -22,12 +23,12 @@ router.get('/getAllCircles', async (req, res) => {
 router.get('/getUserCircles/:userId', async (req, res) => {
 	try{
 		let response = await db.any(`SELECT * FROM links WHERE user_id = ${req.params.userId}`);
-		let script = `SELECT circle_name FROM circles WHERE id = $1`;
+		let script = `SELECT * FROM circles WHERE id = $1`;
 		let temp;
 		let allNames = [];
 		for(let i = 0; i < response.length; i++){
 			temp = await db.one(script, [response[i].circle_ref]);
-			allNames.push(temp.circle_name);
+			allNames.push(temp);
 		};
 		console.log(allNames);
 			res.json({payload: allNames});
@@ -38,7 +39,25 @@ router.get('/getUserCircles/:userId', async (req, res) => {
 	};
 });
 
+// Get Circle and members
+router.get('/getCircleAndMembersByCircleName/:circleName', async (req, res) => {
+	let query = `SELECT username, avatar, circle_name FROM users INNER JOIN links ON users.id = links.user_id INNER JOIN circles ON links.circle_ref = circles.id WHERE circle_name LIKE $1;`
+	try {
+		let data = await db.any(query, [`%${req.params.circleName}%`]);
+		res.json({
+			message: 'Request Sucessful.',
+			data: data
+		});
+	}
+	catch (err) {
+		console.log(err);
+		res.json({err: err});
+	}
+});
+
+
 router.get('/getCircleByName/:circleName', async (req, res) => {
+
 	try {
 		let data = await db.any(`SELECT * FROM circles WHERE circle_name LIKE $1`, [`%${req.params.circleName}%`]);
 		res.json({

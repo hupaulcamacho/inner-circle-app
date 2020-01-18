@@ -40,7 +40,7 @@ router.get('/users/:owner_id', async (req, res) => {
 router.get('/circle/:circle_id', async (req, res) => {
     let circleID = req.params.circle_id
     try {
-        let postQuery = `SELECT * FROM posts WHERE circle_id = $1;`;
+        let postQuery = `SELECT * FROM posts INNER JOIN users ON posts.owner_id = users.id WHERE circle_id = $1;`;
         let result = await db.any(postQuery, [circleID]);
         // Send back json object with success message and payload
         res.json({

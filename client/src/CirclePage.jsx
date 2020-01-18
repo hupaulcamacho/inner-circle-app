@@ -19,11 +19,14 @@ class CirclePage extends React.Component {
 	};
 
 	componentDidMount = async () => {
+
 		let response = await axios.get(`http://localhost:3030/circles/getCircleById/${this.props.match.params.id}`);
 		console.log(response.data.message[0]);
 		this.setState({
 			currentCircle: response.data.message[0]
 		});
+		
+		this.handlePosts()
 
 	}
 
@@ -61,10 +64,15 @@ class CirclePage extends React.Component {
 
 
 	render() {
+		const { currentCircle } = this.state
 		let togglePosts = (this.state.postsDisplay) ? <DisplayPosts posts={this.state.allCirclePosts} singleUser = {false} /> : null;
 		let toggleMembers = (this.state.memberDisplay) ? <MemberTab members={this.state.allUsersInCircle} /> : null;
 		return(
 			<div>
+				<div className='circle-profile'>
+					<h1>{currentCircle.circle_name}</h1>
+					<button>Join</button>
+				</div>
 				<div className="userActivityBar">
 					<a href="#posts" onClick={this.handlePosts}>Posts</a>
 		        	<a href="#members" onClick={this.handleMembers}>Members</a>

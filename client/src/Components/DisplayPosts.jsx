@@ -20,9 +20,20 @@ class DisplayPosts  extends React.Component {
 			convertedPosts = this.props.posts.map((elem) => {
 				return	(
 				<div className='single-post'>
-					<i>{elem.post_circle}</i> <br/>
-					<img src={elem.image_url} /> <br/>
-					<p className='post-body'>{elem.post_body}</p>
+					<div className='titler'>
+						<i>Posted in {elem.post_circle}</i>
+					</div>
+					<br/>
+					
+					<img className ='profile-pic' width='65px' src={elem.owner_avi} 
+					/><br/>
+					<i className='post-user'>{this.props.username}</i><br/>
+					<div className='post'>
+						<p className='post-body'>{elem.post_body}</p>
+						<img className='post-image' width='500px' src={elem.image_url} /> <br/>
+					</div>
+
+					
 				</div>
 				);
 			});
@@ -30,19 +41,15 @@ class DisplayPosts  extends React.Component {
 		else {
 			convertedPosts = this.props.posts.map((elem) => {
 				return (
-					<div>
-						<div>
-							<div>
-								<img className ='profile-pic' src={elem.owner_avi} />
-							</div>
-							<div>
-								<p>Placeholder</p>
-							</div>
-							<div className = 'flex-2'>
-							</div>
+					<div className='single-post'>
+						<img className ='profile-pic' width='65px' src={elem.owner_avi} /><br/>
+						<i className='post-user'>{elem.username}</i><br/>
+						<div className='post'>
+							<p className='post-body'>{elem.post_body} </p>
+							<img width='500px'src={elem.image_url} />	
 						</div>
-						<img src={elem.image_url} />
-						<p>{elem.post_body} </p>
+						
+						
 					</div>);
 			});
 		}
