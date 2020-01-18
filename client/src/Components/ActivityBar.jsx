@@ -17,9 +17,7 @@ class ActivityBar extends React.Component{
       		allUserCircles: '',
 
 			allUserPosts: '', 
-			hide: false
-
-
+			hide: false,
 			goToCirclePage: undefined
 
 		};
@@ -87,7 +85,9 @@ class ActivityBar extends React.Component{
 	render(){
 
 		let toggleCircles = (this.state.circleDisplay) ? <CircleSelect circles={this.state.allUserCircles} goToCircle = {this.goToCircle} />: null;
-		let toggleInfo = (this.state.infoDisplay) ? <UserInfo username= {this.props.user.username}/>: null;
+		let toggleInfo = (this.state.infoDisplay) ? <UserInfo username= {this.props.user.username} email={this.props.user.username} password={this.props.user.password} hide={this.state.hide} toggleInput={this.toggleInput}
+
+		/>: null;
 
 		let togglePosts = (this.state.postsDisplay) ? <DisplayPosts username= {this.props.user.username} posts={this.state.allUserPosts} singleUser = {true} /> : null;
 		let goToCirclePage = (this.state.goToCirclePage) ? <Redirect to={`/circlePage/${this.state.goToCirclePage}`} />: null;
@@ -101,7 +101,6 @@ class ActivityBar extends React.Component{
 			</div>
 
 			{goToCirclePage}
-
 			{toggleCircles}
 			{toggleInfo}
 			{togglePosts}

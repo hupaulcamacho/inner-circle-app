@@ -9,7 +9,7 @@ class App2 extends React.Component {
         super()
         this.state = {
             user: {},
-            signUp:true,
+           
             loggedIn: false, 
             circleChosen: false,
             circle: {}
@@ -29,7 +29,7 @@ class App2 extends React.Component {
             this.setState({
                 user: response.data.loggedInUser,
                 loggedIn: true,
-                signUp: true
+                // signUp: true
 
             })
         } catch (err)  {
