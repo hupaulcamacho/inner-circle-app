@@ -51,6 +51,8 @@ const NavBar = (props) => {
 	const renderSearchBar = () => {
 		return (
 			<Search 
+			settings ={false}
+			delete = {false}
 			// handleCircleChoice = {circleChoice} 
 			/> 
 			);

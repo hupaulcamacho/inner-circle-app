@@ -3,6 +3,8 @@ import './CirclePage.css';
 import axios from 'axios';
 import DisplayPosts from './Components/DisplayPosts';
 import MemberTab from './Components/MemberTab';
+import SettingsPage from './SettingsPage';
+
 
 
 
@@ -28,6 +30,14 @@ class CirclePage extends React.Component {
 		
 		this.handlePosts()
 
+	}
+
+	handleSettings = () => {
+		this.setState({
+			postsDisplay: false,
+	      	memberDisplay: false,
+	      	infoDisplay: true,
+		});
 	}
 
 	handlePosts = async () => {
@@ -67,6 +77,7 @@ class CirclePage extends React.Component {
 		const { currentCircle } = this.state
 		let togglePosts = (this.state.postsDisplay) ? <DisplayPosts posts={this.state.allCirclePosts} singleUser = {false} /> : null;
 		let toggleMembers = (this.state.memberDisplay) ? <MemberTab members={this.state.allUsersInCircle} /> : null;
+		let toggleSettings = (this.state.infoDisplay) ? <SettingsPage {...this.props} /> : null;
 		return(
 			<div>
 				<div className='circle-profile'>
@@ -76,10 +87,11 @@ class CirclePage extends React.Component {
 				<div className="userActivityBar">
 					<a href="#posts" onClick={this.handlePosts}>Posts</a>
 		        	<a href="#members" onClick={this.handleMembers}>Members</a>
-					<a href="#Info" onClick={this.handleInfo}>Info</a>			
+					<a href="#Info" onClick={this.handleSettings}>Settings</a>			
 				</div>
 				{togglePosts}
 				{toggleMembers}
+				{toggleSettings}
 			</div>
 			);
 	}
