@@ -2,9 +2,23 @@ import React from 'react';
 import './CircleSelect.css';
 
 
-	const CircleSelect = (props) => {
-		let buttons = props.circles.map((elem) => {
-			return <button className ='myButton'>{elem}</button>
+class CircleSelect extends React.Component {
+
+	constructor(props) {
+		super(props);
+		this.state = {
+			circleIdClicked: ''
+		};
+	};
+
+
+	sendIdBackToAct = (e) => {
+		this.props.goToCircle(e.target.value);
+	}
+
+	render() {
+		let buttons = this.props.circles.map((elem) => {
+			return <button className ='myButton' value={elem.id} onClick={this.sendIdBackToAct}>{elem.circle_name}</button>
 		});
 
 		return (
@@ -15,6 +29,6 @@ import './CircleSelect.css';
 		);
 	}
 
-
+}
 
 export default CircleSelect;

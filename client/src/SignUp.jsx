@@ -5,13 +5,9 @@ class SignUp extends React.Component{
 	constructor(props) {
 		super(props);
 		this.state = {
-			info:{
-				email: '',
-				username: '',
-				password: null,
-				imgFile: null
-			}
-		
+			email: '',
+			username: '',
+			imgFile: null
 		};
 	}
 
@@ -30,13 +26,6 @@ class SignUp extends React.Component{
 			username: e.target.value
 		})
 	}
-
-	handlePasswordChange = e => {
-		this.setState({
-			password: e.target.value
-		})
-	}
-	
 	handleFileInput = e => {
 		console.log('file changed', e.target.files)
 		this.setState({
@@ -46,24 +35,25 @@ class SignUp extends React.Component{
 
 	handleSignUpSubmit = async (e) => {
 		e.preventDefault()
-		const { email, username, password, imgFile } = this.state
+		const { email, username, imgFile } = this.state
 		let URL = `http://localhost:3030/users`
 
 		let info = {
 			username: username,
 			email: email,
-			password: password,
 			avatar: imgFile
 		}
 		
 		try {
 			let response = await axios.post(URL, info)
+
 			// console.log('info', response)
 			this.props.loginUser()
 			this.setState({
 				info: response.data
 			})
 			console.log('info', response.data)
+
 		} catch (err) {
 			console.log(err)
 		}
@@ -71,7 +61,7 @@ class SignUp extends React.Component{
 
 
 	render() {
-		const { email, username, password } = this.state
+		const { email, username } = this.state
 		return(
 			<div className='signup-container'>
 				<form className ='signUp-form' onSubmit={this.handleSignUpSubmit}>

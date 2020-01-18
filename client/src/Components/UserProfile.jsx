@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import ActivityBar from './ActivityBar';
 
+
 class UserProfile extends React.Component {
     constructor(props) {
         super(props)

@@ -22,12 +22,12 @@ router.get('/getAllCircles', async (req, res) => {
 router.get('/getUserCircles/:userId', async (req, res) => {
 	try{
 		let response = await db.any(`SELECT * FROM links WHERE user_id = ${req.params.userId}`);
-		let script = `SELECT circle_name FROM circles WHERE id = $1`;
+		let script = `SELECT * FROM circles WHERE id = $1`;
 		let temp;
 		let allNames = [];
 		for(let i = 0; i < response.length; i++){
 			temp = await db.one(script, [response[i].circle_ref]);
-			allNames.push(temp.circle_name);
+			allNames.push(temp);
 		};
 		console.log(allNames);
 			res.json({payload: allNames});
