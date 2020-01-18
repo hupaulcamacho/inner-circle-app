@@ -61,7 +61,7 @@ class ActivityBar extends React.Component{
 	render(){
 		let toggleCircles = (this.state.circleDisplay) ? <CircleSelect circles={this.state.allUserCircles} />: null;
 		let toggleInfo = (this.state.infoDisplay) ? <UserInfo username= {this.props.user.username}/>: null;
-		let togglePosts = (this.state.postsDisplay) ? <DisplayPosts posts={this.state.allUserPosts} singleUser = {true} /> : null;
+		let togglePosts = (this.state.postsDisplay) ? <DisplayPosts username={this.props.user.username}posts={this.state.allUserPosts} singleUser = {true} /> : null;
 		return(
 		<div>
 			<div className="userActivityBar">
