@@ -71,7 +71,7 @@ class CirclePage extends React.Component {
 			<div>
 				<div className='circle-profile'>
 					<h1>{currentCircle.circle_name}</h1>
-					<button>Join</button>
+					{/* <button>Join</button> */}
 				</div>
 				<div className="userActivityBar">
 					<a href="#posts" onClick={this.handlePosts}>Posts</a>
