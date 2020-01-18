@@ -9,11 +9,11 @@ class UserInfo extends React.Component {
                 {username: '',
                 email: ''},
             change: false,
-            password: null
-
+            password: null,
             
 
-        }
+         }
+        
     }
 
     handleUsername = (e) => {
@@ -41,33 +41,26 @@ class UserInfo extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
+        this.setState({ 
+            hide: true
+        })
     }
 
     handleChangeButton = (e) => {
 
-        const { change, user, username } = this.state
+        const { hide, username, email, password } = this.state
         
-        const email = this.state.email
-        const password = this.state.password
+        // const email = this.state.email
+        // const password = this.state.password
         console.log('user', this.props.username)
-        if (user.username !== username && change === true) {
-          
-            this.setState({
-                username: username
-            })
-
-        
-        } else if (user[0].email !== email && change === true) {
+          if (hide === true) {
 
             this.setState({
-                email: email
+                password: password,
+                email: email,
+                username: username,
+                change: true, 
                
-            })
-
-        } else if (user.password !== password && change === true) {
-
-            this.setState({
-                password: password
             })
         }
          console.log('email!!!!', email)
@@ -75,27 +68,37 @@ class UserInfo extends React.Component {
         
     }
 
+  
+
 
     render() {
-        const { user, username, email, password } = this.state
-        console.log(user)
+        // const { username , email, password } = this.state
+        const show = this.props.hide
+        console.log('!!!', this.props.toggleInput)
 
          return (
             <div>
+                <a onClick={this.props.toggleInput}>
+                    username: {this.props.username}
+                    <br></br>
+                    email: {this.props.email} 
+                    <br></br>
+                    {/* password: {this.props.password} */}
+                </a>
                 
 
-                <form className='info-form' onSubmit={this.handleSubmit}>
-                    New Username
-                    <input placeholder={user.username} value={username} type='text' onChange={this.handleUsername}/>
+                { show ? <form className='info-form' onSubmit={this.handleSubmit}>
+                        New Username
+                    <input placeholder='enter new username' type='text' onChange={this.handleUsername}/>
                     New Email
-                    <input placeholder={user.email} value={email} type='email' onChange={this.handleEmail}/>
+                    <input placeholder='enter new email' type='email' onChange={this.handleEmail}/>
                     New Password
-                    <input placeholder='Enter new password'  value={password} type='password' onChange={this.handlePassword}/>
+                    <input placeholder='Enter new password'  type='password' onChange={this.handlePassword}/>
                     <input type='file' onChange={this.handleAvatarFile}/>
-                    <input type='submit' value='Upload' />
+                    <input type='submit' value='Upload'/>
 
                     <button onClick={this.handleChangeButton}>Submit</button> 
-                </form>
+                </form> : "" }
             </div>
         )
     }
