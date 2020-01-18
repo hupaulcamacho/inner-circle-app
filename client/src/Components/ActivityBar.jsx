@@ -3,6 +3,7 @@ import UserInfo from './UserInfo';
 import CircleSelect from './CircleSelect';
 import DisplayPosts from './DisplayPosts';
 import axios from 'axios';
+import { Redirect } from "react-router-dom";
 
 //We are assuming that the username will be passed down through props
 class ActivityBar extends React.Component{
@@ -15,8 +16,15 @@ class ActivityBar extends React.Component{
       		infoDisplay: false,
       		allUserCircles: '',
 			allUserPosts: '',
+			goToCirclePage: undefined
 		};
 	};
+
+	goToCircle = (circleId) => {
+		this.setState({
+			goToCirclePage: circleId
+		});
+	}
 
 	handlePosts = async () => {
 		let userPosts = await axios.get(`http://localhost:3030/posts/users/${this.props.user.id}`);
@@ -59,9 +67,10 @@ class ActivityBar extends React.Component{
 
 
 	render(){
-		let toggleCircles = (this.state.circleDisplay) ? <CircleSelect circles={this.state.allUserCircles} />: null;
+		let toggleCircles = (this.state.circleDisplay) ? <CircleSelect circles={this.state.allUserCircles} goToCircle = {this.goToCircle} />: null;
 		let toggleInfo = (this.state.infoDisplay) ? <UserInfo username= {this.props.user.username}/>: null;
 		let togglePosts = (this.state.postsDisplay) ? <DisplayPosts posts={this.state.allUserPosts} singleUser = {true} /> : null;
+		let goToCirclePage = (this.state.goToCirclePage) ? <Redirect to={`/circlePage/${this.state.goToCirclePage}`} />: null;
 		return(
 		<div>
 			<div className="userActivityBar">
@@ -69,6 +78,7 @@ class ActivityBar extends React.Component{
 	        	<a href="#circles" onClick={this.getAllUserCircles}>Circles</a>
 				<a href="#Info" onClick={this.handleInfo}>Info</a>			
 			</div>
+			{goToCirclePage}
 			{toggleCircles}
 			{toggleInfo}
 			{togglePosts}

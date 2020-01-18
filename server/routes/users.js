@@ -164,38 +164,43 @@ router.post('/', upload.single('avatar'), async (req, res) => {
 
 //Route to upadate the user's information
 router.patch('/:id', async (req, res) => {
-
+console.log(req.body.logout);
   let by = req.params.by
   let value = req.params.value
   let query = `UPDATE users SET `
 
   // let updateQuery = ``
   if (req.body.email) {
-    query += `email = $/email/, `
+    query += `email = ${req.body.email},`
   }
   if (req.body.username) {
-    query += `username= $/username/, `
+    query += `username= ${req.body.username}, `
   }
   if (req.body.avatar) {
-    query += `avatar = $/avatar/, `
+    query += `avatar = ${req.body.avatar}, `
   }
   if (req.body.password) {
-    query += `password = $/password/, ` 
+    query += `password = ${req.body.password},` 
   }
-  query = query.slice(0, query.length -2)
-   query+= ` WHERE id = $/id/`
+  query = query.slice(0, query.length -1);
+  if(req.body.logout){
+    query += ` loggedIn = ${false}`
+  }
+   query+= ` WHERE id = ${req.body.id}`
   console.log('query', query)
 
   try {
 
-    await db.any(query, {
+    let response = await db.any(query, {
         email:req.body.email, 
         username:req.body.username,
         avatar: req.body.avatar,
         password: req.body.password,
-        id: req.params.id
+        id: req.params.id,
+        loggedIn: false
       }
     )
+    console.log(response);
 
     let data = {
       username: req.body.username,

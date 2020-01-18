@@ -5,13 +5,9 @@ class SignUp extends React.Component{
 	constructor() {
 		super();
 		this.state = {
-			info:{
-				email: '',
-				username: '',
-				password: null,
-				imgFile: null
-			}
-		
+			email: '',
+			username: '',
+			imgFile: null
 		};
 	}
 
@@ -30,13 +26,6 @@ class SignUp extends React.Component{
 			username: e.target.value
 		})
 	}
-
-	handlePasswordChange = e => {
-		this.setState({
-			password: e.target.value
-		})
-	}
-	
 	handleFileInput = e => {
 		console.log('file changed', e.target.files)
 		this.setState({
@@ -46,23 +35,17 @@ class SignUp extends React.Component{
 
 	handleSignUpSubmit = async (e) => {
 		e.preventDefault()
-		const { email, username, password, imgFile } = this.state
+		const { email, username, imgFile } = this.state
 		let URL = `http://localhost:3030/users`
 
 		let info = {
 			username: username,
 			email: email,
-			password: password,
 			avatar: imgFile
 		}
 		
 		try {
 			let response = await axios.post(URL, info)
-			// console.log('info', response)
-			this.setState({
-				info: response.data
-			})
-			console.log('info', response.data)
 		} catch (err) {
 			console.log(err)
 		}
@@ -70,28 +53,12 @@ class SignUp extends React.Component{
 
 
 	render() {
-		const { email, username, password } = this.state
+		const { email, username } = this.state
 		return(
 			<div className='signup-container'>
 				<form className ='signUp-form' onSubmit={this.handleSignUpSubmit}>
 				<h1>Sign up Today!</h1>
 				<div className='form-item'>
-<<<<<<< HEAD
-					<label for='name'>Email</label>
-					<input placeholder='enter email' type='text' onChange={this.handleEmailChange} value={email}></input>
-				</div>
-				<div className='form-item'>
-					<label for='name'>Username</label>
-					<input placeholder='enter username' type='text' onChange={this.handleUsernameChange} value={username}></input>
-				</div>
-				<div className='form-item'>
-					<label for='name'>password</label>
-					<input placeholder='enter password' type='password' onChange={this.handlePasswordChange} value={password}></input>
-				</div>
-				<div className='form-item'>
-					<label for='avatar'>Avatar</label>
-					<input placeholder='Placeholder for now' type='file' onChange={this.handleFileInput}></input>
-=======
 					{"Email: "}
 					<input placeHolder='enter email' type='text' onChange={this.handleEmailChange} value={email}></input>
 				</div>
@@ -102,7 +69,6 @@ class SignUp extends React.Component{
 				<div className='form-item'>
 					{"Avatar: "}
 					<input placeHolder='Placeholder for now' type='file' onChange={this.handleFileInput}></input>
->>>>>>> 75226278ebcbc1db72d91e2da0315314a8796422
 				</div>
 				<input className='signup-button' type='submit' value='Sign Up' />
 			</form>
