@@ -65,7 +65,7 @@ const NavBar = (props) => {
 	if (loggedIn === true ) {
 		return (
 			<div>
-				<nav>
+				<nav className = 'navbar'>
 					<Redirect to='/userprofile'/>
 				<span className="nav-title"> Inner Circle</span>
 					<Link to="/userprofile">Profile</Link>
