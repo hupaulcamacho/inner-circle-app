@@ -72,7 +72,7 @@ class SignUp extends React.Component{
 
 
 
-	const { username, password, email, avatar } = this.state
+	const { avatar } = this.state
 		this.props.loginUser(username, password)
 		this.props.registerUser(username, password, email, avatar)
 		console.log('hmm', this.props.registerUser(username, password, email, avatar))
