@@ -68,17 +68,17 @@ INSERT INTO circles (circle_name, leader_id, circle_description)
 
 
 INSERT INTO posts (circle_id, owner_id, owner_avi,  image_url, post_body, post_circle)
-    VALUES (1, 1, 'http://localhost:3030/images/avatar/naruto.png',  './public/images/pictures/naruto_post_1.gif', 'How fast do you guys think naruto can run?', 'Anime Haven'),
-           (1, 2, 'http://localhost:3030/images/avatar/netero.jpg', './public/images/pictures/netero_post_1.jpg', 'Killa and Gon are almost like siblings to each other', 'Anime Haven'),
-           (1, 4, 'http://localhost:3030/images/avatar/zenitsu.jpg',  './public/images/pictures/zenitsu_post_1.jpg', 'Should I get this figure of Tanjiro?', 'Anime Haven'),
+    VALUES (1, 1, 'http://localhost:3030/images/avatar/naruto.png',  'http://localhost:3030/images/pictures/naruto_post_1.gif', 'How fast do you guys think naruto can run?', 'Anime Haven'),
+           (1, 2, 'http://localhost:3030/images/avatar/netero.jpg', 'http://localhost:3030/images/pictures/netero_post_1.jpg', 'Killa and Gon are almost like siblings to each other', 'Anime Haven'),
+           (1, 4, 'http://localhost:3030/images/avatar/zenitsu.jpg',  'http://localhost:3030/images/pictures/zenitsu_post_1.jpg', 'Should I get this figure of Tanjiro?', 'Anime Haven'),
 
-           (2, 10, 'http://localhost:3030/images/avatar/lebron.jpg',  './public/images/pictures/lebron_post_1.gif', 'My face when people say lebron is not the GOAT', 'Sports Center'),
-           (2, 13, 'http://localhost:3030/images/avatar/carmelo.jpeg',  './public/images/pictures/carmelo_post_1.jpg', 'I miss carmelo being on the Knicks...', 'Sports Center'),
+           (2, 10, 'http://localhost:3030/images/avatar/lebron.jpg',  'http://localhost:3030/images/pictures/lebron_post_1.gif', 'My face when people say lebron is not the GOAT', 'Sports Center'),
+           (2, 13, 'http://localhost:3030/images/avatar/carmelo.jpeg',  'http://localhost:3030/images/pictures/carmelo_post_1.jpg', 'I miss carmelo being on the Knicks...', 'Sports Center'),
 
-           (3, 17, 'http://localhost:3030/images/avatar/master_chief.jpg', './public/images/pictures/chief_post_1.jpg', 'Who is ready for Halo Infinite?!!', 'Gamers United'),
-           (3, 15, 'http://localhost:3030/images/avatar/chrono.jpg',  './public/images/pictures/chrono_post_1.jpg', 'I NEED a new golden sun game to drop', 'Gamers United'),
+           (3, 17, 'http://localhost:3030/images/avatar/master_chief.jpg', 'http://localhost:3030/images/pictures/chief_post_1.jpg', 'Who is ready for Halo Infinite?!!', 'Gamers United'),
+           (3, 15, 'http://localhost:3030/images/avatar/chrono.jpg',  'http://localhost:3030/images/pictures/chrono_post_1.jpg', 'I NEED a new golden sun game to drop', 'Gamers United'),
 
-           (3, 20, 'http://localhost:3030/images/avatar/ryu.jpg',  './public/images/pictures/ryu_post_1.jpg', 'Tokido is one of the most impressive Akuma players, he always plays at an insane level', 'Gamers United');
+           (3, 20, 'http://localhost:3030/images/avatar/ryu.jpg',  'http://localhost:3030/images/pictures/ryu_post_1.jpg', 'Tokido is one of the most impressive Akuma players, he always plays at an insane level', 'Gamers United');
 
 
 INSERT INTO links (user_id, circle_ref)
