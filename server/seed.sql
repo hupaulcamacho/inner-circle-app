@@ -1,8 +1,5 @@
-DROP DATABASE IF EXISTS inner_circle_db;
 
-CREATE DATABASE inner_circle_db;
-
-\c inner_circle_db;
+cat seed.sql | heroku pg:psql
 
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
@@ -101,5 +98,5 @@ INSERT INTO links (user_id, circle_ref)
 
 
 
-             
+
            

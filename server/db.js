@@ -1,4 +1,4 @@
 const pgp = require('pg-promise')();
-const connectionString = 'postgres://localhost:5432/inner_circle_db';
+const connectionString = process.env.DATABASE_URL;
 const db = pgp(connectionString);
 module.exports = db;
