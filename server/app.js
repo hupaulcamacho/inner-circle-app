@@ -1,4 +1,4 @@
-require('dotenv').config();
+
 // var indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const express = require('express');
