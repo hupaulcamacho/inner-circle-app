@@ -1,6 +1,6 @@
 import React from 'react';
 import './App2.css';
-import REACT_APP_SERVER_URL from '.env';
+import REACT_APP_SERVER_URL from './Website';
 import NavBar from './NavBar'
 import axios from 'axios';
 import Intro from './Intro';
