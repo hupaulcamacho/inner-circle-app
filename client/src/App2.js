@@ -31,7 +31,7 @@ class App2 extends React.Component {
     };
 
     loginUser = async (username, password) => {
-        const URL = `${REACT_APP_SERVER_URL}/${username}/${password}`
+        const URL = `${REACT_APP_SERVER_URL}/users/login/${username}/${password}`
         try {
             let response = await axios.post(URL);
             console.log(response.data);
