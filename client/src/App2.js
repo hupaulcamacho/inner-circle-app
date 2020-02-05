@@ -1,6 +1,6 @@
 import React from 'react';
 import './App2.css';
-
+import REACT_APP_SERVER_URL from '.env';
 import NavBar from './NavBar'
 import axios from 'axios';
 import Intro from './Intro';
@@ -47,7 +47,7 @@ class App2 extends React.Component {
     }
 
     logoutUser = async (id) => {
-        const URL = `http://localhost:3030/users/${id}`;
+        const URL = `${REACT_APP_SERVER_URL}/${id}`;
         try{
             let response = await axios.patch(URL, {logout: 'Get this user out of here', id: id});
             this.setState({
