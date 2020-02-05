@@ -31,7 +31,7 @@ class App2 extends React.Component {
     };
 
     loginUser = async (username, password) => {
-        const URL = `https://cryptic-beyond-79410.herokuapp.com/users/login/${username}/${password}`
+        const URL = `${REACT_APP_SERVER_URL}/${username}/${password}`
         try {
             let response = await axios.post(URL);
             console.log(response.data);
@@ -47,7 +47,7 @@ class App2 extends React.Component {
     }
 
     logoutUser = async (id) => {
-        const URL = `${REACT_APP_SERVER_URL}/${id}`;
+        const URL = `${REACT_APP_SERVER_URL}/users/${id}`;
         try{
             let response = await axios.patch(URL, {logout: 'Get this user out of here', id: id});
             this.setState({
@@ -62,7 +62,7 @@ class App2 extends React.Component {
 
     registerUser = async() => {
         	console.log('here')
-        	let URL = `http://localhost:3030/users/signup`
+        	let URL = `${REACT_APP_SERVER_URL}/users/signup`
         	console.log('url', URL)
 
         	let user = {

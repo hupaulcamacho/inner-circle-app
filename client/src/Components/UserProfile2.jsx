@@ -19,7 +19,7 @@ class UserProfile extends React.Component {
     //     try {
     //         //  let avatar = this.props.match.params
     //         //  console.log('params?????', avatar)
-    //          let url = `http://localhost:3030/users`
+    //          let url = `${REACT_APP_SERVER_URL}/users`
     //          let userAvatar = await axios.get(url)
     //         //  this.setState({
     //         //      avatar: userAvatar
@@ -54,7 +54,7 @@ class UserProfile extends React.Component {
          try {
 
            
-             let url = `http://localhost:3030/users/`
+             let url = `${REACT_APP_SERVER_URL}/users/`
              let userAvatar = await axios.get(url, data)
               console.log('avatar', userAvatar)
              this.setState({
@@ -70,7 +70,7 @@ class UserProfile extends React.Component {
 
     // componentDidMount = async() => {
     //     console.log(this.props.match.params);
-    //     let request = axios.get(`http://localhost:3030/users/id/${this.props.match.params.id}`);
+    //     let request = axios.get(`${REACT_APP_SERVER_URL}/users/id/${this.props.match.params.id}`);
     //     this.set
     // }
 
@@ -82,7 +82,7 @@ class UserProfile extends React.Component {
     render() {
         const { user } =  this.state
         console.log(user);
-        let request = axios.get(`http://localhost:3030/users/id/${this.props.match.params.id}`);
+        let request = axios.get(`${REACT_APP_SERVER_URL}/users/id/${this.props.match.params.id}`);
         console.log(request);
 
         

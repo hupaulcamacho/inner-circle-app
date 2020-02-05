@@ -1,6 +1,7 @@
 import React from 'react';
 import './CirclePage.css';
 import axios from 'axios';
+import REACT_APP_SERVER_URL from './Website';
 import DisplayPosts from './Components/DisplayPosts';
 import MemberTab from './Components/MemberTab';
 import SettingsPage from './SettingsPage';
@@ -22,7 +23,7 @@ class CirclePage extends React.Component {
 
 	componentDidMount = async () => {
 
-		let response = await axios.get(`http://localhost:3030/circles/getCircleById/${this.props.match.params.id}`);
+		let response = await axios.get(`${REACT_APP_SERVER_URL}/circles/getCircleById/${this.props.match.params.id}`);
 		console.log(response.data.message[0]);
 		this.setState({
 			currentCircle: response.data.message[0]
@@ -41,7 +42,7 @@ class CirclePage extends React.Component {
 	}
 
 	handlePosts = async () => {
-		let response = await axios.get(`http://localhost:3030/posts/circle/${this.state.currentCircle.id}`);
+		let response = await axios.get(`${REACT_APP_SERVER_URL}/posts/circle/${this.state.currentCircle.id}`);
 		console.log(response.data.payload);
 		this.setState(
 			{
@@ -53,12 +54,12 @@ class CirclePage extends React.Component {
 	}
 
 	handleMembers = async () => {
-		let response = await axios.get(`http://localhost:3030/circles/${this.state.currentCircle.id}`);
+		let response = await axios.get(`${REACT_APP_SERVER_URL}/circles/${this.state.currentCircle.id}`);
 		console.log(response.data);
 		let allUsersInCircle = [];
 		let user;
 		for(let i = 0; i < response.data.length; i++) {
-			user = await axios.get(`http://localhost:3030/users/id/${response.data[i].user_id}`);
+			user = await axios.get(`${REACT_APP_SERVER_URL}/users/id/${response.data[i].user_id}`);
 			console.log(user);
 			allUsersInCircle.push(user.data.data);
 		};

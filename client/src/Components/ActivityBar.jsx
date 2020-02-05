@@ -34,7 +34,7 @@ class ActivityBar extends React.Component{
 	}
 
 	handlePosts = async () => {
-		let userPosts = await axios.get(`http://localhost:3030/posts/users/${this.props.user.id}`);
+		let userPosts = await axios.get(`${REACT_APP_SERVER_URL}/posts/users/${this.props.user.id}`);
 		console.log(userPosts.data.payload);
 			this.setState(
 			{
@@ -59,7 +59,7 @@ class ActivityBar extends React.Component{
 
 	
 	getAllUserCircles = async () => { 
-		let allUserCircles = await axios.get(`http://localhost:3030/circles/getUserCircles/${this.props.user.id}`);
+		let allUserCircles = await axios.get(`${REACT_APP_SERVER_URL}/circles/getUserCircles/${this.props.user.id}`);
 		console.log(allUserCircles.data.payload);
 		this.setState(
 			{

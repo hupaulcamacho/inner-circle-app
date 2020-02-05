@@ -28,10 +28,10 @@ class Search extends React.Component {
             })
         }
         if(this.state.deleteToggle){
-            let userIDs = await axios.get(`http://localhost:3030/circles/${this.props.match.params.id}`);
+            let userIDs = await axios.get(`${REACT_APP_SERVER_URL}/circles/${this.props.match.params.id}`);
             let allUsers = [];
             await userIDs.data.map( async (elem) => {
-                let temp = await axios.get(`http://localhost:3030/users/id/${elem.user_id}`);
+                let temp = await axios.get(`${REACT_APP_SERVER_URL}/users/id/${elem.user_id}`);
 
                 allUsers.push(temp.data.data);
                 this.setState({
@@ -97,16 +97,16 @@ class Search extends React.Component {
         let URL;
     
         if (circleChecked === true) {
-            URL = `http://localhost:3030/circles/getCircleByName/${search}`
+            URL = `${REACT_APP_SERVER_URL}/circles/getCircleByName/${search}`
             
         } else if (userChecked === true) {
-            URL = `http://localhost:3030/users/username/${search}`
+            URL = `${REACT_APP_SERVER_URL}/users/username/${search}`
         } 
         try {
             let searchResults = []
             let circleResults = []
             const response = await axios.get(URL)
-            let URL2 = `http://localhost:3030/circles/getCircleAndMembersByCircleName/${search}`
+            let URL2 = `${REACT_APP_SERVER_URL}/circles/getCircleAndMembersByCircleName/${search}`
             const response2 = await axios.get(URL2)
             console.log(response.data.data)
             response.data.data.forEach(data => {

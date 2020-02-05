@@ -44,7 +44,7 @@ class SignUp extends React.Component{
 		
 		const { email, username, password } = this.state
 		
-		let URL = `http://localhost:3030/users`
+		let URL = `${REACT_APP_SERVER_URL}/users`
 
 		let info = {
 			username: username,

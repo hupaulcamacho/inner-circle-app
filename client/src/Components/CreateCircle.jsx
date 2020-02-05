@@ -34,7 +34,7 @@ class CreateCircle extends Component {
     createNewCircle = async (e) => {
         e.preventDefault()
         const { circleName, numOfMembers, description } = this.state
-        let URL = 'http://localhost:3030/circles/register'
+        let URL = `${REACT_APP_SERVER_URL}/circles/register`
         let info = {
             circle_name: circleName,
             circle_description: description,
