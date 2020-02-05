@@ -2,7 +2,8 @@ import React from 'react';
 
 import SearchItems from './searchItems'
 
-import axios from 'axios'
+import axios from 'axios';
+import REACT_APP_SERVER_URL from '../Website';
 
 class Search extends React.Component {
     constructor (props) {

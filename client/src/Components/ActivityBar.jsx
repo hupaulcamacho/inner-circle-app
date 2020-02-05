@@ -4,6 +4,7 @@ import CircleSelect from './CircleSelect';
 import DisplayPosts from './DisplayPosts';
 import axios from 'axios';
 import { Redirect } from "react-router-dom";
+import REACT_APP_SERVER_URL from '../Website';
 
 //We are assuming that the username will be passed down through props
 class ActivityBar extends React.Component{

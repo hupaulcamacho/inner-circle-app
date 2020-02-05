@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import REACT_APP_SERVER_URL from './Website';
 
 class SignUp extends React.Component{
 	constructor(props) {

@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import ActivityBar from './ActivityBar';
+import REACT_APP_SERVER_URL from '../Website';
 
 
 class UserProfile extends React.Component {
