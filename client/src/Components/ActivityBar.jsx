@@ -4,6 +4,7 @@ import CircleSelect from './CircleSelect';
 import DisplayPosts from './DisplayPosts';
 import axios from 'axios';
 import { Redirect } from "react-router-dom";
+import REACT_APP_SERVER_URL from '../Website';
 
 //We are assuming that the username will be passed down through props
 class ActivityBar extends React.Component{
@@ -34,7 +35,7 @@ class ActivityBar extends React.Component{
 	}
 
 	handlePosts = async () => {
-		let userPosts = await axios.get(`http://localhost:3030/posts/users/${this.props.user.id}`);
+		let userPosts = await axios.get(`${REACT_APP_SERVER_URL}/posts/users/${this.props.user.id}`);
 		console.log(userPosts.data.payload);
 			this.setState(
 			{
@@ -59,7 +60,7 @@ class ActivityBar extends React.Component{
 
 	
 	getAllUserCircles = async () => { 
-		let allUserCircles = await axios.get(`http://localhost:3030/circles/getUserCircles/${this.props.user.id}`);
+		let allUserCircles = await axios.get(`${REACT_APP_SERVER_URL}/circles/getUserCircles/${this.props.user.id}`);
 		console.log(allUserCircles.data.payload);
 		this.setState(
 			{

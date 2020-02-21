@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import ActivityBar from './ActivityBar';
+import REACT_APP_SERVER_URL from '../Website';
 
 
 class UserProfile extends React.Component {
@@ -17,7 +18,7 @@ class UserProfile extends React.Component {
     //     try {
     //         //  let avatar = this.props.match.params
     //         //  console.log('params?????', avatar)
-    //          let url = `http://localhost:3030/users`
+    //          let url = `${REACT_APP_SERVER_URL}/users`
     //          let userAvatar = await axios.get(url)
     //         //  this.setState({
     //         //      avatar: userAvatar
@@ -52,7 +53,7 @@ class UserProfile extends React.Component {
          try {
 
            
-             let url = `http://localhost:3030/users/`
+             let url = `${REACT_APP_SERVER_URL}/users/`
              let userAvatar = await axios.get(url, data)
               console.log('avatar', userAvatar)
              this.setState({

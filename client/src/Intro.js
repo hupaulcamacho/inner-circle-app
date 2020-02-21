@@ -24,7 +24,7 @@ class Intro extends React.Component {
 
 	render() {
 		return(
-			<div className='black-background'>
+			<div className='black-background typewriter'>
 			  <Interval delay={5000}>
    				{this.continueIntro}
   			  </Interval>

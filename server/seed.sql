@@ -1,8 +1,5 @@
-DROP DATABASE IF EXISTS inner_circle_db;
 
-CREATE DATABASE inner_circle_db;
 
-\c inner_circle_db;
 
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
